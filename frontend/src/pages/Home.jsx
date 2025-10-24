@@ -76,107 +76,160 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-200 to-primary-50">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920')] bg-cover bg-center opacity-5"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent"></div>
+      {/* Hero Section - Diagonal Modern Design */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Diagonal Background Split with Image */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"></div>
+          
+          {/* Blue Diagonal Section with Image */}
+          <div className="absolute top-0 right-0 w-2/3 h-full transform origin-top-right skew-x-12 translate-x-1/4 overflow-hidden">
+            {/* Image inside diagonal section */}
+            <div className="absolute inset-0 transform -skew-x-12 -translate-x-1/4">
+              <img
+                src="https://images.unsplash.com/photo-1627807452369-a2cd0b5ca56f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                alt="Injection Moulding Machine"
+                className="w-full h-full object-cover"
+              />
+              {/* White overlay */}
+              <div className="absolute inset-0 bg-blue-500/40"></div>
+            </div>
+          </div>
         </div>
 
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Floating Elements */}
+        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-20 h-20 bg-primary-400/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+          <div className="absolute top-40 right-20 w-16 h-16 bg-cyan-400/20 rounded-full animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
+          <div className="absolute bottom-40 left-1/4 w-24 h-24 bg-indigo-400/20 rounded-full animate-bounce" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
+        </div> */}
+
+        {/* Main Content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          
+          <div className="max-w-3xl">
+            
+            {/* Content */}
+            <motion.div
+              ref={heroRef}
+              initial={{ opacity: 0, x: -50 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              
+
+              {/* Main Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6 mt-16"
+              >
+                <span className="text-slate-900">Expert</span>{' '}
+                <span className="text-gradient">injection moulding</span>{' '}
+                <span className="text-slate-900">machine services</span>
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 "
+              >
+                Complete technical support for machine health, performance <br /> optimization, and maintenance. Reduce downtime and improve <br />productivity with our expert services.
+              </motion.p>
+
+              {/* Features List */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="grid grid-cols-2 gap-4 mb-8"
+              >
+                <div className="flex items-center space-x-2">
+                  <CheckCircle size={20} className="text-green-500" />
+                  <span className="text-sm font-medium text-slate-700">500+ Machines</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle size={20} className="text-green-500" />
+                  <span className="text-sm font-medium text-slate-700">98% Satisfaction</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle size={20} className="text-green-500" />
+                  <span className="text-sm font-medium text-slate-700">24/7 Support</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle size={20} className="text-green-500" />
+                  <span className="text-sm font-medium text-slate-700">15+ Years</span>
+                </div>
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link
+                  to="/booking"
+                  className="group bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
+                >
+                  <span>Book Service Now</span>
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/services"
+                  className="group bg-white border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 hover:border-primary-600 hover:text-primary-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <span>View Services</span>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </motion.div>
+            </motion.div>
+
+          </div>
+
         </div>
-
-        {/* Hero Content */}
-        <motion.div
-          ref={heroRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        >
-
-          <motion.h4
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-5xl md:text-7xl font-heading font-bold text-gray-900 mb-6 mt-20  "
-          >
-           Expert 
-            <span className="text-gradient"> Injection Moulding </span>
-            Machine Solutions 
-          </motion.h4>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto font-medium"
-          >
-            Complete technical solutions to reduce downtime, improve reliability, and boost productivity
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Link
-              to="/booking"
-              className="group bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center space-x-2 shadow-lg"
-            >
-              <span>Book a Service</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              to="/services"
-              className="bg-white border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-primary-50 transition-all duration-300 shadow-md"
-            >
-              View Services
-            </Link>
-          </motion.div>
-
-          {/* Quick Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
-          >
-            {stats.map((stat, index) => (
-              <div key={index} className="bg-white/80 backdrop-blur-sm border border-primary-200 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-primary-600 mb-2 flex justify-center">{stat.icon}</div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.number}</div>
-                <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-    
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-20 bg-gradient-to-br from-white to-light-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section ref={servicesRef} className="relative py-24 bg-slate-50 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={servicesInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-flex items-center space-x-2 bg-primary-50 border border-primary-200 px-4 py-2 rounded-full mb-6"
+            >
+              <Settings size={16} className="text-primary-600" />
+              <span className="text-sm font-semibold text-primary-700">Professional Services</span>
+            </motion.div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-slate-900 mb-4">
               Our Expert Services
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-              Comprehensive solutions for all your injection moulding machine needs
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Comprehensive solutions for all your injection moulding machine needs with cutting-edge technology and expert care
             </p>
           </motion.div>
 
+          {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
@@ -184,36 +237,90 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-blue-100 border border-light-200 rounded-xl p-6 hover:border-primary-800 transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="group relative"
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <div className="text-white">{service.icon}</div>
+                {/* Card */}
+                <div className="relative h-full bg-white border border-blue-900 rounded-2xl p-8 hover:border-primary-400 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                  {/* Icon Container */}
+                  <div className="relative mb-6">
+                    <div className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                      <div className="text-white">{service.icon}</div>
+                    </div>
+                    {/* Decorative ring */}
+                    <div className={`absolute -inset-2 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}></div>
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Learn More Link */}
+                  <Link
+                    to="/services"
+                    className="inline-flex items-center space-x-2 text-primary-600 font-semibold group-hover:space-x-3 transition-all"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+
+                  {/* Top corner accent */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-100 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <Link
-                  to="/services"
-                  className="text-primary-600 font-semibold flex items-center space-x-2 group-hover:space-x-3 transition-all"
-                >
-                  <span>Learn More</span>
-                  <ArrowRight size={18} />
-                </Link>
+
+                {/* Bottom shadow accent */}
+                <div className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-10 blur-xl -z-10 transition-opacity duration-300`}></div>
               </motion.div>
             ))}
           </div>
 
+          {/* CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mt-12"
+            className="mt-16 text-center"
           >
-            <Link
-              to="/services"
-              className="inline-block bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg"
-            >
-              View All Services
-            </Link>
+            <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-primary-600 to-cyan-500 p-8 rounded-2xl shadow-2xl">
+              <div className="text-left">
+                <h3 className="text-2xl font-bold text-white mb-2">Need a Custom Solution?</h3>
+                <p className="text-white/90 text-sm">We provide tailored services to meet your specific requirements</p>
+              </div>
+              <Link
+                to="/services"
+                className="flex-shrink-0 bg-white text-primary-600 px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 whitespace-nowrap"
+              >
+                View All Services
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Stats Bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+          >
+            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
+              <div className="text-3xl font-bold text-primary-600 mb-1">6+</div>
+              <div className="text-sm text-slate-600 font-medium">Service Types</div>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
+              <div className="text-3xl font-bold text-cyan-600 mb-1">24/7</div>
+              <div className="text-sm text-slate-600 font-medium">Availability</div>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
+              <div className="text-3xl font-bold text-indigo-600 mb-1">Expert</div>
+              <div className="text-sm text-slate-600 font-medium">Technicians</div>
+            </div>
+            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
+              <div className="text-3xl font-bold text-green-600 mb-1">Fast</div>
+              <div className="text-sm text-slate-600 font-medium">Response</div>
+            </div>
           </motion.div>
         </div>
       </section>
