@@ -184,7 +184,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-white border border-light-200 rounded-xl p-6 hover:border-primary-400 transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="group bg-blue-100 border border-light-200 rounded-xl p-6 hover:border-primary-800 transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <div className="text-white">{service.icon}</div>
@@ -219,7 +219,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 via-light-100 to-white">
+      <section className="py-20 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-400">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -228,10 +228,10 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
                 Why Choose IM Services?
               </h2>
-              <p className="text-xl text-gray-600 mb-8 font-medium">
+              <p className="text-xl text-gray-300 mb-8 font-medium">
                 We deliver excellence through expertise, reliability, and commitment to your machine's performance.
               </p>
               <div className="space-y-4">
@@ -245,13 +245,13 @@ const Home = () => {
                     className="flex items-start space-x-3"
                   >
                     <CheckCircle size={24} className="text-primary-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700 text-lg font-medium">{feature}</span>
+                    <span className="text-gray-800 text-lg font-medium">{feature}</span>
                   </motion.div>
                 ))}
               </div>
               <Link
                 to="/about"
-                className="inline-block mt-8 bg-white border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="inline-block mt-8 bg-slate-800 border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 Learn More About Us
               </Link>
@@ -272,7 +272,7 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent"></div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-primary-600 to-cyan-500 rounded-xl p-8 shadow-2xl max-w-xs">
+              <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-primary-500 to-cyan-400 rounded-xl p-8 shadow-2xl max-w-xs">
                 <div className="text-white">
                   <div className="text-4xl font-bold mb-2">15+</div>
                   <div className="text-sm">Years of Excellence in Machine Maintenance</div>
