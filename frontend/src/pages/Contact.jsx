@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, User, Building2, MessageSquare, Calendar } from 'lucide-react'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -48,36 +48,46 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: <Phone size={32} />,
+      icon: Phone,
       title: 'Phone Numbers',
       details: ['+91 9730992561', '+91 7875601427', '+91 8551035501'],
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-blue-500 to-cyan-500',
+      link: 'tel:+919730992561'
     },
     {
-      icon: <Mail size={32} />,
+      icon: Mail,
       title: 'Email Address',
       details: ['imservices4444@gmail.com'],
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-cyan-500 to-indigo-500',
+      link: 'mailto:imservices4444@gmail.com'
     },
     {
-      icon: <MapPin size={32} />,
+      icon: MapPin,
       title: 'Location',
       details: ['Shikrapur, Pune', 'Maharashtra, India'],
-      color: 'from-orange-500 to-red-500'
+      color: 'from-indigo-500 to-purple-500',
+      link: 'https://maps.google.com/?q=Shikrapur,Pune'
     },
     {
-      icon: <Clock size={32} />,
+      icon: Clock,
       title: 'Working Hours',
       details: ['Mon - Sat: 9:00 AM - 7:00 PM', '24/7 Emergency Support'],
-      color: 'from-green-500 to-emerald-500'
+      color: 'from-purple-500 to-pink-500',
+      link: null
     }
   ]
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920')] bg-cover bg-center opacity-5"></div>
+    <div className="min-h-screen pt-20 bg-white">
+      {/* Hero Section - Modern Design */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl"></div>
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -85,54 +95,104 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6">
-              Contact <span className="text-gradient">Us</span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-cyan-100 text-primary-700 px-5 py-2 rounded-full mb-6"
+            >
+              <MessageSquare size={18} />
+              <span className="text-sm font-bold">Get In Touch</span>
+            </motion.div>
+
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+              Contact <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Us</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Get in touch with our team for any inquiries or support
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              We're here to help! Reach out to us for any inquiries, support, or consultations
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 bg-dark-800">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-dark-900 border border-gray-800 rounded-xl p-6 hover:border-primary-500/50 transition-all duration-300"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${info.color} rounded-lg flex items-center justify-center mb-4`}>
-                  <div className="text-white">{info.icon}</div>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{info.title}</h3>
-                {info.details.map((detail, idx) => (
-                  <p key={idx} className="text-gray-400">{detail}</p>
-                ))}
-              </motion.div>
-            ))}
+            {contactInfo.map((info, index) => {
+              const IconComponent = info.icon
+              const CardContent = (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 h-full"
+                >
+                  {/* Icon */}
+                  <div className={`w-20 h-20 bg-gradient-to-br ${info.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
+                    <IconComponent className="text-white" size={32} />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-slate-900 mb-4">{info.title}</h3>
+                  
+                  {/* Details */}
+                  <div className="space-y-2">
+                    {info.details.map((detail, idx) => (
+                      <p key={idx} className="text-slate-600 font-medium leading-relaxed">
+                        {detail}
+                      </p>
+                    ))}
+                  </div>
+
+                  {/* Decorative gradient bar */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${info.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl`}></div>
+                </motion.div>
+              )
+
+              return info.link ? (
+                <a key={index} href={info.link} target={info.link.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" className="block">
+                  {CardContent}
+                </a>
+              ) : (
+                <div key={index}>{CardContent}</div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Contact Form & Map */}
-      <section className="py-20 bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-slate-200"
             >
-              <h2 className="text-3xl font-heading font-bold text-white mb-6">
-                Send Us a Message
-              </h2>
+              <div className="mb-8">
+                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-cyan-100 text-primary-700 px-4 py-2 rounded-full mb-4">
+                  <Send size={18} />
+                  <span className="text-sm font-bold">Quick Contact</span>
+                </div>
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-3">
+                  Send Us a Message
+                </h2>
+                <p className="text-slate-600">Fill out the form below and we'll get back to you within 24 hours</p>
+              </div>
 
               {success && (
                 <div className="mb-6 bg-green-500/10 border border-green-500/30 rounded-lg p-4 flex items-start space-x-3">
@@ -152,8 +212,9 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-white font-semibold mb-2">
-                    Name <span className="text-accent-500">*</span>
+                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                    <User size={18} className="text-primary-600" />
+                    <span>Full Name <span className="text-red-500">*</span></span>
                   </label>
                   <input
                     type="text"
@@ -161,15 +222,16 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-dark-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
-                    placeholder="Your name"
+                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                    placeholder="Enter your full name"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-white font-semibold mb-2">
-                      Email <span className="text-accent-500">*</span>
+                    <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                      <Mail size={18} className="text-primary-600" />
+                      <span>Email Address <span className="text-red-500">*</span></span>
                     </label>
                     <input
                       type="email"
@@ -177,14 +239,15 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-dark-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
+                      className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
                       placeholder="your@email.com"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-white font-semibold mb-2">
-                      Phone <span className="text-accent-500">*</span>
+                    <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                      <Phone size={18} className="text-primary-600" />
+                      <span>Phone Number <span className="text-red-500">*</span></span>
                     </label>
                     <input
                       type="tel"
@@ -192,15 +255,16 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full bg-dark-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
+                      className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
                       placeholder="+91 XXXXXXXXXX"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-white font-semibold mb-2">
-                    Subject <span className="text-accent-500">*</span>
+                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                    <MessageSquare size={18} className="text-primary-600" />
+                    <span>Subject <span className="text-red-500">*</span></span>
                   </label>
                   <input
                     type="text"
@@ -208,14 +272,15 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full bg-dark-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary-500 focus:outline-none transition-colors"
-                    placeholder="How can we help?"
+                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                    placeholder="How can we help you?"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-white font-semibold mb-2">
-                    Message <span className="text-accent-500">*</span>
+                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                    <MessageCircle size={18} className="text-primary-600" />
+                    <span>Your Message <span className="text-red-500">*</span></span>
                   </label>
                   <textarea
                     name="message"
@@ -223,21 +288,21 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    className="w-full bg-dark-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary-500 focus:outline-none transition-colors resize-none"
-                    placeholder="Your message..."
+                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all resize-none"
+                    placeholder="Tell us about your requirements..."
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-accent-600 to-accent-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-glow transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="group w-full bg-gradient-to-r from-primary-600 via-cyan-500 to-indigo-600 text-white px-8 py-5 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <span>Sending...</span>
                   ) : (
                     <>
-                      <Send size={20} />
+                      <Send size={20} className="group-hover:translate-x-1 transition-transform" />
                       <span>Send Message</span>
                     </>
                   )}
@@ -248,19 +313,25 @@ const Contact = () => {
             {/* Map & Additional Info */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-6"
             >
-              <h2 className="text-3xl font-heading font-bold text-white mb-6">
-                Find Us
-              </h2>
-
-              {/* Google Maps Embed */}
-              <div className="bg-dark-800 border border-gray-800 rounded-xl overflow-hidden mb-6">
+              {/* Map Section */}
+              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-200">
+                <div className="p-6 bg-gradient-to-r from-primary-500 to-cyan-500">
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="text-white" size={24} />
+                    <h2 className="text-2xl font-heading font-bold text-white">
+                      Our Location
+                    </h2>
+                  </div>
+                </div>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242118.18174830705!2d73.69815195!3d18.52461605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
                   width="100%"
-                  height="400"
+                  height="350"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
@@ -270,25 +341,48 @@ const Contact = () => {
               </div>
 
               {/* Company Details */}
-              <div className="bg-dark-800 border border-gray-800 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-white mb-4">Company Details</h3>
-                <div className="space-y-3 text-gray-300">
-                  <p><strong className="text-primary-400">Company:</strong> IM Services</p>
-                  <p><strong className="text-primary-400">GSTIN:</strong> 27AZFPG7021B1ZW</p>
-                  <p><strong className="text-primary-400">Website:</strong> www.imservices.com</p>
+              <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-slate-200">
+                <div className="flex items-center space-x-3 mb-6">
+                  <Building2 className="text-primary-600" size={24} />
+                  <h3 className="text-2xl font-bold text-slate-900">Company Details</h3>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                    <Building2 size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-slate-600 font-semibold">Company Name</p>
+                      <p className="text-slate-900 font-bold">IM Services</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                    <Calendar size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-slate-600 font-semibold">GSTIN</p>
+                      <p className="text-slate-900 font-bold">27AZFPG7021B1ZW</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                    <MapPin size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-slate-600 font-semibold">Address</p>
+                      <p className="text-slate-900 font-bold">Shikrapur, Pune, Maharashtra, India</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-700">
-                  <a
-                    href="https://wa.me/919730992561?text=Hello! I would like to inquire about your services."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
-                  >
-                    <MessageCircle size={20} />
-                    <span>Chat on WhatsApp</span>
-                  </a>
-                </div>
+                {/* WhatsApp Button */}
+                <a
+                  href="https://wa.me/919730992561?text=Hello! I would like to inquire about your services."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+                  <span>Chat on WhatsApp</span>
+                </a>
               </div>
             </motion.div>
           </div>

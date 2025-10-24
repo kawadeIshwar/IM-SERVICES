@@ -9,7 +9,6 @@ import Booking from './pages/Booking'
 import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
 import FAQ from './pages/FAQ'
-import Downloads from './pages/Downloads'
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/downloads" element={<Downloads />} />
         </Routes>
         <Footer />
         <StickyContact />

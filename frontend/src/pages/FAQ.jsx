@@ -1,13 +1,23 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, HelpCircle } from 'lucide-react'
+import { ChevronDown, HelpCircle, MessageCircle, Phone, Mail, Settings, DollarSign, Wrench, CheckCircle } from 'lucide-react'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState('All')
+
+  const categoryIcons = {
+    'General': HelpCircle,
+    'Services': Settings,
+    'Pricing & Payment': DollarSign,
+    'Technical': Wrench
+  }
 
   const faqs = [
     {
       category: 'General',
+      icon: HelpCircle,
+      color: 'from-blue-500 to-cyan-500',
       questions: [
         {
           question: 'What types of injection moulding machines do you service?',
@@ -25,6 +35,8 @@ const FAQ = () => {
     },
     {
       category: 'Services',
+      icon: Settings,
+      color: 'from-cyan-500 to-indigo-500',
       questions: [
         {
           question: 'What is included in the 7-Factor Performance Testing?',
@@ -46,6 +58,8 @@ const FAQ = () => {
     },
     {
       category: 'Pricing & Payment',
+      icon: DollarSign,
+      color: 'from-indigo-500 to-purple-500',
       questions: [
         {
           question: 'How do you charge for services?',
@@ -63,6 +77,8 @@ const FAQ = () => {
     },
     {
       category: 'Technical',
+      icon: Wrench,
+      color: 'from-purple-500 to-pink-500',
       questions: [
         {
           question: 'How long does a typical machine health checkup take?',
@@ -89,11 +105,23 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
+  // Filter FAQs based on category
+  const filteredFAQs = faqs.filter(category => {
+    if (selectedCategory !== 'All' && category.category !== selectedCategory) return false
+    return true
+  })
+
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920')] bg-cover bg-center opacity-5"></div>
+    <div className="min-h-screen pt-20 bg-white">
+      {/* Hero Section - Modern Design */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl"></div>
+        </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -101,114 +129,233 @@ const FAQ = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center">
-                <HelpCircle size={40} className="text-white" />
-              </div>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-heading font-bold text-white mb-6">
-              Frequently Asked <span className="text-gradient">Questions</span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-cyan-100 text-primary-700 px-5 py-2 rounded-full mb-6"
+            >
+              <HelpCircle size={18} />
+              <span className="text-sm font-bold">Help Center</span>
+            </motion.div>
+
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+              Frequently Asked <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Questions</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Find answers to common questions about our services
+            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Find quick answers to common questions about our services
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-dark-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {faqs.map((category, categoryIndex) => (
-            <motion.div
-              key={categoryIndex}
-              initial={{ opacity: 0, y: 30 }}
+      {/* Category Filter Cards */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="mb-12"
+              onClick={() => setSelectedCategory('All')}
+              className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
+                selectedCategory === 'All'
+                  ? 'bg-gradient-to-br from-primary-500 to-cyan-500 border-primary-500 text-white shadow-xl scale-105'
+                  : 'bg-white border-slate-200 hover:border-primary-300 hover:shadow-lg text-slate-700'
+              }`}
             >
-              <h2 className="text-3xl font-heading font-bold text-white mb-6 flex items-center">
-                <span className="w-2 h-8 bg-gradient-to-b from-primary-500 to-accent-500 rounded-full mr-4"></span>
-                {category.category}
-              </h2>
-
-              <div className="space-y-4">
-                {category.questions.map((faq, questionIndex) => {
-                  const index = `${categoryIndex}-${questionIndex}`
-                  const isOpen = openIndex === index
-
-                  return (
-                    <div
-                      key={questionIndex}
-                      className="bg-dark-900 border border-gray-800 rounded-xl overflow-hidden hover:border-primary-500/50 transition-all duration-300"
-                    >
-                      <button
-                        onClick={() => toggleFAQ(categoryIndex, questionIndex)}
-                        className="w-full flex items-center justify-between p-6 text-left"
-                      >
-                        <span className="text-lg font-semibold text-white pr-8">
-                          {faq.question}
-                        </span>
-                        <ChevronDown
-                          size={24}
-                          className={`text-primary-400 flex-shrink-0 transition-transform duration-300 ${
-                            isOpen ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: isOpen ? 'auto' : 0,
-                          opacity: isOpen ? 1 : 0
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 text-gray-400 leading-relaxed">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    </div>
-                  )
-                })}
+              <div className="text-center">
+                <div className="text-3xl font-bold mb-2">{faqs.reduce((acc, cat) => acc + cat.questions.length, 0)}</div>
+                <div className="text-sm font-semibold">All Questions</div>
               </div>
-            </motion.div>
-          ))}
+            </motion.button>
+
+            {faqs.map((category, index) => {
+              const Icon = category.icon
+              return (
+                <motion.button
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  onClick={() => setSelectedCategory(category.category)}
+                  className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
+                    selectedCategory === category.category
+                      ? `bg-gradient-to-br ${category.color} border-transparent text-white shadow-xl scale-105`
+                      : 'bg-white border-slate-200 hover:border-primary-300 hover:shadow-lg text-slate-700'
+                  }`}
+                >
+                  <Icon className={`mx-auto mb-3 ${selectedCategory === category.category ? 'text-white' : 'text-primary-600'}`} size={32} />
+                  <div className="text-sm font-bold mb-1">{category.category}</div>
+                  <div className="text-xs opacity-80">{category.questions.length} Questions</div>
+                </motion.button>
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Still Have Questions */}
-      <section className="py-20 bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FAQ Accordion Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}></div>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {filteredFAQs.map((category, categoryIndex) => (
+              <motion.div
+                key={categoryIndex}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="mb-16"
+              >
+                <div className="flex items-center mb-8">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center mr-4 shadow-lg`}>
+                    <category.icon className="text-white" size={28} />
+                  </div>
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900">
+                      {category.category}
+                    </h2>
+                    <p className="text-slate-600">{category.questions.length} questions answered</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {category.questions.map((faq, questionIndex) => {
+                    const index = `${categoryIndex}-${questionIndex}`
+                    const isOpen = openIndex === index
+
+                    return (
+                      <motion.div
+                        key={questionIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: questionIndex * 0.1 }}
+                        viewport={{ once: true }}
+                        className={`bg-white border-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
+                          isOpen ? 'border-primary-500' : 'border-slate-200 hover:border-primary-300'
+                        }`}
+                      >
+                        <button
+                          onClick={() => toggleFAQ(categoryIndex, questionIndex)}
+                          className="w-full flex items-start justify-between p-6 md:p-8 text-left group"
+                        >
+                          <div className="flex items-start space-x-4 flex-1">
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                              isOpen ? 'bg-primary-500' : 'bg-primary-100'
+                            } transition-colors`}>
+                              <HelpCircle size={20} className={isOpen ? 'text-white' : 'text-primary-600'} />
+                            </div>
+                            <span className="text-lg md:text-xl font-bold text-slate-900 pr-8 group-hover:text-primary-600 transition-colors">
+                              {faq.question}
+                            </span>
+                          </div>
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                            isOpen ? 'bg-primary-500' : 'bg-slate-100'
+                          } transition-all`}>
+                            <ChevronDown
+                              size={20}
+                              className={`${isOpen ? 'text-white rotate-180' : 'text-slate-600'} transition-transform duration-300`}
+                            />
+                          </div>
+                        </button>
+
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: isOpen ? 'auto' : 0,
+                            opacity: isOpen ? 1 : 0
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-8 pb-8 ml-14">
+                            <div className={`h-1 w-16 bg-gradient-to-r ${category.color} rounded-full mb-4`}></div>
+                            <p className="text-slate-600 leading-relaxed text-lg">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              </motion.div>
+            ))}
+        </div>
+      </section>
+
+      {/* Still Have Questions - CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-cyan-500 to-indigo-600 relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl p-12 text-center"
+            className="text-center"
           >
-            <h2 className="text-4xl font-heading font-bold text-white mb-4">
+            <div className="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full mb-6">
+              <MessageCircle size={18} />
+              <span className="text-sm font-bold">Need More Help?</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
               Still Have Questions?
             </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Our team is here to help. Contact us for personalized assistance.
+            <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Our expert team is ready to provide personalized assistance and answer all your queries
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <a
                 href="/contact"
-                className="bg-white text-primary-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all duration-300"
+                className="group inline-flex items-center justify-center space-x-2 bg-white text-primary-600 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-slate-50 hover:shadow-2xl hover:scale-105 transition-all duration-300"
               >
-                Contact Us
+                <Mail size={20} />
+                <span>Contact Us</span>
               </a>
               <a
                 href="tel:+919730992561"
-                className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/30"
+                className="group inline-flex items-center justify-center space-x-2 bg-white/10 backdrop-blur-sm text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-white/20 transition-all duration-300 border-2 border-white/30"
               >
-                Call Now
+                <Phone size={20} />
+                <span>Call Now</span>
               </a>
+            </div>
+
+            {/* Contact Info Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <Phone className="mx-auto mb-3 text-white" size={32} />
+                <div className="text-white font-bold mb-1">Call Us</div>
+                <div className="text-white/80 text-sm">24/7 Support Available</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <Mail className="mx-auto mb-3 text-white" size={32} />
+                <div className="text-white font-bold mb-1">Email Us</div>
+                <div className="text-white/80 text-sm">Quick Response Guaranteed</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <MessageCircle className="mx-auto mb-3 text-white" size={32} />
+                <div className="text-white font-bold mb-1">Live Chat</div>
+                <div className="text-white/80 text-sm">Instant Support Online</div>
+              </div>
             </div>
           </motion.div>
         </div>

@@ -50,10 +50,6 @@ const Footer = () => {
                 <span className="w-1.5 h-1.5 bg-slate-600 rounded-full mr-2 group-hover:bg-primary-400 transition-colors"></span>
                 FAQ
               </Link></li>
-              <li><Link to="/downloads" className="text-slate-300 hover:text-primary-400 text-sm transition-colors font-medium flex items-center group">
-                <span className="w-1.5 h-1.5 bg-slate-600 rounded-full mr-2 group-hover:bg-primary-400 transition-colors"></span>
-                Downloads
-              </Link></li>
             </ul>
           </div>
 
