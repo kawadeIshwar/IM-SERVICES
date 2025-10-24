@@ -278,7 +278,7 @@ const Home = () => {
           </div>
 
           {/* CTA Section */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -296,7 +296,7 @@ const Home = () => {
                 View All Services
               </Link>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Stats Bar */}
           <motion.div
