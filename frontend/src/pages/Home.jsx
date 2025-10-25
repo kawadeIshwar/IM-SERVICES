@@ -75,7 +75,7 @@ const Home = () => {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section - Diagonal Modern Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Diagonal Background Split with Image */}
@@ -123,7 +123,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-6 mt-12 md:mt-16"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-6 mt-12 md:mt-16"
               >
                 <span className="text-slate-900 drop-shadow-sm">Expert</span>{' '}
                 <span className="text-gradient bg-clip-text">injection moulding</span>{' '}
