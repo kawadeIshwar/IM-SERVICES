@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Target, Eye, Award, Users, CheckCircle, TrendingUp, Zap, Shield, Clock, Star } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const About = () => {
   const values = [
@@ -39,6 +40,13 @@ const About = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-white">
+      <SEO 
+        title="About Us - IM Services | 15+ Years of Excellence in Machine Maintenance"
+        description="Learn about IM Services - Maharashtra's leading injection moulding machine maintenance provider. 15+ years experience, 500+ machines serviced, expert technicians, 24/7 support."
+        keywords="about IM services, injection moulding experts, machine maintenance company, experienced technicians, pune machine service company"
+        canonical="https://imservices.netlify.app/about"
+      />
+      
       {/* Hero Section - Modern Design */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
         {/* Decorative Elements */}

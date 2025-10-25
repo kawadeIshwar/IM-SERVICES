@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, HelpCircle, MessageCircle, Phone, Mail, Settings, DollarSign, Wrench, CheckCircle } from 'lucide-react'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(null)
@@ -113,6 +115,14 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-white">
+      <SEO 
+        title="FAQ - Frequently Asked Questions | IM Services"
+        description="Get answers to common questions about injection moulding machine maintenance, repair services, pricing, and technical support. 24/7 help available."
+        keywords="IMM service FAQ, machine maintenance questions, injection moulding help, service pricing, technical support FAQ"
+        canonical="https://imservices.netlify.app/faq"
+      />
+      <StructuredData type="faq" />
+      
       {/* Hero Section - Modern Design */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
         {/* Decorative Elements */}

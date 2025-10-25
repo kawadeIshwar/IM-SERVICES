@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null)
@@ -113,6 +114,13 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-white">
+      <SEO 
+        title="Gallery - Our Work | IM Services Photo & Video Gallery"
+        description="View our injection moulding machine service work through photos and videos. See our performance testing, maintenance, and repair services in action."
+        keywords="IMM service gallery, machine maintenance photos, injection moulding videos, service work gallery, machine repair showcase"
+        canonical="https://imservices.netlify.app/gallery"
+      />
+      
       {/* Hero Section - Modern Design */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
         {/* Decorative Elements */}

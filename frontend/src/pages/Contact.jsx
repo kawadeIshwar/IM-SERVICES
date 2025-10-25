@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageCircle, User, Building2, MessageSquare, Calendar } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -79,6 +80,13 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-white">
+      <SEO 
+        title="Contact Us - Get in Touch with IM Services | 24/7 Support"
+        description="Contact IM Services for injection moulding machine maintenance and repair. Call +91-9730992561 or email us. We provide 24/7 emergency support in Pune, Maharashtra."
+        keywords="contact IMM services, injection moulding machine support, emergency repair contact, machine service pune contact, 24/7 support"
+        canonical="https://imservices.netlify.app/contact"
+      />
+      
       {/* Hero Section - Modern Design */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
         {/* Decorative Elements */}

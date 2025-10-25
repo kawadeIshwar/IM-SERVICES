@@ -13,6 +13,8 @@ import {
   Clock,
   Award
 } from 'lucide-react'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -76,6 +78,14 @@ const Home = () => {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <SEO 
+        title="IM Services - Expert Injection Moulding Machine Services in Pune | 24/7 Support"
+        description="Professional injection moulding machine maintenance, repair, and performance testing services in Pune, Maharashtra. 15+ years experience, 500+ machines serviced. 24/7 emergency breakdown support."
+        keywords="injection moulding machine services pune, IMM maintenance, machine performance testing, preventive maintenance, retrofitting services, hydraulic repair, emergency breakdown service, injection molding maharashtra"
+        canonical="https://imservices.netlify.app/"
+      />
+      <StructuredData type="organization" />
+      
       {/* Hero Section - Diagonal Modern Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Diagonal Background Split with Image */}
@@ -135,7 +145,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl"
+                className="text-base sm:text-lg md:text-xl text-blue-600 leading-relaxed mb-8 max-w-2xl"
               >
                 Complete technical support for machine health, performance <br className="hidden md:block" /> optimization, and maintenance. Reduce downtime and improve <br className="hidden md:block" />productivity with our expert services.
               </motion.p>

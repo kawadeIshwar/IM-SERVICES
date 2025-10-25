@@ -6,6 +6,7 @@ import {
   Settings, Wrench, Shield, Zap, AlertCircle, Droplet, Activity, MoreHorizontal,
   ArrowRight, Sparkles, Award, TrendingUp, Check
 } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const Booking = () => {
     machineType: '',
     machineBrand: '',
     serviceType: '',
+    otherServiceDetails: '',
     preferredDate: '',
     preferredTime: '',
     message: ''
@@ -25,8 +27,7 @@ const Booking = () => {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
-  const [selectedService, setSelectedService] = useState('')
-  const [currentStep, setCurrentStep] = useState(1)
+  const [errors, setErrors] = useState({})
 
   const services = [
     {
@@ -96,29 +97,59 @@ const Booking = () => {
   ]
 
   const handleChange = (e) => {
+    const { name, value } = e.target
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     })
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      })
+    }
   }
 
-  const handleServiceSelect = (service) => {
-    setSelectedService(service.id)
-    setFormData({
-      ...formData,
-      serviceType: service.title
-    })
+  const validateForm = () => {
+    const newErrors = {}
+
+    if (!formData.name.trim()) newErrors.name = 'Name is required'
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Invalid email format'
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+    } else if (!/^[\d\s+()-]{10,}$/.test(formData.phone)) {
+      newErrors.phone = 'Invalid phone number'
+    }
+    if (!formData.location.trim()) newErrors.location = 'Location is required'
+    if (!formData.serviceType) newErrors.serviceType = 'Please select a service type'
+    if (formData.serviceType === 'other' && !formData.otherServiceDetails.trim()) {
+      newErrors.otherServiceDetails = 'Please specify the service details'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     setError('')
+
+    if (!validateForm()) {
+      setError('Please fill in all required fields correctly')
+      return
+    }
+
+    setLoading(true)
 
     try {
       await axios.post('/api/bookings', formData)
       setSuccess(true)
-      setCurrentStep(3)
+      // Reset form after 5 seconds
       setTimeout(() => {
         setFormData({
           name: '',
@@ -129,13 +160,13 @@ const Booking = () => {
           machineType: '',
           machineBrand: '',
           serviceType: '',
+          otherServiceDetails: '',
           preferredDate: '',
           preferredTime: '',
           message: ''
         })
-        setSelectedService('')
-        setCurrentStep(1)
         setSuccess(false)
+        setErrors({})
       }, 5000)
     } catch (err) {
       setError('Failed to submit booking. Please try again or contact us directly.')
@@ -146,6 +177,13 @@ const Booking = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Book Service - Schedule Your Machine Maintenance | IM Services"
+        description="Book professional injection moulding machine services online. Quick and easy booking for performance testing, maintenance, repairs, and emergency breakdown support in Pune."
+        keywords="book machine service, schedule maintenance, IMM service booking, emergency repair booking, machine service appointment pune"
+        canonical="https://imservices.netlify.app/booking"
+      />
+      
       {/* Hero Section */}
       <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         {/* Decorative Elements */}
@@ -175,44 +213,9 @@ const Booking = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
               Schedule Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Expert Service</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-              Book professional machine maintenance with our simple 3-step process
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+              Book professional machine maintenance with our easy booking form
             </p>
-
-            {/* Step Indicator */}
-            <div className="flex items-center justify-center space-x-3 md:space-x-6 max-w-3xl mx-auto">
-              {[
-                { num: 1, label: 'Select Service' },
-                { num: 2, label: 'Your Details' },
-                { num: 3, label: 'Confirmation' }
-              ].map((step, idx) => (
-                <div key={step.num} className="flex items-center">
-                  <div className="flex items-center space-x-3">
-                    <motion.div
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: currentStep >= step.num ? 1 : 0.9 }}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
-                        currentStep >= step.num 
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/50' 
-                          : 'bg-white text-gray-400 border-2 border-gray-200'
-                      }`}
-                    >
-                      {currentStep > step.num ? <Check size={20} /> : step.num}
-                    </motion.div>
-                    <span className={`text-sm font-semibold hidden md:block ${
-                      currentStep >= step.num ? 'text-gray-900' : 'text-gray-400'
-                    }`}>
-                      {step.label}
-                    </span>
-                  </div>
-                  {idx < 2 && (
-                    <div className={`w-12 md:w-24 h-1 mx-2 md:mx-4 rounded-full transition-all duration-500 ${
-                      currentStep > step.num ? 'bg-gradient-to-r from-blue-500 to-purple-500' : 'bg-gray-200'
-                    }`}></div>
-                  )}
-                </div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </section>
@@ -220,114 +223,22 @@ const Booking = () => {
       {/* Main Content */}
       <section className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatePresence mode="wait">
-            {/* Step 1: Service Selection */}
-            {currentStep === 1 && (
-              <motion.div
-                key="step1"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4 }}
-              >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Choose Your Service
+          {!success ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+                <div className="text-center mb-10">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                    Book Your Service
                   </h2>
-                  <p className="text-gray-600 text-lg">
-                    Select the service you need and we'll take care of the rest
+                  <p className="text-gray-600">
+                    Fill in the form below and we'll get back to you shortly
                   </p>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-                  {services.map((service, index) => (
-                    <motion.div
-                      key={service.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.08 }}
-                      whileHover={{ y: -8 }}
-                      onClick={() => handleServiceSelect(service)}
-                      className={`group relative bg-white rounded-2xl p-6 cursor-pointer transition-all duration-300 ${
-                        selectedService === service.id
-                          ? 'shadow-2xl ring-2 ring-blue-500'
-                          : 'shadow-lg hover:shadow-xl'
-                      }`}
-                    >
-                      <div className={`absolute inset-0 bg-gradient-to-br ${service.bgColor} opacity-0 rounded-2xl transition-opacity duration-300 ${
-                        selectedService === service.id ? 'opacity-100' : 'group-hover:opacity-50'
-                      }`}></div>
-                      
-                      <div className="relative">
-                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 transform transition-all duration-300 ${
-                          selectedService === service.id ? 'scale-110 rotate-3' : 'group-hover:scale-105'
-                        }`}>
-                          <service.icon className="w-8 h-8 text-white" />
-                        </div>
-                        
-                        <h3 className="text-gray-900 font-bold text-lg mb-2 leading-tight">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm">
-                          {service.description}
-                        </p>
-
-                        {selectedService === service.id && (
-                          <motion.div
-                            initial={{ scale: 0, rotate: -180 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            className="absolute -top-2 -right-2"
-                          >
-                            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                              <Check className="w-5 h-5 text-white" />
-                            </div>
-                          </motion.div>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="flex justify-center mt-12">
-                  <motion.button
-                    onClick={() => selectedService && setCurrentStep(2)}
-                    disabled={!selectedService}
-                    whileHover={selectedService ? { scale: 1.05 } : {}}
-                    whileTap={selectedService ? { scale: 0.98 } : {}}
-                    className={`group flex items-center space-x-3 px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
-                      selectedService
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-xl shadow-blue-500/50 hover:shadow-2xl hover:shadow-blue-600/50'
-                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    }`}
-                  >
-                    <span>Continue to Details</span>
-                    <ArrowRight className={`w-5 h-5 transition-transform duration-300 ${
-                      selectedService ? 'group-hover:translate-x-1' : ''
-                    }`} />
-                  </motion.button>
-                </div>
-              </motion.div>
-            )}
-
-            {/* Step 2: Contact Form */}
-            {currentStep === 2 && (
-              <motion.div
-                key="step2"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
-                  <div className="text-center mb-10">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                      Your Details
-                    </h2>
-                    <p className="text-gray-600">
-                      Selected Service: <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">{formData.serviceType}</span>
-                    </p>
-                  </div>
 
                   {error && (
                     <motion.div 
@@ -339,96 +250,184 @@ const Booking = () => {
                     </motion.div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
-                          Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <User size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Service Type Selection with Radio Buttons */}
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-4">
+                      Select Service Type <span className="text-red-500">*</span>
+                    </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {services.map((service) => (
+                        <label
+                          key={service.id}
+                          className={`relative flex items-start p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                            formData.serviceType === service.id
+                              ? 'border-blue-500 bg-blue-50 shadow-md'
+                              : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                          }`}
+                        >
                           <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
+                            type="radio"
+                            name="serviceType"
+                            value={service.id}
+                            checked={formData.serviceType === service.id}
                             onChange={handleChange}
-                            required
-                            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
-                            placeholder="John Doe"
+                            className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500"
                           />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
-                          Email Address <span className="text-red-500">*</span>
+                          <div className="ml-3 flex-1">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <service.icon className={`w-5 h-5 ${
+                                formData.serviceType === service.id ? 'text-blue-600' : 'text-gray-400'
+                              }`} />
+                              <span className={`font-bold text-sm ${
+                                formData.serviceType === service.id ? 'text-blue-900' : 'text-gray-900'
+                              }`}>
+                                {service.title}
+                              </span>
+                            </div>
+                            <p className="text-xs text-gray-600">{service.description}</p>
+                          </div>
                         </label>
-                        <div className="relative">
-                          <Mail size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
-                            placeholder="john@example.com"
-                          />
-                        </div>
-                      </div>
+                      ))}
                     </div>
+                    {errors.serviceType && (
+                      <p className="mt-2 text-sm text-red-600">{errors.serviceType}</p>
+                    )}
+                  </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
-                          Phone Number <span className="text-red-500">*</span>
-                        </label>
-                        <div className="relative">
-                          <Phone size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
-                            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
-                            placeholder="+91 XXXXXXXXXX"
-                          />
-                        </div>
-                      </div>
+                  {/* Conditional Other Service Details */}
+                  {formData.serviceType === 'other' && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Specify Other Service <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        name="otherServiceDetails"
+                        value={formData.otherServiceDetails}
+                        onChange={handleChange}
+                        rows="3"
+                        className={`w-full bg-gray-50 border-2 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all resize-none ${
+                          errors.otherServiceDetails ? 'border-red-500' : 'border-gray-200'
+                        }`}
+                        placeholder="Please describe the service you need..."
+                      ></textarea>
+                      {errors.otherServiceDetails && (
+                        <p className="mt-2 text-sm text-red-600">{errors.otherServiceDetails}</p>
+                      )}
+                    </motion.div>
+                  )}
 
-                      <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
-                          Company Name
-                        </label>
+                  {/* Personal Information */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <User size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
                           type="text"
-                          name="company"
-                          value={formData.company}
+                          name="name"
+                          value={formData.name}
                           onChange={handleChange}
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
-                          placeholder="Your Company (Optional)"
+                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                            errors.name ? 'border-red-500' : 'border-gray-200'
+                          }`}
+                          placeholder="John Doe"
                         />
                       </div>
+                      {errors.name && (
+                        <p className="mt-2 text-sm text-red-600">{errors.name}</p>
+                      )}
                     </div>
 
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Location <span className="text-red-500">*</span>
+                        Email Address <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
-                        <MapPin size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <Mail size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
-                          type="text"
-                          name="location"
-                          value={formData.location}
+                          type="email"
+                          name="email"
+                          value={formData.email}
                           onChange={handleChange}
-                          required
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
-                          placeholder="City, State"
+                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                            errors.email ? 'border-red-500' : 'border-gray-200'
+                          }`}
+                          placeholder="john@example.com"
                         />
                       </div>
+                      {errors.email && (
+                        <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+                      )}
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Phone Number <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <Phone size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                            errors.phone ? 'border-red-500' : 'border-gray-200'
+                          }`}
+                          placeholder="+91 XXXXXXXXXX"
+                        />
+                      </div>
+                      {errors.phone && (
+                        <p className="mt-2 text-sm text-red-600">{errors.phone}</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <label className="block text-gray-700 font-semibold mb-2">
+                        Company Name
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                        placeholder="Your Company (Optional)"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-semibold mb-2">
+                      Location <span className="text-red-500">*</span>
+                    </label>
+                    <div className="relative">
+                      <MapPin size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <input
+                        type="text"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                          errors.location ? 'border-red-500' : 'border-gray-200'
+                        }`}
+                        placeholder="City, State"
+                      />
+                    </div>
+                    {errors.location && (
+                      <p className="mt-2 text-sm text-red-600">{errors.location}</p>
+                    )}
+                  </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -512,24 +511,14 @@ const Booking = () => {
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                      <motion.button
-                        type="button"
-                        onClick={() => setCurrentStep(1)}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="px-8 py-4 rounded-xl font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 border-2 border-gray-200 hover:border-gray-300 transition-all"
-                      >
-                        ← Back
-                      </motion.button>
-                      
-                      <motion.button
-                        type="submit"
-                        disabled={loading}
-                        whileHover={!loading ? { scale: 1.02 } : {}}
-                        whileTap={!loading ? { scale: 0.98 } : {}}
-                        className="flex-1 group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl shadow-blue-500/50 hover:shadow-2xl hover:shadow-blue-600/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
+                  <div className="flex justify-center pt-6">
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      whileHover={!loading ? { scale: 1.02 } : {}}
+                      whileTap={!loading ? { scale: 0.98 } : {}}
+                      className="w-full sm:w-auto group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl shadow-blue-500/50 hover:shadow-2xl hover:shadow-blue-600/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                         {loading ? (
                           <>
                             <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -545,11 +534,8 @@ const Booking = () => {
                     </div>
                   </form>
                 </div>
-              </motion.div>
-            )}
-
-            {/* Step 3: Success Message */}
-            {currentStep === 3 && (
+            </motion.div>
+          ) : (
               <motion.div
                 key="step3"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -625,10 +611,7 @@ const Booking = () => {
                       </motion.a>
                       
                       <motion.button
-                        onClick={() => {
-                          setCurrentStep(1)
-                          setSelectedService('')
-                        }}
+                        onClick={() => setSuccess(false)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="inline-flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-xl shadow-blue-500/50 hover:shadow-2xl hover:shadow-blue-600/50 font-bold transition-all"
@@ -640,8 +623,7 @@ const Booking = () => {
                   </div>
                 </div>
               </motion.div>
-            )}
-          </AnimatePresence>
+          )}
         </div>
       </section>
 

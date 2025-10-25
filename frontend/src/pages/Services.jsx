@@ -13,6 +13,7 @@ import {
   ArrowRight,
   CheckCircle
 } from 'lucide-react'
+import SEO from '../components/SEO'
 
 const Services = () => {
   const services = [
@@ -152,6 +153,13 @@ const Services = () => {
 
   return (
     <div className="min-h-screen pt-20 bg-white">
+      <SEO 
+        title="Our Services - Injection Moulding Machine Maintenance & Repair | IM Services"
+        description="Comprehensive injection moulding machine services including performance testing, health checkups, preventive maintenance, retrofitting, and 24/7 emergency repair services in Pune, Maharashtra."
+        keywords="IMM services, machine performance testing, preventive maintenance, machine health checkup, retrofitting, hydraulic repair, cooling system service, breakdown maintenance, power optimization"
+        canonical="https://imservices.netlify.app/services"
+      />
+      
       {/* Hero Section - Modern Design */}
       <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
         {/* Decorative Elements */}

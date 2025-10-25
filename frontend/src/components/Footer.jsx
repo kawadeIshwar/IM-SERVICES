@@ -103,7 +103,7 @@ const Footer = () => {
             </ul>
             
             {/* Social Links */}
-            <div className="flex space-x-3 mt-6">
+            {/* <div className="flex space-x-3 mt-6">
               <a href="#" className="w-9 h-9 bg-slate-800 hover:bg-gradient-to-br hover:from-primary-500 hover:to-cyan-500 text-slate-400 hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center hover:scale-110 transform shadow-md">
                 <Facebook size={18} />
               </a>
@@ -116,7 +116,7 @@ const Footer = () => {
               <a href="#" className="w-9 h-9 bg-slate-800 hover:bg-gradient-to-br hover:from-primary-500 hover:to-cyan-500 text-slate-400 hover:text-white transition-all duration-300 rounded-lg flex items-center justify-center hover:scale-110 transform shadow-md">
                 <Instagram size={18} />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
