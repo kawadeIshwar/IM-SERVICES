@@ -83,16 +83,16 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"></div>
           
           {/* Blue Diagonal Section with Image */}
-          <div className="absolute top-0 right-0 w-2/3 h-full transform origin-top-right skew-x-12 translate-x-1/4 overflow-hidden">
+          <div className="absolute top-0 right-0 w-full md:w-2/3 h-full md:transform origin-top-right md:skew-x-12 md:translate-x-1/4 overflow-hidden">
             {/* Image inside diagonal section */}
-            <div className="absolute inset-0 transform -skew-x-12 -translate-x-1/4">
+            <div className="absolute inset-0 md:transform md:-skew-x-12 md:-translate-x-1/4">
               <img
                 src="https://images.unsplash.com/photo-1627807452369-a2cd0b5ca56f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
                 alt="Injection Moulding Machine"
                 className="w-full h-full object-cover"
               />
-              {/* White overlay */}
-              <div className="absolute inset-0 bg-blue-500/40"></div>
+              {/* Responsive overlay - white on mobile, blue on desktop */}
+              <div className="absolute inset-0 bg-white/90 md:bg-white/40"></div>
             </div>
           </div>
         </div>
@@ -119,25 +119,25 @@ const Home = () => {
               
 
               {/* Main Heading */}
-              <motion.h1
+              <motion.h3
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6 mt-16"
+                className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-6 mt-12 md:mt-16"
               >
-                <span className="text-slate-900">Expert</span>{' '}
-                <span className="text-gradient">injection moulding</span>{' '}
-                <span className="text-slate-900">machine services</span>
-              </motion.h1>
+                <span className="text-slate-900 drop-shadow-sm">Expert</span>{' '}
+                <span className="text-gradient bg-clip-text">injection moulding</span>{' '}
+                <span className="text-slate-900 drop-shadow-sm">machine services</span>
+              </motion.h3>
 
               {/* Description */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 "
+                className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed mb-8 max-w-2xl"
               >
-                Complete technical support for machine health, performance <br /> optimization, and maintenance. Reduce downtime and improve <br />productivity with our expert services.
+                Complete technical support for machine health, performance <br className="hidden md:block" /> optimization, and maintenance. Reduce downtime and improve <br className="hidden md:block" />productivity with our expert services.
               </motion.p>
 
               {/* Features List */}
