@@ -38,6 +38,45 @@ const About = () => {
     { year: '2024', event: 'Leading IM Machine Service Provider in Maharashtra', icon: <TrendingUp size={24} /> }
   ]
 
+  const growthData = [
+    { year: '2008', valuation: 15, clients: 10, machines: 25, label: '₹15L', milestone: 'Founded' },
+    { year: '2012', valuation: 45, clients: 50, machines: 120, label: '₹45L', milestone: 'Expansion' },
+    { year: '2016', valuation: 120, clients: 120, machines: 280, label: '₹1.2Cr', milestone: 'Innovation' },
+    { year: '2020', valuation: 280, clients: 200, machines: 500, label: '₹2.8Cr', milestone: 'Growth' },
+    { year: '2024', valuation: 450, clients: 350, machines: 800, label: '₹4.5Cr', milestone: 'Leadership' }
+  ]
+
+  const teamMembers = [
+    {
+      name: 'Rajesh Patil',
+      role: 'Founder & Chief Engineer',
+      expertise: 'Hydraulic Systems & Machine Diagnostics',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=80',
+      gradient: 'from-primary-500 to-cyan-500'
+    },
+    {
+      name: 'Priya Sharma',
+      role: 'Lead Electrical Engineer',
+      expertise: 'Control Systems & Automation',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&auto=format&fit=crop&q=80',
+      gradient: 'from-cyan-500 to-indigo-500'
+    },
+    {
+      name: 'Amit Deshmukh',
+      role: 'Senior Service Technician',
+      expertise: 'Preventive Maintenance & Retrofitting',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&auto=format&fit=crop&q=80',
+      gradient: 'from-indigo-500 to-purple-500'
+    },
+    {
+      name: 'Sneha Kulkarni',
+      role: 'Technical Support Manager',
+      expertise: 'Customer Relations & Quality Assurance',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&auto=format&fit=crop&q=80',
+      gradient: 'from-purple-500 to-pink-500'
+    }
+  ]
+
   return (
     <div className="min-h-screen pt-20 bg-white">
       <SEO 
@@ -178,7 +217,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision - Modern Cards */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary-500 to-cyan-500 relative overflow-hidden">
         {/* Decorative blob */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl"></div>
@@ -223,6 +262,85 @@ const About = () => {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Meet Our Team - Clean Layout */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            {/* <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-cyan-100 text-primary-700 px-5 py-2 rounded-full mb-6">
+              <Users size={18} />
+              <span className="text-sm font-bold">Expert Team</span>
+            </div> */}
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-4">
+              Meet Our <span className="bg-gradient-to-r from-primary-600 via-cyan-500 to-primary-600 bg-clip-text text-transparent">Specialists</span>
+            </h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Dedicated professionals with decades of combined experience in injection moulding machine maintenance
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1
+                }}
+                viewport={{ once: true }}
+                className="text-center group"
+              >
+                {/* Circular Image Container */}
+                <div className="relative mb-6 inline-block">
+                  <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-blue-400 p-2 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                    <motion.img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full rounded-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </div>
+
+                {/* Name */}
+                <h3 className={`text-2xl font-bold mb-2 bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent`}>
+                  {member.name}
+                </h3>
+                
+                {/* Role */}
+                <p className="text-slate-900 font-semibold mb-2">
+                  {member.role}
+                </p>
+                
+                {/* Expertise */}
+                <p className="text-slate-600 text-sm">
+                  {member.expertise}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            
+          </motion.div>
         </div>
       </section>
 
@@ -291,40 +409,147 @@ const About = () => {
               Our Journey
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Milestones that shaped our success
+              Growth trajectory showcasing our success story
             </p>
           </motion.div>
 
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="flex items-center gap-6">
-                  {/* Year Badge */}
-                  <div className="w-24 flex-shrink-0">
-                    <div className="bg-gradient-to-br from-primary-500 to-cyan-500 text-white font-bold text-xl px-4 py-2 rounded-xl text-center shadow-lg">
-                      {milestone.year}
-                    </div>
+          {/* Professional Histogram Design */}
+          <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl border-2 border-slate-200 p-8 md:p-12 shadow-2xl">
+            {/* Legend */}
+            <div className="flex flex-wrap justify-center gap-6 mb-12">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-gradient-to-br from-primary-500 to-cyan-500"></div>
+                <span className="text-sm font-semibold text-slate-700">Annual Revenue</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-gradient-to-br from-emerald-500 to-green-500"></div>
+                <span className="text-sm font-semibold text-slate-700">Client Base</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-gradient-to-br from-orange-500 to-amber-500"></div>
+                <span className="text-sm font-semibold text-slate-700">Machines Serviced</span>
+              </div>
+            </div>
+
+            {/* Histogram */}
+            <div className="relative">
+              {/* Y-axis labels */}
+              <div className="absolute left-0 top-0 bottom-16 flex flex-col justify-between text-xs font-semibold text-slate-500 -ml-8">
+                <span>₹5Cr</span>
+                <span>₹4Cr</span>
+                <span>₹3Cr</span>
+                <span>₹2Cr</span>
+                <span>₹1Cr</span>
+                <span>₹0</span>
+              </div>
+
+              {/* Grid lines */}
+              <div className="absolute inset-0 flex flex-col justify-between mb-16">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="border-t border-slate-200"></div>
+                ))}
+              </div>
+
+              {/* Bars Container */}
+              <div className="relative flex items-end justify-around gap-4 h-96 pt-4">
+                {growthData.map((data, index) => {
+                  const maxVal = 450
+                  const heightPercent = (data.valuation / maxVal) * 100
+
+                  return (
+                    <motion.div
+                      key={data.year}
+                      initial={{ height: 0, opacity: 0 }}
+                      whileInView={{ height: `${heightPercent}%`, opacity: 1 }}
+                      transition={{ duration: 0.8, delay: index * 0.15, ease: 'easeOut' }}
+                      viewport={{ once: true }}
+                      className="flex-1 group relative"
+                    >
+                      {/* Bar Stack */}
+                      <div className="relative h-full flex flex-col justify-end gap-1">
+                        {/* Revenue Bar */}
+                        <motion.div
+                          initial={{ scaleY: 0 }}
+                          whileInView={{ scaleY: 1 }}
+                          transition={{ duration: 0.6, delay: index * 0.15 + 0.2 }}
+                          viewport={{ once: true }}
+                          className="relative bg-gradient-to-t from-primary-600 via-primary-500 to-cyan-400 rounded-t-xl shadow-lg group-hover:shadow-2xl transition-all origin-bottom"
+                          style={{ height: '100%' }}
+                        >
+                          {/* Value Label on hover */}
+                          <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold whitespace-nowrap shadow-xl">
+                            <div className="text-center">
+                              <div className="text-primary-300">{data.label}</div>
+                              <div className="text-xs text-slate-300 mt-0.5">{data.milestone}</div>
+                            </div>
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-slate-900"></div>
+                          </div>
+
+                          {/* Shine effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:translate-x-full transition-transform duration-700"></div>
+                        </motion.div>
+
+                        {/* Stats on hover */}
+                        <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white border-2 border-primary-200 rounded-xl p-3 shadow-xl z-10 min-w-[140px]">
+                          <div className="space-y-1 text-xs">
+                            <div className="flex justify-between gap-3">
+                              <span className="text-slate-600 font-medium">Clients:</span>
+                              <span className="text-emerald-600 font-bold">{data.clients}+</span>
+                            </div>
+                            <div className="flex justify-between gap-3">
+                              <span className="text-slate-600 font-medium">Machines:</span>
+                              <span className="text-orange-600 font-bold">{data.machines}+</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Year Label */}
+                      <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center">
+                        <div className="font-bold text-slate-900 text-base mb-1">{data.year}</div>
+                        <div className="text-xs text-slate-500 font-medium">{data.milestone}</div>
+                      </div>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Bottom spacing for labels */}
+            <div className="h-20"></div>
+
+            {/* Growth Summary */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-8 pt-8 border-t-2 border-slate-200"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="text-center p-4 bg-gradient-to-br from-primary-50 to-cyan-50 rounded-2xl">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+                    3000%
                   </div>
-                  
-                  {/* Icon */}
-                  <div className="w-14 h-14 bg-white border-2 border-primary-200 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:border-primary-400 transition-all shadow-md">
-                    <div className="text-primary-600">{milestone.icon}</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex-1 bg-white border-2 border-slate-200 rounded-2xl p-6 group-hover:border-primary-300 group-hover:shadow-xl transition-all">
-                    <p className="text-lg font-semibold text-slate-900">{milestone.event}</p>
-                  </div>
+                  <div className="text-sm font-semibold text-slate-600">Revenue Growth</div>
+                  <div className="text-xs text-slate-500 mt-1">Since 2008</div>
                 </div>
-              </motion.div>
-            ))}
+                <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-2">
+                    35x
+                  </div>
+                  <div className="text-sm font-semibold text-slate-600">Client Expansion</div>
+                  <div className="text-xs text-slate-500 mt-1">10 to 350+ clients</div>
+                </div>
+                <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-2">
+                    32x
+                  </div>
+                  <div className="text-sm font-semibold text-slate-600">Service Volume</div>
+                  <div className="text-xs text-slate-500 mt-1">25 to 800+ machines</div>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -23,6 +23,7 @@ const Services = () => {
       subtitle: '7-Factor Comprehensive Analysis',
       description: 'Complete performance evaluation to ensure your machines operate at optimal efficiency.',
       color: 'from-blue-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&auto=format&fit=crop&q=80',
       features: [
         'Injection Pressure Testing',
         'Injection Speed Analysis',
@@ -39,6 +40,7 @@ const Services = () => {
       subtitle: 'Complete Diagnostic Analysis',
       description: 'Thorough inspection of all critical components to identify potential issues before they become problems.',
       color: 'from-purple-500 to-pink-500',
+      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&auto=format&fit=crop&q=80',
       features: [
         'Pump & Motor Condition Assessment',
         'Tie Bar & Pin Bush Inspection',
@@ -57,6 +59,7 @@ const Services = () => {
       subtitle: 'Upgrade & Modernization',
       description: 'Transform your aging machines with modern technology and restore them to peak performance.',
       color: 'from-orange-500 to-red-500',
+      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=80',
       features: [
         'PLC Repair & Replacement',
         'Servo Motor Fitting',
@@ -73,6 +76,7 @@ const Services = () => {
       subtitle: 'Proactive Care Programs',
       description: 'Scheduled maintenance programs designed to prevent breakdowns and extend machine life.',
       color: 'from-green-500 to-emerald-500',
+      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80',
       features: [
         'Scheduled Preventive Maintenance',
         'Predictive Fault Detection',
@@ -90,6 +94,7 @@ const Services = () => {
       subtitle: 'Temperature Control Solutions',
       description: 'Expert maintenance of cooling systems to ensure optimal temperature regulation.',
       color: 'from-cyan-500 to-blue-500',
+      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&auto=format&fit=crop&q=80',
       features: [
         'Chiller Maintenance & Repair',
         'Cooling Tower Service',
@@ -106,6 +111,7 @@ const Services = () => {
       subtitle: 'Energy Efficiency Solutions',
       description: 'Reduce energy costs and improve power efficiency with our optimization services.',
       color: 'from-yellow-500 to-orange-500',
+      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&auto=format&fit=crop&q=80',
       features: [
         'Power Factor Correction',
         'Energy Consumption Analysis',
@@ -197,7 +203,7 @@ const Services = () => {
       </section>
 
       {/* Services Grid - Professional Design */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-12 bg-white relative overflow-hidden">
         {/* Decorative background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 opacity-60"></div>
         <div className="absolute inset-0 opacity-5">
@@ -208,7 +214,7 @@ const Services = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 auto-rows-fr">
+          <div className="grid grid-cols-1 gap-14">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -216,82 +222,77 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative flex"
+                className="group relative"
               >
-                {/* Main Card */}
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-200 hover:border-primary-300 flex flex-col w-full">
-                  {/* Gradient Header */}
-                  <div className={`relative h-48 bg-gradient-to-br ${service.color} overflow-hidden`}>
-                    {/* Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute inset-0" style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-                        backgroundSize: '40px 40px'
-                      }}></div>
-                    </div>
-
-                    {/* Icon */}
-                    <div className="relative h-full flex items-center justify-center">
-                      <div className="w-28 h-28 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border-2 border-white/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-2xl">
+                {/* Main Card - Horizontal Split Layout */}
+                <div className={`relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 ${index % 2 === 0 ? 'lg:grid lg:grid-cols-2' : 'lg:grid lg:grid-cols-2'}`}>
+                  
+                  {/* Image Section */}
+                  <div className={`relative h-56 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform "
+                    />
+                    {/* Gradient Overlay */}
+                    {/* <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-30 group-hover:opacity-20 transition-opacity duration-300`}></div> */}
+                    
+                    {/* Icon Badge */}
+                    <div className="absolute top-3 right-3">
+                      <div className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
                         <div className="text-white">{service.icon}</div>
                       </div>
                     </div>
 
-                    {/* Decorative corner */}
-                    <div className="absolute top-4 right-4 w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20"></div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-8 flex-1 flex flex-col">
-                    {/* Title & Subtitle */}
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-2xl md:text-3xl font-heading font-bold text-slate-900">
-                          {service.title}
-                        </h3>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className={`h-1 w-12 bg-gradient-to-r ${service.color} rounded-full`}></div>
-                        <p className="text-primary-600 font-bold text-xs uppercase tracking-wider">{service.subtitle}</p>
+                    {/* Number Badge */}
+                    <div className="absolute bottom-3 left-3">
+                      <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-xl">
+                        <span className={`text-xl font-bold bg-gradient-to-br ${service.color} bg-clip-text text-transparent`}>0{index + 1}</span>
                       </div>
                     </div>
+                  </div>
 
-                    <p className="text-slate-600 mb-6 leading-relaxed">
+                  {/* Content Section */}
+                  <div className={`p-5 lg:p-6 flex flex-col ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                    {/* Title & Subtitle */}
+                    <div className="mb-3">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <div className={`h-1 w-12 bg-gradient-to-r ${service.color} rounded-full`}></div>
+                        <p className={`text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold text-xs uppercase tracking-wider`}>{service.subtitle}</p>
+                      </div>
+                      <h3 className="text-xl lg:text-2xl font-heading font-bold text-slate-900 mb-2">
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-slate-600 mb-4 leading-relaxed text-sm">
                       {service.description}
                     </p>
 
                     {/* Features Grid */}
-                    <div className="mb-6 flex-1">
-                      <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4 flex-1">
+                      <div className="flex items-center justify-between mb-3">
                         <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Key Features</h4>
-                        <span className="text-xs font-semibold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                        <span className={`text-xs font-semibold text-white bg-gradient-to-r ${service.color} px-3 py-1 rounded-full`}>
                           {service.features.length} Services
                         </span>
                       </div>
-                      <div className="grid grid-cols-1 gap-2">
-                        {service.features.slice(0, 5).map((feature, idx) => (
-                          <div key={idx} className="flex items-start space-x-3 p-2 rounded-lg hover:bg-slate-50 transition-colors">
-                            <div className={`w-6 h-6 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5`}>
-                              <CheckCircle size={14} className="text-white" />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {service.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start space-x-2 p-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+                            <div className={`w-5 h-5 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5`}>
+                              <CheckCircle size={12} className="text-white" />
                             </div>
-                            <span className="text-sm text-slate-700 font-medium">{feature}</span>
+                            <span className="text-xs text-slate-700 font-medium leading-tight">{feature}</span>
                           </div>
                         ))}
-                        {service.features.length > 5 && (
-                          <button className="text-left text-sm text-primary-600 font-semibold hover:text-primary-700 pl-9 py-2 group/more">
-                            <span className="inline-flex items-center space-x-1">
-                              <span>+{service.features.length - 5} more services</span>
-                              <ArrowRight size={14} className="group-hover/more:translate-x-1 transition-transform" />
-                            </span>
-                          </button>
-                        )}
                       </div>
                     </div>
 
                     {/* CTA Button */}
                     <Link
                       to="/booking"
-                      className={`group/btn relative overflow-hidden inline-flex items-center justify-center space-x-2 w-full bg-gradient-to-r ${service.color} text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 mt-auto`}
+                      className={`group/btn relative overflow-hidden inline-flex items-center justify-center space-x-2 bg-gradient-to-r ${service.color} text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:shadow-2xl hover:scale-105 transition-all duration-300 mt-auto`}
                     >
                       <span className="relative z-10">Book This Service</span>
                       <ArrowRight size={20} className="relative z-10 group-hover/btn:translate-x-1 transition-transform" />
@@ -301,10 +302,8 @@ const Services = () => {
                   </div>
                 </div>
 
-                {/* Floating badge */}
-                <div className="absolute -top-3 -left-3 w-16 h-16 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                  <span className="text-white font-bold text-xl">0{index + 1}</span>
-                </div>
+                {/* Decorative shadow */}
+                <div className={`absolute -inset-1 bg-gradient-to-br ${service.color} rounded-3xl opacity-0 group-hover:opacity-10 blur-2xl -z-10 transition-opacity duration-300`}></div>
               </motion.div>
             ))}
           </div>

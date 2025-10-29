@@ -26,37 +26,43 @@ const Home = () => {
       icon: <Activity size={40} />,
       title: 'Performance Testing',
       description: '7-Factor comprehensive testing including injection pressure, speed, clamping force, and more.',
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-blue-500 to-cyan-500',
+      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&auto=format&fit=crop&q=80'
     },
     {
       icon: <Shield size={40} />,
       title: 'Machine Health Checkup',
       description: 'Complete diagnostic analysis of pump, motor, screw barrel, heaters, and safety systems.',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-purple-500 to-pink-500',
+      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&auto=format&fit=crop&q=80'
     },
     {
       icon: <Settings size={40} />,
       title: 'Retrofitting & Reconditioning',
       description: 'PLC upgrades, servo fitting, hydraulic modifications, and complete machine overhaul.',
-      color: 'from-orange-500 to-red-500'
+      color: 'from-orange-500 to-red-500',
+      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=80'
     },
     {
       icon: <Wrench size={40} />,
       title: 'Preventive Maintenance',
       description: 'Scheduled maintenance, predictive fault detection, and emergency breakdown support.',
-      color: 'from-green-500 to-emerald-500'
+      color: 'from-green-500 to-emerald-500',
+      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80'
     },
     {
       icon: <Zap size={40} />,
       title: 'Power Optimization',
       description: 'Power factor correction and energy-saving solutions to reduce operational costs.',
-      color: 'from-yellow-500 to-orange-500'
+      color: 'from-yellow-500 to-orange-500',
+      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&auto=format&fit=crop&q=80'
     },
     {
       icon: <TrendingUp size={40} />,
       title: 'Cooling Systems',
       description: 'Chiller, cooling tower, MTC, HRC, and ELC maintenance for optimal temperature control.',
-      color: 'from-indigo-500 to-blue-500'
+      color: 'from-indigo-500 to-blue-500',
+      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&auto=format&fit=crop&q=80'
     }
   ]
 
@@ -239,7 +245,7 @@ const Home = () => {
             </p>
           </motion.div>
 
-          {/* Services Grid */}
+          {/* Services Grid - Image + Content Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
@@ -250,39 +256,43 @@ const Home = () => {
                 className="group relative"
               >
                 {/* Card */}
-                <div className="relative h-full bg-white border border-blue-900 rounded-2xl p-8 hover:border-primary-400 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                  {/* Icon Container */}
-                  <div className="relative mb-6">
-                    <div className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                      <div className="text-white">{service.icon}</div>
-                    </div>
-                    {/* Decorative ring */}
-                    <div className={`absolute -inset-2 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}></div>
+                <div className="relative h-full bg-white border-2 border-slate-200 rounded-3xl overflow-hidden hover:border-primary-400 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                  {/* Image Section */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-100"
+                    />
+                    {/* Gradient Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
                   </div>
 
-                  {/* Content */}
-                  <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-600 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
+                  {/* Content Section */}
+                  <div className="p-6 relative">
+                    <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-600 mb-6 leading-relaxed text-sm">
+                      {service.description}
+                    </p>
 
-                  {/* Learn More Link */}
-                  <Link
-                    to="/services"
-                    className="inline-flex items-center space-x-2 text-primary-600 font-semibold group-hover:space-x-3 transition-all"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                    {/* Learn More Link */}
+                    <Link
+                      to="/services"
+                      className={`inline-flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold group-hover:space-x-3 transition-all`}
+                    >
+                      <span>Learn More</span>
+                      <ArrowRight size={18} className={`text-primary-600 group-hover:translate-x-1 transition-transform`} />
+                    </Link>
+                  </div>
 
-                  {/* Top corner accent */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-100 to-transparent rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Decorative corner accent */}
+                  <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                 </div>
 
                 {/* Bottom shadow accent */}
-                <div className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} rounded-2xl opacity-0 group-hover:opacity-10 blur-xl -z-10 transition-opacity duration-300`}></div>
+                <div className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} rounded-3xl opacity-0 group-hover:opacity-10 blur-xl -z-10 transition-opacity duration-300`}></div>
               </motion.div>
             ))}
           </div>
