@@ -92,94 +92,110 @@ const Home = () => {
       />
       <StructuredData type="organization" />
       
-      {/* Hero Section - Diagonal Modern Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Diagonal Background Split with Image */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"></div>
-          
-          {/* Blue Diagonal Section with Image */}
-          <div className="absolute top-0 right-0 w-full md:w-2/3 h-full md:transform origin-top-right md:skew-x-12 md:translate-x-1/4 overflow-hidden">
-            {/* Image inside diagonal section */}
-            <div className="absolute inset-0 md:transform md:-skew-x-12 md:-translate-x-1/4">
-              <img
-                src="https://images.unsplash.com/photo-1627807452369-a2cd0b5ca56f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
-                alt="Injection Moulding Machine"
-                className="w-full h-full object-cover"
-              />
-              {/* Responsive overlay - white on mobile, blue on desktop */}
-              <div className="absolute inset-0 bg-white/90 md:bg-white/40"></div>
-            </div>
-          </div>
+      {/* Hero Section - Professional Modern Design */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+        {/* Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl"></div>
         </div>
 
-        {/* Floating Elements */}
-        {/* <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-20 h-20 bg-primary-400/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
-          <div className="absolute top-40 right-20 w-16 h-16 bg-cyan-400/20 rounded-full animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}></div>
-          <div className="absolute bottom-40 left-1/4 w-24 h-24 bg-indigo-400/20 rounded-full animate-bounce" style={{ animationDuration: '5s', animationDelay: '2s' }}></div>
-        </div> */}
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '60px 60px'
+        }}></div>
 
-        {/* Main Content */}
+        {/* Main Content Container */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          
-          <div className="max-w-3xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             
-            {/* Content */}
+            {/* Left Content */}
             <motion.div
               ref={heroRef}
               initial={{ opacity: 0, x: -50 }}
               animate={heroInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
+              className="relative"
             >
-              
 
               {/* Main Heading */}
-              <motion.h3
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold leading-[1.1] tracking-tight mb-6 mt-12 md:mt-16"
+                className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-5"
               >
-                <span className="text-slate-900 drop-shadow-sm">Expert</span>{' '}
-                <span className="text-gradient bg-clip-text">injection moulding</span>{' '}
-                <span className="text-slate-900 drop-shadow-sm">machine services</span>
-              </motion.h3>
+                <span className="text-slate-900">Expert</span>{' '}
+                <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">
+                  injection moulding
+                </span>{' '}
+                <span className="text-slate-900">machine services</span>
+              </motion.h1>
 
               {/* Description */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-base sm:text-lg md:text-xl text-blue-600 leading-relaxed mb-8 max-w-2xl"
+                className="text-lg text-slate-600 leading-relaxed mb-8"
               >
-                Complete technical support for machine health, performance <br className="hidden md:block" /> optimization, and maintenance. Reduce downtime and improve <br className="hidden md:block" />productivity with our expert services.
+                Complete technical support for machine health, performance optimization, and maintenance. Reduce downtime and improve productivity with our expert services.
               </motion.p>
 
-              {/* Features List */}
-              <motion.div
+              {/* Stats Cards */}
+              {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="grid grid-cols-2 gap-4 mb-8"
               >
-                <div className="flex items-center space-x-2">
-                  <CheckCircle size={20} className="text-green-500" />
-                  <span className="text-sm font-medium text-slate-700">500+ Machines</span>
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-primary-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                      <CheckCircle size={24} className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-slate-900">500+</div>
+                      <div className="text-sm text-slate-600">Machines</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle size={20} className="text-green-500" />
-                  <span className="text-sm font-medium text-slate-700">98% Satisfaction</span>
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-emerald-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
+                      <CheckCircle size={24} className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-slate-900">98%</div>
+                      <div className="text-sm text-slate-600">Satisfaction</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle size={20} className="text-green-500" />
-                  <span className="text-sm font-medium text-slate-700">24/7 Support</span>
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-orange-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center">
+                      <Clock size={24} className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-slate-900">24/7</div>
+                      <div className="text-sm text-slate-600">Support</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle size={20} className="text-green-500" />
-                  <span className="text-sm font-medium text-slate-700">15+ Years</span>
+                <div className="bg-white/80 backdrop-blur-sm border-2 border-indigo-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
+                      <Award size={24} className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-slate-900">15+</div>
+                      <div className="text-sm text-slate-600">Years</div>
+                    </div>
+                  </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* CTA Buttons */}
               <motion.div
@@ -190,19 +206,47 @@ const Home = () => {
               >
                 <Link
                   to="/booking"
-                  className="group bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
+                  className="group relative overflow-hidden bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <span>Book Service Now</span>
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Book Service Now</span>
+                  <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </Link>
                 <Link
                   to="/services"
-                  className="group bg-white border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 hover:border-primary-600 hover:text-primary-600 transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="group bg-white border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 hover:border-primary-600 hover:text-primary-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <span>View Services</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
+            </motion.div>
+
+            {/* Right Image Section */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative hidden lg:block"
+            >
+              {/* Decorative Card Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 rounded-3xl transform rotate-3"></div>
+              <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-3xl transform -rotate-3"></div>
+              
+              {/* Main Image Card */}
+              <div className="relative bg-white rounded-3xl shadow-2xl border-2 border-slate-200 p-8 overflow-hidden">
+                {/* Corner Accents */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-200 to-transparent rounded-bl-full opacity-50"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-200 to-transparent rounded-tr-full opacity-50"></div>
+                
+                <img
+                  src="/images/hydraulic system.jpg"
+                  alt="Hydraulic System"
+                  className="relative z-10 w-full h-auto object-contain rounded-2xl"
+                />
+
+               
+              </div>
             </motion.div>
 
           </div>
