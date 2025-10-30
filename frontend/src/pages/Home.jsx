@@ -20,6 +20,9 @@ const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  
+  // Hero Image
+  const heroImage = '/images/hydraulic system.jpg'
 
   const services = [
     {
@@ -92,20 +95,25 @@ const Home = () => {
       />
       <StructuredData type="organization" />
       
-      {/* Hero Section - Professional Modern Design */}
+      {/* Hero Section - Modern Split Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        {/* Decorative Elements */}
+        {/* Background Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Circular Gradient Blobs */}
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-100/20 rounded-full blur-3xl"></div>
+          
+          {/* Geometric Shapes */}
+          <div className="absolute top-32 right-1/4 w-20 h-20 border-4 border-primary-200/30 rounded-xl rotate-12"></div>
+          <div className="absolute bottom-40 left-1/3 w-16 h-16 border-4 border-cyan-200/30 rounded-full"></div>
+          
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.02]" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px'
+          }}></div>
         </div>
-
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }}></div>
 
         {/* Main Content Container */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -129,9 +137,9 @@ const Home = () => {
               >
                 <span className="text-slate-900">Expert</span>{' '}
                 <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">
-                  injection moulding
+                  Injection Molding
                 </span>{' '}
-                <span className="text-slate-900">machine services</span>
+                <span className="text-slate-900">Machine Services</span>
               </motion.h1>
 
               {/* Description */}
@@ -144,58 +152,7 @@ const Home = () => {
                 Complete technical support for machine health, performance optimization, and maintenance. Reduce downtime and improve productivity with our expert services.
               </motion.p>
 
-              {/* Stats Cards */}
-              {/* <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="grid grid-cols-2 gap-4 mb-8"
-              >
-                <div className="bg-white/80 backdrop-blur-sm border-2 border-primary-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                      <CheckCircle size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-slate-900">500+</div>
-                      <div className="text-sm text-slate-600">Machines</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border-2 border-emerald-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-500 rounded-xl flex items-center justify-center">
-                      <CheckCircle size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-slate-900">98%</div>
-                      <div className="text-sm text-slate-600">Satisfaction</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border-2 border-orange-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center">
-                      <Clock size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-slate-900">24/7</div>
-                      <div className="text-sm text-slate-600">Support</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm border-2 border-indigo-100 rounded-2xl p-4 hover:shadow-lg transition-shadow">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center">
-                      <Award size={24} className="text-white" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-slate-900">15+</div>
-                      <div className="text-sm text-slate-600">Years</div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div> */}
+             
 
               {/* CTA Buttons */}
               <motion.div
@@ -222,31 +179,45 @@ const Home = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Image Section */}
+            {/* Right Side - Featured Image with Creative Layout */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              animate={heroInView ? { opacity: 1, scale: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative hidden lg:block"
             >
-              {/* Decorative Card Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 rounded-3xl transform rotate-3"></div>
-              <div className="absolute inset-0 bg-white/50 backdrop-blur-sm rounded-3xl transform -rotate-3"></div>
+              {/* Decorative Background Cards */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 rounded-[3rem] transform rotate-6 scale-105 opacity-50"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-100 via-blue-50 to-primary-100 rounded-[3rem] transform -rotate-3 scale-95 opacity-40"></div>
               
-              {/* Main Image Card */}
-              <div className="relative bg-white rounded-3xl shadow-2xl border-2 border-slate-200 p-8 overflow-hidden">
-                {/* Corner Accents */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-200 to-transparent rounded-bl-full opacity-50"></div>
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-cyan-200 to-transparent rounded-tr-full opacity-50"></div>
+              {/* Main Image Container */}
+              <div className="relative bg-white rounded-[2.5rem] shadow-2xl border-4 border-white overflow-hidden p-6">
+                {/* Corner Decorative Accents */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-400/20 to-transparent rounded-bl-full"></div>
+                <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-tr-full"></div>
                 
-                <img
-                  src="/images/hydraulic system.jpg"
-                  alt="Hydraulic System"
-                  className="relative z-10 w-full h-auto object-contain rounded-2xl transform scale-110  hover:rotate-1 transition-all duration-500 ease-in-out cursor-pointer"
-                />
-
+                {/* Image with hover effect */}
+                <motion.div
+                  whileHover={{ rotate: 0.5 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative rounded-3xl overflow-hidden shadow-xl"
+                >
+                  <img
+                    src={heroImage}
+                    alt="Hydraulic System"
+                    className="w-full h-auto object-cover"
+                  />
+                  
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
+                </motion.div>
+                
                
               </div>
+              
+              {/* Floating Accent Elements */}
+              <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
             </motion.div>
 
           </div>
