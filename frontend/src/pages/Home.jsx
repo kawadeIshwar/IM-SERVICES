@@ -242,7 +242,7 @@ const Home = () => {
                 <img
                   src="/images/hydraulic system.jpg"
                   alt="Hydraulic System"
-                  className="relative z-10 w-full h-auto object-contain rounded-2xl"
+                  className="relative z-10 w-full h-auto object-contain rounded-2xl transform scale-110  hover:rotate-1 transition-all duration-500 ease-in-out cursor-pointer"
                 />
 
                
