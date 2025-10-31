@@ -22,7 +22,7 @@ const Home = () => {
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   
   // Hero Image
-  const heroImage = '/images/hydraulic system.jpg'
+  const heroImage = '/images/MG-PET.jpg'
 
   const services = [
     {
@@ -30,42 +30,42 @@ const Home = () => {
       title: 'Performance Testing',
       description: '7-Factor comprehensive testing including injection pressure, speed, clamping force, and more.',
       color: 'from-blue-500 to-cyan-500',
-      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&auto=format&fit=crop&q=80'
+      image: 'images/hydraulic system 2.jpg'
     },
     {
       icon: <Shield size={40} />,
       title: 'Machine Health Checkup',
       description: 'Complete diagnostic analysis of pump, motor, screw barrel, heaters, and safety systems.',
       color: 'from-purple-500 to-pink-500',
-      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&auto=format&fit=crop&q=80'
+      image: 'images/checks-motor-vibration.png'
     },
     {
       icon: <Settings size={40} />,
       title: 'Retrofitting & Reconditioning',
       description: 'PLC upgrades, servo fitting, hydraulic modifications, and complete machine overhaul.',
       color: 'from-orange-500 to-red-500',
-      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=80'
+      image: 'images/retrofitting and reconditioning.jpg'
     },
     {
       icon: <Wrench size={40} />,
       title: 'Preventive Maintenance',
       description: 'Scheduled maintenance, predictive fault detection, and emergency breakdown support.',
       color: 'from-green-500 to-emerald-500',
-      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80'
+      image: 'images/technical-Maintenance.jpg'
     },
     {
       icon: <Zap size={40} />,
       title: 'Power Optimization',
       description: 'Power factor correction and energy-saving solutions to reduce operational costs.',
       color: 'from-yellow-500 to-orange-500',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&auto=format&fit=crop&q=80'
+      image: 'images/power.jpg'
     },
     {
       icon: <TrendingUp size={40} />,
       title: 'Cooling Systems',
       description: 'Chiller, cooling tower, MTC, HRC, and ELC maintenance for optimal temperature control.',
       color: 'from-indigo-500 to-blue-500',
-      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&auto=format&fit=crop&q=80'
+      image: 'images/chiller maintenance.jpg'
     }
   ]
 
@@ -204,7 +204,7 @@ const Home = () => {
                 >
                   <img
                     src={heroImage}
-                    alt="Hydraulic System"
+                    alt="Injection Molding Machine"
                     className="w-full h-auto object-cover"
                   />
                   
@@ -279,8 +279,6 @@ const Home = () => {
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-100"
                     />
-                    {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}></div>
                   </div>
 
                   {/* Content Section */}
@@ -408,7 +406,7 @@ const Home = () => {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800"
+                  src="images/image7.jpg"
                   alt="Industrial machinery"
                   className="w-full h-[500px] object-cover"
                 />

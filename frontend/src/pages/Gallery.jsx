@@ -10,65 +10,128 @@ const Gallery = () => {
   const images = [
     {
       id: 1,
-      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800',
-      title: 'High-Tech Injection Moulding Machine',
-      description: 'State-of-the-art injection moulding equipment',
+      url: 'images/MG-PET.jpg',
+      title: 'Injection Moulding Machine',
+      description: 'High-performance injection moulding equipment',
       size: 'large'
     },
     {
       id: 2,
-      url: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800',
-      title: 'Machine Maintenance Service',
-      description: 'Professional on-site maintenance',
+      url: 'images/7-factor.jpg',
+      title: '7-Factor Performance Testing',
+      description: 'Comprehensive machine performance analysis',
       size: 'medium'
     },
     {
       id: 3,
-      url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800',
-      title: 'Industrial Manufacturing Equipment',
-      description: 'Advanced manufacturing technology',
+      url: 'images/hydraulic system 2.jpg',
+      title: 'Hydraulic System',
+      description: 'Advanced hydraulic components and systems',
       size: 'medium'
     },
     {
       id: 4,
-      url: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800',
-      title: 'Hydraulic System Repair',
-      description: 'Expert hydraulic system services',
+      url: 'images/motor-testing.jpg',
+      title: 'Motor Testing & Diagnostics',
+      description: 'Professional motor health assessment',
       size: 'large'
     },
     {
       id: 5,
-      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800',
-      title: 'Performance Testing',
-      description: 'Comprehensive machine testing',
+      url: 'images/PLC retrofitting.jpeg',
+      title: 'PLC Retrofitting',
+      description: 'Modern PLC system upgrades',
       size: 'medium'
     },
     {
       id: 6,
-      url: 'https://images.unsplash.com/photo-1581092918484-8313e1f7e8c7?w=800',
-      title: 'On-Site Technical Support',
-      description: '24/7 emergency service',
+      url: 'images/technical-Maintenance.jpg',
+      title: 'Technical Maintenance',
+      description: 'Expert on-site maintenance services',
       size: 'medium'
     },
     {
       id: 7,
-      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800',
-      title: 'Precision Machine Components',
-      description: 'Quality parts and replacements',
+      url: 'images/Chillers-Work.jpg',
+      title: 'Chiller Systems',
+      description: 'Industrial cooling system maintenance',
       size: 'large'
     },
     {
       id: 8,
-      url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800',
-      title: 'Quality Assurance Check',
-      description: 'Rigorous testing standards',
+      url: 'images/APFC Panel.jpg',
+      title: 'Power Factor Correction',
+      description: 'APFC panel installation and service',
       size: 'medium'
     },
     {
       id: 9,
-      url: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800',
-      title: 'Modern Factory Operations',
-      description: 'Efficient production floor',
+      url: 'images/emergency_breakdown_support.png',
+      title: 'Emergency Breakdown Support',
+      description: '24/7 rapid response service',
+      size: 'medium'
+    },
+    {
+      id: 10,
+      url: 'images/checks-motor-vibration.png',
+      title: 'Motor Vibration Analysis',
+      description: 'Precision vibration testing and diagnostics',
+      size: 'medium'
+    },
+    {
+      id: 11,
+      url: 'images/injection pressure testing.jpg',
+      title: 'Injection Pressure Testing',
+      description: 'Accurate pressure measurement and calibration',
+      size: 'large'
+    },
+    {
+      id: 12,
+      url: 'images/retrofitting and reconditioning.jpg',
+      title: 'Machine Retrofitting',
+      description: 'Complete machine modernization',
+      size: 'medium'
+    },
+    {
+      id: 13,
+      url: 'images/image1.jpg',
+      title: 'Machine Service Work',
+      description: 'Professional maintenance in progress',
+      size: 'medium'
+    },
+    {
+      id: 14,
+      url: 'images/image2.jpg',
+      title: 'Component Inspection',
+      description: 'Detailed component analysis',
+      size: 'medium'
+    },
+    {
+      id: 15,
+      url: 'images/image4.jpg',
+      title: 'Machine Operations',
+      description: 'Operational efficiency monitoring',
+      size: 'large'
+    },
+    {
+      id: 16,
+      url: 'images/image6.jpg',
+      title: 'System Integration',
+      description: 'Advanced system integration work',
+      size: 'medium'
+    },
+    {
+      id: 17,
+      url: 'images/image7.jpg',
+      title: 'Industrial Equipment',
+      description: 'State-of-the-art manufacturing equipment',
+      size: 'medium'
+    },
+    {
+      id: 18,
+      url: 'images/image8.jpg',
+      title: 'Precision Work',
+      description: 'Detailed precision maintenance',
       size: 'medium'
     }
   ]
@@ -76,38 +139,20 @@ const Gallery = () => {
   const videos = [
     {
       id: 1,
-      thumbnail: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800',
-      title: 'Machine Performance Testing',
-      description: 'Complete 7-factor analysis demonstration',
-      duration: '5:32',
-      videoUrl: '/videos/performance-testing.mp4', // Replace with your video path
-      type: 'local' // or 'youtube'
+      thumbnail: 'images/MG-PET.jpg',
+      title: 'Service Demonstration Video 1',
+      description: 'Our expert service techniques in action',
+      duration: '0:16',
+      videoUrl: 'images/image3.mp4',
+      type: 'local'
     },
     {
       id: 2,
-      thumbnail: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800',
-      title: 'Preventive Maintenance Process',
-      description: 'Our systematic maintenance approach',
-      duration: '8:45',
-      videoUrl: '/videos/maintenance-process.mp4',
-      type: 'local'
-    },
-    {
-      id: 3,
-      thumbnail: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800',
-      title: 'Retrofitting & Upgrades',
-      description: 'Modernizing old equipment',
-      duration: '6:18',
-      videoUrl: '/videos/retrofitting.mp4',
-      type: 'local'
-    },
-    {
-      id: 4,
-      thumbnail: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800',
-      title: 'Emergency Repair Services',
-      description: 'Quick response and solutions',
-      duration: '4:22',
-      videoUrl: '/videos/emergency-services.mp4',
+      thumbnail: 'images/technical-Maintenance.jpg',
+      title: 'Service Demonstration Video 2',
+      description: 'Professional maintenance procedures',
+      duration: '0:34',
+      videoUrl: 'images/image5.mp4',
       type: 'local'
     }
   ]

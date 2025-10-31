@@ -23,7 +23,7 @@ const Services = () => {
       subtitle: '7-Factor Comprehensive Analysis',
       description: 'Complete performance evaluation to ensure your machines operate at optimal efficiency.',
       color: 'from-blue-500 to-cyan-500',
-      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&auto=format&fit=crop&q=80',
+      image: 'images/injection pressure testing.jpg',
       features: [
         'Injection Pressure Testing',
         'Injection Speed Analysis',
@@ -40,7 +40,7 @@ const Services = () => {
       subtitle: 'Complete Diagnostic Analysis',
       description: 'Thorough inspection of all critical components to identify potential issues before they become problems.',
       color: 'from-purple-500 to-pink-500',
-      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&auto=format&fit=crop&q=80',
+      image: 'images/motor-testing.jpg',
       features: [
         'Pump & Motor Condition Assessment',
         'Tie Bar & Pin Bush Inspection',
@@ -59,7 +59,7 @@ const Services = () => {
       subtitle: 'Upgrade & Modernization',
       description: 'Transform your aging machines with modern technology and restore them to peak performance.',
       color: 'from-orange-500 to-red-500',
-      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=80',
+      image: 'images/PLC retrofitting.jpeg',
       features: [
         'PLC Repair & Replacement',
         'Servo Motor Fitting',
@@ -76,7 +76,7 @@ const Services = () => {
       subtitle: 'Proactive Care Programs',
       description: 'Scheduled maintenance programs designed to prevent breakdowns and extend machine life.',
       color: 'from-green-500 to-emerald-500',
-      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&auto=format&fit=crop&q=80',
+      image: 'images/emergency_breakdown_support.png',
       features: [
         'Scheduled Preventive Maintenance',
         'Predictive Fault Detection',
@@ -94,7 +94,7 @@ const Services = () => {
       subtitle: 'Temperature Control Solutions',
       description: 'Expert maintenance of cooling systems to ensure optimal temperature regulation.',
       color: 'from-cyan-500 to-blue-500',
-      image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=800&auto=format&fit=crop&q=80',
+      image: 'images/Chillers-Work.jpg',
       features: [
         'Chiller Maintenance & Repair',
         'Cooling Tower Service',
@@ -111,7 +111,7 @@ const Services = () => {
       subtitle: 'Energy Efficiency Solutions',
       description: 'Reduce energy costs and improve power efficiency with our optimization services.',
       color: 'from-yellow-500 to-orange-500',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&auto=format&fit=crop&q=80',
+      image: 'images/APFC Panel.jpg',
       features: [
         'Power Factor Correction',
         'Energy Consumption Analysis',
