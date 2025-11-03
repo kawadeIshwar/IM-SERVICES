@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import axios from 'axios'
+import emailjs from '@emailjs/browser'
 import { 
   Calendar, Clock, User, Mail, Phone, MapPin, FileText, Send, CheckCircle,
   Settings, Wrench, Shield, Zap, AlertCircle, Droplet, Activity, MoreHorizontal,
@@ -9,6 +10,7 @@ import {
 import SEO from '../components/SEO'
 
 const Booking = () => {
+  const location = useLocation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,6 +30,27 @@ const Booking = () => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const [errors, setErrors] = useState({})
+
+  // Auto-select service type from URL parameter
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search)
+    const serviceParam = searchParams.get('service')
+    
+    if (serviceParam) {
+      setFormData(prev => ({
+        ...prev,
+        serviceType: serviceParam
+      }))
+      
+      // Scroll to service type section after a short delay
+      setTimeout(() => {
+        const serviceSection = document.querySelector('[name="serviceType"]')
+        if (serviceSection) {
+          serviceSection.closest('.space-y-6')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 300)
+    }
+  }, [location.search])
 
   const services = [
     {
@@ -147,7 +170,31 @@ const Booking = () => {
     setLoading(true)
 
     try {
-      await axios.post('/api/bookings', formData)
+      // Get service title for display
+      const selectedService = services.find(s => s.id === formData.serviceType)
+      
+      // Send email using EmailJS
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_BOOKING,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          company: formData.company || 'Not provided',
+          location: formData.location,
+          machine_type: formData.machineType || 'Not specified',
+          machine_brand: formData.machineBrand || 'Not specified',
+          service_type: selectedService?.title || formData.serviceType,
+          other_service_details: formData.otherServiceDetails || 'N/A',
+          preferred_date: formData.preferredDate || 'Not specified',
+          preferred_time: formData.preferredTime || 'Not specified',
+          message: formData.message || 'No additional message',
+          to_name: 'IM Services',
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      
       setSuccess(true)
       // Reset form after 5 seconds
       setTimeout(() => {
@@ -169,6 +216,7 @@ const Booking = () => {
         setErrors({})
       }, 5000)
     } catch (err) {
+      console.error('EmailJS Error:', err)
       setError('Failed to submit booking. Please try again or contact us directly.')
     } finally {
       setLoading(false)

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { 
   Activity, 
   Shield, 
@@ -16,6 +17,19 @@ import {
 import SEO from '../components/SEO'
 
 const Services = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash) {
+      // Small delay to ensure the page has rendered
+      setTimeout(() => {
+        const element = document.getElementById(location.hash.substring(1))
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        }
+      }, 100)
+    }
+  }, [location])
   const services = [
     {
       icon: <Activity size={48} />,
@@ -24,6 +38,7 @@ const Services = () => {
       description: 'Complete performance evaluation to ensure your machines operate at optimal efficiency.',
       color: 'from-blue-500 to-cyan-500',
       image: 'images/injection pressure testing.jpg',
+      serviceId: 'performance',
       features: [
         'Injection Pressure Testing',
         'Injection Speed Analysis',
@@ -41,6 +56,7 @@ const Services = () => {
       description: 'Thorough inspection of all critical components to identify potential issues before they become problems.',
       color: 'from-purple-500 to-pink-500',
       image: 'images/motor-testing.jpg',
+      serviceId: 'health',
       features: [
         'Pump & Motor Condition Assessment',
         'Tie Bar & Pin Bush Inspection',
@@ -60,6 +76,7 @@ const Services = () => {
       description: 'Transform your aging machines with modern technology and restore them to peak performance.',
       color: 'from-orange-500 to-red-500',
       image: 'images/PLC retrofitting.jpeg',
+      serviceId: 'retrofit',
       features: [
         'PLC Repair & Replacement',
         'Servo Motor Fitting',
@@ -77,6 +94,7 @@ const Services = () => {
       description: 'Scheduled maintenance programs designed to prevent breakdowns and extend machine life.',
       color: 'from-green-500 to-emerald-500',
       image: 'images/emergency_breakdown_support.png',
+      serviceId: 'preventive',
       features: [
         'Scheduled Preventive Maintenance',
         'Predictive Fault Detection',
@@ -95,6 +113,7 @@ const Services = () => {
       description: 'Expert maintenance of cooling systems to ensure optimal temperature regulation.',
       color: 'from-cyan-500 to-blue-500',
       image: 'images/Chillers-Work.jpg',
+      serviceId: 'cooling',
       features: [
         'Chiller Maintenance & Repair',
         'Cooling Tower Service',
@@ -112,6 +131,7 @@ const Services = () => {
       description: 'Reduce energy costs and improve power efficiency with our optimization services.',
       color: 'from-yellow-500 to-orange-500',
       image: 'images/APFC Panel.jpg',
+      serviceId: 'power',
       features: [
         'Power Factor Correction',
         'Energy Consumption Analysis',
@@ -218,11 +238,12 @@ const Services = () => {
             {services.map((service, index) => (
               <motion.div
                 key={index}
+                id={service.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative"
+                className="group relative scroll-mt-24"
               >
                 {/* Main Card - Horizontal Split Layout */}
                 <div className={`relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 ${index % 2 === 0 ? 'lg:grid lg:grid-cols-2' : 'lg:grid lg:grid-cols-2'}`}>
@@ -291,7 +312,7 @@ const Services = () => {
 
                     {/* CTA Button */}
                     <Link
-                      to="/booking"
+                      to={`/booking?service=${service.serviceId}`}
                       className={`group/btn relative overflow-hidden inline-flex items-center justify-center space-x-2 bg-gradient-to-r ${service.color} text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:shadow-2xl hover:scale-105 transition-all duration-300 mt-auto`}
                     >
                       <span className="relative z-10">Book This Service</span>

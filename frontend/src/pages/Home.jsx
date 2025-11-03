@@ -30,42 +30,48 @@ const Home = () => {
       title: 'Performance Testing',
       description: '7-Factor comprehensive testing including injection pressure, speed, clamping force, and more.',
       color: 'from-blue-500 to-cyan-500',
-      image: 'images/hydraulic system 2.jpg'
+      image: 'images/hydraulic system 2.jpg',
+      serviceId: 'machine-performance-testing'
     },
     {
       icon: <Shield size={40} />,
       title: 'Machine Health Checkup',
       description: 'Complete diagnostic analysis of pump, motor, screw barrel, heaters, and safety systems.',
       color: 'from-purple-500 to-pink-500',
-      image: 'images/checks-motor-vibration.png'
+      image: 'images/checks-motor-vibration.png',
+      serviceId: 'machine-health-checkup'
     },
     {
       icon: <Settings size={40} />,
       title: 'Retrofitting & Reconditioning',
       description: 'PLC upgrades, servo fitting, hydraulic modifications, and complete machine overhaul.',
       color: 'from-orange-500 to-red-500',
-      image: 'images/retrofitting and reconditioning.jpg'
+      image: 'images/retrofitting and reconditioning.jpg',
+      serviceId: 'retrofitting-and-reconditioning'
     },
     {
       icon: <Wrench size={40} />,
       title: 'Preventive Maintenance',
       description: 'Scheduled maintenance, predictive fault detection, and emergency breakdown support.',
       color: 'from-green-500 to-emerald-500',
-      image: 'images/technical-Maintenance.jpg'
+      image: 'images/technical-Maintenance.jpg',
+      serviceId: 'preventive-and-predictive-maintenance'
     },
     {
       icon: <Zap size={40} />,
       title: 'Power Optimization',
       description: 'Power factor correction and energy-saving solutions to reduce operational costs.',
       color: 'from-yellow-500 to-orange-500',
-      image: 'images/power.jpg'
+      image: 'images/power.jpg',
+      serviceId: 'power-optimization'
     },
     {
       icon: <TrendingUp size={40} />,
       title: 'Cooling Systems',
       description: 'Chiller, cooling tower, MTC, HRC, and ELC maintenance for optimal temperature control.',
       color: 'from-indigo-500 to-blue-500',
-      image: 'images/chiller maintenance.jpg'
+      image: 'images/chiller maintenance.jpg',
+      serviceId: 'cooling-and-chiller-systems'
     }
   ]
 
@@ -292,7 +298,7 @@ const Home = () => {
 
                     {/* Learn More Link */}
                     <Link
-                      to="/services"
+                      to={`/services#${service.serviceId}`}
                       className={`inline-flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold group-hover:space-x-3 transition-all`}
                     >
                       <span>Learn More</span>
