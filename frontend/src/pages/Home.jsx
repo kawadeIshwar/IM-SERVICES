@@ -92,7 +92,7 @@ const Home = () => {
   ]
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-white dark:bg-neutral-950">
       <SEO 
         title="IM Services - Expert Injection Moulding Machine Services in Pune | 24/7 Support"
         description="Professional injection moulding machine maintenance, repair, and performance testing services in Pune, Maharashtra. 15+ years experience, 500+ machines serviced. 24/7 emergency breakdown support."
@@ -102,17 +102,17 @@ const Home = () => {
       <StructuredData type="organization" />
       
       {/* Hero Section - Modern Split Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Circular Gradient Blobs */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-100/20 rounded-full blur-3xl"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200/30 dark:bg-primary-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-200/30 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-100/20 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
           
           {/* Geometric Shapes */}
-          <div className="absolute top-32 right-1/4 w-20 h-20 border-4 border-primary-200/30 rounded-xl rotate-12"></div>
-          <div className="absolute bottom-40 left-1/3 w-16 h-16 border-4 border-cyan-200/30 rounded-full"></div>
+          <div className="absolute top-32 right-1/4 w-20 h-20 border-4 border-primary-200/30 dark:border-primary-500/20 rounded-xl rotate-12"></div>
+          <div className="absolute bottom-40 left-1/3 w-16 h-16 border-4 border-cyan-200/30 dark:border-cyan-500/20 rounded-full"></div>
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.02]" style={{
@@ -122,7 +122,7 @@ const Home = () => {
         </div>
 
         {/* Main Content Container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             
             {/* Left Content */}
@@ -141,11 +141,11 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-5"
               >
-                <span className="text-slate-900">Expert</span>{' '}
+                <span className="text-slate-900 dark:text-white">Expert</span>{' '}
                 <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">
                   Injection Molding
                 </span>{' '}
-                <span className="text-slate-900">Machine Services</span>
+                <span className="text-slate-900 dark:text-white">Machine Services</span>
               </motion.h1>
 
               {/* Description */}
@@ -153,7 +153,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg text-slate-600 leading-relaxed mb-8"
+                className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed mb-8"
               >
                 Complete technical support for machine health, performance optimization, and maintenance. Reduce downtime and improve productivity with our expert services.
               </motion.p>
@@ -177,7 +177,7 @@ const Home = () => {
                 </Link>
                 <Link
                   to="/services"
-                  className="group bg-white border-2 border-slate-300 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 hover:border-primary-600 hover:text-primary-600 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="group bg-white dark:bg-neutral-900 border-2 border-slate-300 dark:border-neutral-700 text-slate-700 dark:text-gray-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-neutral-800 hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <span>View Services</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -193,11 +193,11 @@ const Home = () => {
               className="relative hidden lg:block"
             >
               {/* Decorative Background Cards */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 rounded-[3rem] transform rotate-6 scale-105 opacity-50"></div>
-              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-100 via-blue-50 to-primary-100 rounded-[3rem] transform -rotate-3 scale-95 opacity-40"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 dark:from-primary-900/30 dark:via-cyan-900/20 dark:to-indigo-900/30 rounded-[3rem] transform rotate-6 scale-105 opacity-50 dark:opacity-30"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-100 via-blue-50 to-primary-100 dark:from-cyan-900/30 dark:via-blue-900/20 dark:to-primary-900/30 rounded-[3rem] transform -rotate-3 scale-95 opacity-40 dark:opacity-20"></div>
               
               {/* Main Image Container */}
-              <div className="relative bg-white rounded-[2.5rem] shadow-2xl border-4 border-white overflow-hidden p-6">
+              <div className="relative bg-white dark:bg-neutral-900 rounded-[2.5rem] shadow-2xl border-4 border-white dark:border-neutral-800 overflow-hidden p-6">
                 {/* Corner Decorative Accents */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-400/20 to-transparent rounded-bl-full"></div>
                 <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-tr-full"></div>
@@ -232,7 +232,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="relative py-24 bg-slate-50 overflow-hidden">
+      <section ref={servicesRef} className="relative py-24 bg-slate-50 dark:bg-neutral-900 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/5 rounded-full blur-3xl"></div>
@@ -252,16 +252,16 @@ const Home = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={servicesInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-primary-50 border border-primary-200 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center space-x-2 bg-primary-50 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-700 px-4 py-2 rounded-full mb-6"
             >
-              <Settings size={16} className="text-primary-600" />
-              <span className="text-sm font-semibold text-primary-700">Professional Services</span>
+              <Settings size={16} className="text-primary-600 dark:text-primary-400" />
+              <span className="text-sm font-semibold text-primary-700 dark:text-primary-300">Professional Services</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-slate-900 dark:text-white mb-4">
               Our Expert Services
             </h2>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Comprehensive solutions for all your injection moulding machine needs with cutting-edge technology and expert care
             </p>
           </motion.div>
@@ -277,7 +277,7 @@ const Home = () => {
                 className="group relative"
               >
                 {/* Card */}
-                <div className="relative h-full bg-white border-2 border-slate-200 rounded-3xl overflow-hidden hover:border-primary-400 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                <div className="relative h-full bg-white dark:bg-neutral-900 border-2 border-slate-200 dark:border-neutral-800 rounded-3xl overflow-hidden hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                   {/* Image Section */}
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -289,10 +289,10 @@ const Home = () => {
 
                   {/* Content Section */}
                   <div className="p-6 relative">
-                    <h3 className="text-2xl font-heading font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-slate-600 mb-6 leading-relaxed text-sm">
+                    <p className="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed text-sm">
                       {service.description}
                     </p>
 
@@ -344,28 +344,28 @@ const Home = () => {
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
-            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-              <div className="text-3xl font-bold text-primary-600 mb-1">6+</div>
-              <div className="text-sm text-slate-600 font-medium">Service Types</div>
+            <div className="text-center p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-md border border-slate-200 dark:border-neutral-800">
+              <div className="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-1">6+</div>
+              <div className="text-sm text-slate-600 dark:text-gray-300 font-medium">Service Types</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-              <div className="text-3xl font-bold text-cyan-600 mb-1">24/7</div>
-              <div className="text-sm text-slate-600 font-medium">Availability</div>
+            <div className="text-center p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-md border border-slate-200 dark:border-neutral-800">
+              <div className="text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-1">24/7</div>
+              <div className="text-sm text-slate-600 dark:text-gray-300 font-medium">Availability</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-              <div className="text-3xl font-bold text-indigo-600 mb-1">Expert</div>
-              <div className="text-sm text-slate-600 font-medium">Technicians</div>
+            <div className="text-center p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-md border border-slate-200 dark:border-neutral-800">
+              <div className="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">Expert</div>
+              <div className="text-sm text-slate-600 dark:text-gray-300 font-medium">Technicians</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md border border-slate-200">
-              <div className="text-3xl font-bold text-green-600 mb-1">Fast</div>
-              <div className="text-sm text-slate-600 font-medium">Response</div>
+            <div className="text-center p-6 bg-white dark:bg-neutral-900 rounded-xl shadow-md border border-slate-200 dark:border-neutral-800">
+              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">Fast</div>
+              <div className="text-sm text-slate-600 dark:text-gray-300 font-medium">Response</div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-400">
+      <section className="py-20 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-400 dark:from-neutral-900 dark:via-neutral-800 dark:to-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -374,10 +374,10 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-white dark:text-gray-100 mb-6">
                 Why Choose IM Services?
               </h2>
-              <p className="text-xl text-gray-300 mb-8 font-medium">
+              <p className="text-xl text-gray-300 dark:text-gray-200 mb-8 font-medium">
                 We deliver excellence through expertise, reliability, and commitment to your machine's performance.
               </p>
               <div className="space-y-4">
@@ -390,14 +390,14 @@ const Home = () => {
                     viewport={{ once: true }}
                     className="flex items-start space-x-3"
                   >
-                    <CheckCircle size={24} className="text-primary-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-800 text-lg font-medium">{feature}</span>
+                    <CheckCircle size={24} className="text-white dark:text-primary-300 flex-shrink-0 mt-1" />
+                    <span className="text-gray-800 dark:text-gray-100 text-lg font-medium">{feature}</span>
                   </motion.div>
                 ))}
               </div>
               <Link
                 to="/about"
-                className="inline-block mt-8 bg-slate-800 border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="inline-block mt-8 bg-slate-800 dark:bg-neutral-900 border-2 border-primary-600 dark:border-primary-400 text-primary-600 dark:text-primary-300 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 dark:hover:bg-neutral-800 transition-all duration-300 shadow-md hover:shadow-lg"
               >
                 Learn More About Us
               </Link>
@@ -430,7 +430,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

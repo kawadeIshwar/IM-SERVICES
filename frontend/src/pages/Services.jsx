@@ -178,7 +178,7 @@ const Services = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen pt-20 bg-white dark:bg-neutral-900">
       <SEO 
         title="Our Services - Injection Moulding Machine Maintenance & Repair | IM Services"
         description="Comprehensive injection moulding machine services including performance testing, health checkups, preventive maintenance, retrofitting, and 24/7 emergency repair services in Pune, Maharashtra."
@@ -186,8 +186,8 @@ const Services = () => {
         canonical="https://imservices.netlify.app/services"
       />
       
-      {/* Hero Section - Modern Design */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+      {/* Hero Section */}
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-cyan-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
@@ -212,10 +212,10 @@ const Services = () => {
               <span className="text-sm font-bold">Professional Services</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6">
               Our <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Services</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Comprehensive solutions for all your injection moulding machine needs
             </p>
           </motion.div>
@@ -223,9 +223,9 @@ const Services = () => {
       </section>
 
       {/* Services Grid - Professional Design */}
-      <section className="py-12 bg-white relative overflow-hidden">
+      <section className="py-12 bg-white dark:bg-black relative overflow-hidden">
         {/* Decorative background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 opacity-60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:bg-none opacity-60"></div>
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -246,7 +246,7 @@ const Services = () => {
                 className="group relative scroll-mt-24"
               >
                 {/* Main Card - Horizontal Split Layout */}
-                <div className={`relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 ${index % 2 === 0 ? 'lg:grid lg:grid-cols-2' : 'lg:grid lg:grid-cols-2'}`}>
+                <div className={`relative bg-white dark:bg-gradient-to-br dark:from-neutral-900/90 dark:to-neutral-800/90 dark:backdrop-blur-xl rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl dark:shadow-2xl dark:shadow-primary-900/20 transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800/50 hover:border-primary-300 dark:hover:border-primary-500/80 dark:hover:shadow-primary-500/30 ${index % 2 === 0 ? 'lg:grid lg:grid-cols-2' : 'lg:grid lg:grid-cols-2'} dark:ring-1 dark:ring-white/10`}>
                   
                   {/* Image Section */}
                   <div className={`relative h-56 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
@@ -274,37 +274,39 @@ const Services = () => {
                   </div>
 
                   {/* Content Section */}
-                  <div className={`p-5 lg:p-6 flex flex-col ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                  <div className={`p-5 lg:p-6 flex flex-col ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} relative`}>
+                    {/* Accent Gradient Line */}
+                    <div className={`hidden dark:block absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${service.color} opacity-60`}></div>
                     {/* Title & Subtitle */}
                     <div className="mb-3">
                       <div className="flex items-center space-x-2 mb-2">
                         <div className={`h-1 w-12 bg-gradient-to-r ${service.color} rounded-full`}></div>
                         <p className={`text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold text-xs uppercase tracking-wider`}>{service.subtitle}</p>
                       </div>
-                      <h3 className="text-xl lg:text-2xl font-heading font-bold text-slate-900 mb-2">
+                      <h3 className="text-xl lg:text-2xl font-heading font-bold text-slate-900 dark:bg-gradient-to-r dark:from-white dark:via-gray-100 dark:to-gray-300 dark:bg-clip-text dark:text-transparent mb-2">
                         {service.title}
                       </h3>
                     </div>
 
-                    <p className="text-slate-600 mb-4 leading-relaxed text-sm">
+                    <p className="text-slate-600 dark:text-gray-300 mb-4 leading-relaxed text-sm">
                       {service.description}
                     </p>
 
                     {/* Features Grid */}
                     <div className="mb-4 flex-1">
                       <div className="flex items-center justify-between mb-3">
-                        <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Key Features</h4>
+                        <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide">Key Features</h4>
                         <span className={`text-xs font-semibold text-white bg-gradient-to-r ${service.color} px-3 py-1 rounded-full`}>
                           {service.features.length} Services
                         </span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start space-x-2 p-1.5 rounded-lg hover:bg-slate-50 transition-colors">
+                          <div key={idx} className="flex items-start space-x-2 p-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
                             <div className={`w-5 h-5 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5`}>
                               <CheckCircle size={12} className="text-white" />
                             </div>
-                            <span className="text-xs text-slate-700 font-medium leading-tight">{feature}</span>
+                            <span className="text-xs text-slate-700 dark:text-gray-300 font-medium leading-tight">{feature}</span>
                           </div>
                         ))}
                       </div>
@@ -332,7 +334,9 @@ const Services = () => {
       </section>
 
       {/* Service Process - Modern Timeline */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-20 bg-white dark:bg-neutral-900 relative overflow-hidden">
+        {/* Subtle top glow */}
+        <div className="hidden dark:block absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"></div>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -349,10 +353,10 @@ const Services = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">
               Our Service Process
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 dark:text-gray-300 max-w-2xl mx-auto">
               A systematic approach to ensure quality and efficiency
             </p>
           </motion.div>
@@ -365,15 +369,15 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-primary-200 rounded-2xl p-8 hover:shadow-2xl hover:border-primary-400 transition-all duration-300"
+                className="group relative bg-gradient-to-br from-blue-50 to-cyan-50 dark:bg-gradient-to-br dark:from-neutral-900/80 dark:to-neutral-800/80 dark:backdrop-blur-sm border-2 border-primary-200 dark:border-primary-900/50 rounded-2xl p-8 hover:shadow-2xl hover:border-primary-400 dark:hover:border-primary-500/70 dark:shadow-lg dark:shadow-black/20 dark:hover:shadow-primary-900/30 transition-all duration-300 dark:ring-1 dark:ring-white/5"
               >
                 {/* Number Badge */}
                 <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all">
                   <span className="text-2xl font-bold text-white">{step.number}</span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 mb-3 pr-8">{step.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{step.description}</p>
+                <h3 className="text-2xl font-bold text-slate-900 dark:bg-gradient-to-r dark:from-cyan-200 dark:via-primary-300 dark:to-primary-400 dark:bg-clip-text dark:text-transparent mb-3 pr-8">{step.title}</h3>
+                <p className="text-slate-600 dark:text-gray-300 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>

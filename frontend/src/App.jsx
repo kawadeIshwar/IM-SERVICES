@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
+import { DarkModeProvider } from './context/DarkModeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StickyContact from './components/StickyContact';
@@ -30,23 +31,25 @@ const ScrollToTop = () => {
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <div className="min-h-screen bg-white">
-          <Navbar />
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/faq" element={<FAQ />} />
-          </Routes>
-          <Footer />
-          <StickyContact />
-        </div>
-      </Router>
+      <DarkModeProvider>
+        <Router>
+          <div className="min-h-screen bg-white dark:bg-neutral-950">
+            <Navbar />
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/faq" element={<FAQ />} />
+            </Routes>
+            <Footer />
+            <StickyContact />
+          </div>
+        </Router>
+      </DarkModeProvider>
     </HelmetProvider>
   )
 }

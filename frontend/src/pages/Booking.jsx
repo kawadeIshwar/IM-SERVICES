@@ -224,7 +224,7 @@ const Booking = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-neutral-950">
       <SEO 
         title="Book Service - Schedule Your Machine Maintenance | IM Services"
         description="Book professional injection moulding machine services online. Quick and easy booking for performance testing, maintenance, repairs, and emergency breakdown support in Pune."

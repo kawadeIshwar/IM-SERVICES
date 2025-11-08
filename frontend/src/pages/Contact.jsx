@@ -94,7 +94,7 @@ const Contact = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen pt-20 bg-white dark:bg-neutral-950">
       <SEO 
         title="Contact Us - Get in Touch with IM Services | 24/7 Support"
         description="Contact IM Services for injection moulding machine maintenance and repair. Call +91-9730992561 or email us. We provide 24/7 emergency support in Pune, Maharashtra."
@@ -103,7 +103,7 @@ const Contact = () => {
       />
       
       {/* Hero Section - Modern Design */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
@@ -128,10 +128,10 @@ const Contact = () => {
               <span className="text-sm font-bold">Get In Touch</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6">
               Contact <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Us</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               We're here to help! Reach out to us for any inquiries, support, or consultations
             </p>
           </motion.div>
@@ -139,7 +139,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => {
@@ -150,7 +150,7 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 h-full"
+                  className="group relative bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500 h-full"
                 >
                   {/* Icon */}
                   <div className={`w-20 h-20 bg-gradient-to-br ${info.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}>
@@ -158,12 +158,12 @@ const Contact = () => {
                   </div>
                   
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-slate-900 mb-4">{info.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{info.title}</h3>
                   
                   {/* Details */}
                   <div className="space-y-2">
                     {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-slate-600 font-medium leading-relaxed">
+                      <p key={idx} className="text-slate-600 dark:text-gray-300 font-medium leading-relaxed">
                         {detail}
                       </p>
                     ))}
@@ -187,7 +187,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Map */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-neutral-900 dark:to-black relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -204,17 +204,17 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-slate-200"
+              className="bg-white dark:bg-neutral-900 rounded-3xl p-8 md:p-10 shadow-2xl border-2 border-slate-200 dark:border-neutral-800"
             >
               <div className="mb-8">
                 <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-100 to-cyan-100 text-primary-700 px-4 py-2 rounded-full mb-4">
                   <Send size={18} />
                   <span className="text-sm font-bold">Quick Contact</span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 mb-3">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 dark:text-white mb-3">
                   Send Us a Message
                 </h2>
-                <p className="text-slate-600">Fill out the form below and we'll get back to you within 24 hours</p>
+                <p className="text-slate-600 dark:text-gray-300">Fill out the form below and we'll get back to you within 24 hours</p>
               </div>
 
               {success && (
@@ -235,7 +235,7 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                  <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                     <User size={18} className="text-primary-600" />
                     <span>Full Name <span className="text-red-500">*</span></span>
                   </label>
@@ -245,14 +245,14 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                    className="w-full bg-slate-50 dark:bg-neutral-800 border-2 border-slate-200 dark:border-neutral-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white focus:border-primary-500 focus:bg-white dark:focus:bg-neutral-700 focus:outline-none transition-all"
                     placeholder="Enter your full name"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                    <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                       <Mail size={18} className="text-primary-600" />
                       <span>Email Address <span className="text-red-500">*</span></span>
                     </label>
@@ -262,13 +262,13 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                      className="w-full bg-slate-50 dark:bg-neutral-800 border-2 border-slate-200 dark:border-neutral-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white focus:border-primary-500 focus:bg-white dark:focus:bg-neutral-700 focus:outline-none transition-all"
                       placeholder="your@email.com"
                     />
                   </div>
 
                   <div>
-                    <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                    <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                       <Phone size={18} className="text-primary-600" />
                       <span>Phone Number <span className="text-red-500">*</span></span>
                     </label>
@@ -278,14 +278,14 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                      className="w-full bg-slate-50 dark:bg-neutral-800 border-2 border-slate-200 dark:border-neutral-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white focus:border-primary-500 focus:bg-white dark:focus:bg-neutral-700 focus:outline-none transition-all"
                       placeholder="+91 XXXXXXXXXX"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                  <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                     <MessageSquare size={18} className="text-primary-600" />
                     <span>Subject <span className="text-red-500">*</span></span>
                   </label>
@@ -295,13 +295,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all"
+                    className="w-full bg-slate-50 dark:bg-neutral-800 border-2 border-slate-200 dark:border-neutral-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white focus:border-primary-500 focus:bg-white dark:focus:bg-neutral-700 focus:outline-none transition-all"
                     placeholder="How can we help you?"
                   />
                 </div>
 
                 <div>
-                  <label className="flex items-center space-x-2 text-slate-900 font-bold mb-3">
+                  <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                     <MessageCircle size={18} className="text-primary-600" />
                     <span>Your Message <span className="text-red-500">*</span></span>
                   </label>
@@ -311,7 +311,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-slate-900 focus:border-primary-500 focus:bg-white focus:outline-none transition-all resize-none"
+                    className="w-full bg-slate-50 dark:bg-neutral-800 border-2 border-slate-200 dark:border-neutral-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white focus:border-primary-500 focus:bg-white dark:focus:bg-neutral-700 focus:outline-none transition-all resize-none"
                     placeholder="Tell us about your requirements..."
                   ></textarea>
                 </div>
@@ -342,7 +342,7 @@ const Contact = () => {
               className="space-y-6"
             >
               {/* Map Section */}
-              <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-200">
+              <div className="bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden shadow-2xl border-2 border-slate-200 dark:border-neutral-800">
                 <div className="p-6 bg-gradient-to-r from-primary-500 to-cyan-500">
                   <div className="flex items-center space-x-3">
                     <MapPin className="text-white" size={24} />
@@ -364,34 +364,34 @@ const Contact = () => {
               </div>
 
               {/* Company Details */}
-              <div className="bg-white rounded-3xl p-8 shadow-2xl border-2 border-slate-200">
+              <div className="bg-white dark:bg-neutral-900 rounded-3xl p-8 shadow-2xl border-2 border-slate-200 dark:border-neutral-800">
                 <div className="flex items-center space-x-3 mb-6">
                   <Building2 className="text-primary-600" size={24} />
-                  <h3 className="text-2xl font-bold text-slate-900">Company Details</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Company Details</h3>
                 </div>
                 
                 <div className="space-y-4 mb-6">
-                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 dark:bg-neutral-800 rounded-xl">
                     <Building2 size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm text-slate-600 font-semibold">Company Name</p>
-                      <p className="text-slate-900 font-bold">IM Services</p>
+                      <p className="text-sm text-slate-600 dark:text-gray-400 font-semibold">Company Name</p>
+                      <p className="text-slate-900 dark:text-white font-bold">IM Services</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 dark:bg-neutral-800 rounded-xl">
                     <Calendar size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm text-slate-600 font-semibold">GSTIN</p>
-                      <p className="text-slate-900 font-bold">27AZFPG7021B1ZW</p>
+                      <p className="text-sm text-slate-600 dark:text-gray-400 font-semibold">GSTIN</p>
+                      <p className="text-slate-900 dark:text-white font-bold">27AZFPG7021B1ZW</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3 p-4 bg-slate-50 rounded-xl">
+                  <div className="flex items-start space-x-3 p-4 bg-slate-50 dark:bg-neutral-800 rounded-xl">
                     <MapPin size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-sm text-slate-600 font-semibold">Address</p>
-                      <p className="text-slate-900 font-bold">Shikrapur, Pune, Maharashtra, India</p>
+                      <p className="text-sm text-slate-600 dark:text-gray-400 font-semibold">Address</p>
+                      <p className="text-slate-900 dark:text-white font-bold">Shikrapur, Pune, Maharashtra, India</p>
                     </div>
                   </div>
                 </div>

@@ -158,7 +158,7 @@ const Gallery = () => {
   ]
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen pt-20 bg-white dark:bg-neutral-950">
       <SEO 
         title="Gallery - Our Work | IM Services Photo & Video Gallery"
         description="View our injection moulding machine service work through photos and videos. See our performance testing, maintenance, and repair services in action."
@@ -167,7 +167,7 @@ const Gallery = () => {
       />
       
       {/* Hero Section - Modern Design */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
@@ -192,10 +192,10 @@ const Gallery = () => {
               <span className="text-sm font-bold">Visual Showcase</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6">
               Our <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Gallery</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Explore our work through stunning visuals and informative videos
             </p>
           </motion.div>
@@ -203,7 +203,7 @@ const Gallery = () => {
       </section>
 
       {/* Image Gallery Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-neutral-900 dark:to-black relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -225,15 +225,15 @@ const Gallery = () => {
               <ImageIcon size={20} />
               <span className="font-bold">Photo Gallery</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">
               Our Work in Pictures
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 dark:text-gray-300 max-w-2xl mx-auto">
               Browse through our collection of machines, services, and on-site excellence
             </p>
           </motion.div>
 
-          {/* Masonry Grid */}
+          {/* Uniform Grid - 3 Images Per Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {images.map((image, index) => (
               <motion.div
@@ -242,13 +242,11 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-                  image.size === 'large' ? 'md:col-span-2 md:row-span-1' : ''
-                }`}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
                 onClick={() => setSelectedImage(image)}
               >
-                <div className="relative bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-primary-300 rounded-2xl overflow-hidden">
-                  <div className={`relative ${image.size === 'large' ? 'h-96' : 'h-80'} overflow-hidden`}>
+                <div className="relative bg-white dark:bg-neutral-900 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500 rounded-2xl overflow-hidden">
+                  <div className="relative h-80 overflow-hidden">
                     <img
                       src={image.url}
                       alt={image.title}
@@ -258,7 +256,7 @@ const Gallery = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
                     
                     {/* Zoom Icon */}
-                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100">
+                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100">
                       <ZoomIn size={20} className="text-primary-600" />
                     </div>
 
@@ -276,7 +274,7 @@ const Gallery = () => {
       </section>
 
       {/* Video Gallery Section */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-20 bg-white dark:bg-neutral-950 relative overflow-hidden">
         {/* Decorative Background */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -298,10 +296,10 @@ const Gallery = () => {
               <Video size={20} />
               <span className="font-bold">Video Gallery</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 mb-4">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">
               Watch Our Services in Action
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-600 dark:text-gray-300 max-w-2xl mx-auto">
               Discover how we deliver excellence through our detailed video demonstrations
             </p>
           </motion.div>
@@ -336,7 +334,7 @@ const Gallery = () => {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 hover:border-cyan-300">
+                  <div className="relative bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800 hover:border-cyan-300 dark:hover:border-cyan-500">
                     {/* Video Preview */}
                     <div className="relative h-96 overflow-hidden bg-slate-900">
                       {video.type === 'local' ? (
@@ -384,17 +382,17 @@ const Gallery = () => {
                       </div>
 
                       {/* Hover Text */}
-                      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-slate-900 px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm text-slate-900 dark:text-white px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                         Click to view fullscreen
                       </div>
                     </div>
 
                     {/* Video Info */}
                     <div className="p-8">
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">
+                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         {video.title}
                       </h3>
-                      <p className="text-slate-600 text-base leading-relaxed">
+                      <p className="text-slate-600 dark:text-gray-300 text-base leading-relaxed">
                         {video.description}
                       </p>
                     </div>

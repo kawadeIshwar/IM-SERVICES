@@ -114,7 +114,7 @@ const FAQ = () => {
   })
 
   return (
-    <div className="min-h-screen pt-20 bg-white">
+    <div className="min-h-screen pt-20 bg-white dark:bg-neutral-950">
       <SEO 
         title="FAQ - Frequently Asked Questions | IM Services"
         description="Get answers to common questions about injection moulding machine maintenance, repair services, pricing, and technical support. 24/7 help available."
@@ -124,7 +124,7 @@ const FAQ = () => {
       <StructuredData type="faq" />
       
       {/* Hero Section - Modern Design */}
-      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50">
+      <section className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-cyan-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl"></div>
@@ -149,10 +149,10 @@ const FAQ = () => {
               <span className="text-sm font-bold">Help Center</span>
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6">
               Frequently Asked <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">Questions</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Find quick answers to common questions about our services
             </p>
           </motion.div>
@@ -160,7 +160,7 @@ const FAQ = () => {
       </section>
 
       {/* Category Filter Cards */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <motion.button
@@ -172,7 +172,7 @@ const FAQ = () => {
               className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
                 selectedCategory === 'All'
                   ? 'bg-gradient-to-br from-primary-500 to-cyan-500 border-primary-500 text-white shadow-xl scale-105'
-                  : 'bg-white border-slate-200 hover:border-primary-300 hover:shadow-lg text-slate-700'
+                  : 'bg-white dark:bg-neutral-900 border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500 hover:shadow-lg text-slate-700 dark:text-gray-300'
               }`}
             >
               <div className="text-center">
@@ -194,7 +194,7 @@ const FAQ = () => {
                   className={`p-6 rounded-2xl border-2 transition-all duration-300 ${
                     selectedCategory === category.category
                       ? `bg-gradient-to-br ${category.color} border-transparent text-white shadow-xl scale-105`
-                      : 'bg-white border-slate-200 hover:border-primary-300 hover:shadow-lg text-slate-700'
+                      : 'bg-white dark:bg-neutral-900 border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500 hover:shadow-lg text-slate-700 dark:text-gray-300'
                   }`}
                 >
                   <Icon className={`mx-auto mb-3 ${selectedCategory === category.category ? 'text-white' : 'text-primary-600'}`} size={32} />
@@ -208,7 +208,7 @@ const FAQ = () => {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-neutral-900 dark:to-black relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -232,10 +232,10 @@ const FAQ = () => {
                     <category.icon className="text-white" size={28} />
                   </div>
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900">
+                    <h2 className="text-3xl md:text-4xl font-heading font-bold text-slate-900 dark:text-white">
                       {category.category}
                     </h2>
-                    <p className="text-slate-600">{category.questions.length} questions answered</p>
+                    <p className="text-slate-600 dark:text-gray-300">{category.questions.length} questions answered</p>
                   </div>
                 </div>
 
@@ -251,8 +251,8 @@ const FAQ = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: questionIndex * 0.1 }}
                         viewport={{ once: true }}
-                        className={`bg-white border-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
-                          isOpen ? 'border-primary-500' : 'border-slate-200 hover:border-primary-300'
+                        className={`bg-white dark:bg-neutral-900 border-2 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
+                          isOpen ? 'border-primary-500' : 'border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500'
                         }`}
                       >
                         <button
@@ -265,7 +265,7 @@ const FAQ = () => {
                             } transition-colors`}>
                               <HelpCircle size={20} className={isOpen ? 'text-white' : 'text-primary-600'} />
                             </div>
-                            <span className="text-lg md:text-xl font-bold text-slate-900 pr-8 group-hover:text-primary-600 transition-colors">
+                            <span className="text-lg md:text-xl font-bold text-slate-900 dark:text-white pr-8 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                               {faq.question}
                             </span>
                           </div>
@@ -290,7 +290,7 @@ const FAQ = () => {
                         >
                           <div className="px-8 pb-8 ml-14">
                             <div className={`h-1 w-16 bg-gradient-to-r ${category.color} rounded-full mb-4`}></div>
-                            <p className="text-slate-600 leading-relaxed text-lg">
+                            <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-lg">
                               {faq.answer}
                             </p>
                           </div>
