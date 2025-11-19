@@ -237,7 +237,7 @@ const Contact = () => {
                 <div>
                   <label className="flex items-center space-x-2 text-slate-900 dark:text-white font-bold mb-3">
                     <User size={18} className="text-primary-600" />
-                    <span>Full Name <span className="text-red-500">*</span></span>
+                    <span>Your Name <span className="text-red-500">*</span></span>
                   </label>
                   <input
                     type="text"

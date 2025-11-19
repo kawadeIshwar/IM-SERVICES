@@ -374,7 +374,7 @@ const Booking = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-gray-700 font-semibold mb-2">
-                        Full Name <span className="text-red-500">*</span>
+                      Your Name <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <User size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useState, useEffect, useCallback } from 'react'
 import { 
   Wrench, 
   Activity, 
@@ -20,9 +21,35 @@ const Home = () => {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [servicesRef, servicesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [statsRef, statsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [direction, setDirection] = useState(1)
   
-  // Hero Image
-  const heroImage = '/images/MG-PET.jpg'
+  // Hero Images for slider (7 images)
+  const heroImages = [
+    '/images/image 93.png',
+    '/images/image 94.png',
+    '/images/image 95.png',
+    '/images/image 96.png',
+    '/images/image 99.png',
+    '/images/image 98.png',
+    '/images/image 97.png'
+  ]
+
+  // Auto-slide every 5 seconds for dynamic feel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1)
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [heroImages.length])
+
+  const handleSlideChange = useCallback((index) => {
+    if (index === currentSlide) return
+    const newDirection = index > currentSlide ? 1 : -1
+    setDirection(newDirection)
+    setCurrentSlide(index)
+  }, [currentSlide])
 
   const services = [
     {
@@ -101,133 +128,186 @@ const Home = () => {
       />
       <StructuredData type="organization" />
       
-      {/* Hero Section - Modern Split Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-black">
-        {/* Background Decorative Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Circular Gradient Blobs */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-200/30 dark:bg-primary-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-200/30 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-100/20 dark:bg-indigo-500/5 rounded-full blur-3xl"></div>
-          
-          {/* Geometric Shapes */}
-          <div className="absolute top-32 right-1/4 w-20 h-20 border-4 border-primary-200/30 dark:border-primary-500/20 rounded-xl rotate-12"></div>
-          <div className="absolute bottom-40 left-1/3 w-16 h-16 border-4 border-cyan-200/30 dark:border-cyan-500/20 rounded-full"></div>
-          
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.02]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            backgroundSize: '60px 60px'
-          }}></div>
+      {/* Hero Section - Full Width with Image Background */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        
+        {/* Full-Width Background Carousel */}
+        <div className="absolute inset-0 w-full h-full z-0">
+              {/* Carousel Container with Overflow */}
+              <div className="relative h-full overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                {/* Premium Crossfade Carousel with Ken Burns Effect */}
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ 
+                      opacity: 0,
+                      scale: 1.1,
+                      filter: "blur(4px)"
+                    }}
+                    animate={{ 
+                      opacity: 1,
+                      scale: 1,
+                      filter: "blur(0px)"
+                    }}
+                    exit={{ 
+                      opacity: 0,
+                      scale: 0.95,
+                      filter: "blur(4px)"
+                    }}
+                    transition={{ 
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                      opacity: { duration: 0.5 },
+                      scale: { duration: 0.5 },
+                      filter: { duration: 0.3 }
+                    }}
+                    className="absolute inset-0 will-change-transform"
+                  >
+                    {/* Image Container with Ken Burns Zoom & Pan Effect */}
+                    <motion.div
+                      className="relative w-full h-full"
+                      initial={{ scale: 1 }}
+                      animate={{ 
+                        scale: 1.08,
+                        x: [0, -15, 0],
+                        y: [0, -8, 0]
+                      }}
+                      transition={{ 
+                        duration: 10,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "reverse"
+                      }}
+                    >
+                      <img
+                        src={heroImages[currentSlide]}
+                        alt={`Injection Molding Machine ${currentSlide + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="eager"
+                      />
+                    </motion.div>
+                    
+                    {/* Blue Overlay - Primary (Further Reduced Opacity) */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-900/30 via-blue-800/25 to-cyan-900/30 z-10"></div>
+                    
+                    {/* Enhanced Gradient Overlays (Further Reduced Opacity) */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-slate-900/20 z-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-950/20 via-transparent to-blue-950/20 z-10"></div>
+                    
+                    {/* Animated Accent Gradient (Further Reduced Opacity) */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0.05, 0.10, 0.05] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 bg-gradient-to-tr from-primary-600/15 via-cyan-500/8 to-indigo-600/15 z-10"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+                
+                
+                {/* Navigation Arrows - Optional Enhancement */}
+                <div className="absolute inset-y-0 left-0 right-0 z-30 flex items-center justify-between px-6 pointer-events-none">
+                  <motion.button
+                    onClick={() => handleSlideChange((currentSlide - 1 + heroImages.length) % heroImages.length)}
+                    className="pointer-events-auto w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all duration-300 shadow-xl opacity-0 hover:opacity-100 group"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Previous slide"
+                  >
+                    <svg className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </motion.button>
+                  
+                  <motion.button
+                    onClick={() => handleSlideChange((currentSlide + 1) % heroImages.length)}
+                    className="pointer-events-auto w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/60 hover:scale-110 transition-all duration-300 shadow-xl opacity-0 hover:opacity-100 group"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Next slide"
+                  >
+                    <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.button>
+                </div>
+              </div>
         </div>
 
-        {/* Main Content Container */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Content */}
-            <motion.div
-              ref={heroRef}
-              initial={{ opacity: 0, x: -50 }}
-              animate={heroInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="relative"
+        {/* Responsive Content Overlay */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 text-center md:text-left flex items-center justify-center md:justify-start min-h-screen">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-8 max-w-4xl mt-20"
+          >
+            {/* Main Heading - Reduced Sizing */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[1.1] tracking-tight text-white drop-shadow-2xl"
             >
+              Expert <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300">Injection Molding</span>
+              <br />Machine Services
+            </motion.h1>
 
-              {/* Main Heading */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-5"
+            {/* Description - Reduced Sizing */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed max-w-3xl mx-auto md:mx-0 drop-shadow-lg font-medium"
+            >
+              Complete technical support for machine health, performance optimization, and maintenance. Reduce downtime and improve productivity with our expert services.
+            </motion.p>
+
+            {/* CTA Buttons - Reduced Sizing */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 items-center md:items-start justify-center md:justify-start pt-6"
+            >
+              <Link
+                to="/booking"
+                className="group relative overflow-hidden bg-white text-primary-700 px-6 py-3 rounded-lg font-bold text-base hover:shadow-2xl hover:shadow-white/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 min-w-[200px]"
               >
-                <span className="text-slate-900 dark:text-white">Expert</span>{' '}
-                <span className="bg-gradient-to-r from-primary-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent">
-                  Injection Molding
-                </span>{' '}
-                <span className="text-slate-900 dark:text-white">Machine Services</span>
-              </motion.h1>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed mb-8"
+                <span className="relative z-10">Book Service Now</span>
+                <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-50 to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </Link>
+              <Link
+                to="/services"
+                className="group bg-transparent backdrop-blur-sm border-2 border-white/80 text-white px-6 py-3 rounded-lg font-bold text-base hover:bg-white hover:text-primary-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 min-w-[200px]"
               >
-                Complete technical support for machine health, performance optimization, and maintenance. Reduce downtime and improve productivity with our expert services.
-              </motion.p>
-
-             
-
-              {/* CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link
-                  to="/booking"
-                  className="group relative overflow-hidden bg-gradient-to-r from-primary-600 to-cyan-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg"
-                >
-                  <span className="relative z-10">Book Service Now</span>
-                  <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </Link>
-                <Link
-                  to="/services"
-                  className="group bg-white dark:bg-neutral-900 border-2 border-slate-300 dark:border-neutral-700 text-slate-700 dark:text-gray-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 dark:hover:bg-neutral-800 hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
-                >
-                  <span>View Services</span>
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
+                <span>View Services</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </motion.div>
 
-            {/* Right Side - Featured Image with Creative Layout */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 50 }}
-              animate={heroInView ? { opacity: 1, scale: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative hidden lg:block"
+            {/* Trust Stats - Balanced Sizing */}
+            {/* <motion.div
+              initial={{ opacity: 0 }}
+              animate={heroInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 pt-10"
             >
-              {/* Decorative Background Cards */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 via-cyan-50 to-indigo-100 dark:from-primary-900/30 dark:via-cyan-900/20 dark:to-indigo-900/30 rounded-[3rem] transform rotate-6 scale-105 opacity-50 dark:opacity-30"></div>
-              <div className="absolute inset-0 bg-gradient-to-tl from-cyan-100 via-blue-50 to-primary-100 dark:from-cyan-900/30 dark:via-blue-900/20 dark:to-primary-900/30 rounded-[3rem] transform -rotate-3 scale-95 opacity-40 dark:opacity-20"></div>
-              
-              {/* Main Image Container */}
-              <div className="relative bg-white dark:bg-neutral-900 rounded-[2.5rem] shadow-2xl border-4 border-white dark:border-neutral-800 overflow-hidden p-6">
-                {/* Corner Decorative Accents */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-400/20 to-transparent rounded-bl-full"></div>
-                <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-cyan-400/20 to-transparent rounded-tr-full"></div>
-                
-                {/* Image with hover effect */}
-                <motion.div
-                  whileHover={{ rotate: 0.5 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative rounded-3xl overflow-hidden shadow-xl"
-                >
-                  <img
-                    src={heroImage}
-                    alt="Injection Molding Machine"
-                    className="w-full h-auto object-cover"
-                  />
-                  
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent pointer-events-none"></div>
-                </motion.div>
-                
-               
+              <div className="flex flex-col items-center">
+                <span className="text-3xl sm:text-4xl font-black text-white drop-shadow-lg">500+</span>
+                <span className="text-sm text-gray-200 font-medium uppercase tracking-wider mt-1">Machines Serviced</span>
               </div>
-              
-              {/* Floating Accent Elements */}
-              <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary-500/10 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
-            </motion.div>
-
-          </div>
-
+              <div className="flex flex-col items-center">
+                <span className="text-3xl sm:text-4xl font-black text-white drop-shadow-lg">15+</span>
+                <span className="text-sm text-gray-200 font-medium uppercase tracking-wider mt-1">Years Experience</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-3xl sm:text-4xl font-black text-white drop-shadow-lg">24/7</span>
+                <span className="text-sm text-gray-200 font-medium uppercase tracking-wider mt-1">Support Available</span>
+              </div>
+            </motion.div> */}
+          </motion.div>
         </div>
       </section>
 

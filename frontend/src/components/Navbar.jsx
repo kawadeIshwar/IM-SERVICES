@@ -17,6 +17,9 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Check if we're on the home page
+  const isHomePage = location.pathname === '/'
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -27,10 +30,12 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white dark:bg-neutral-900 shadow-lg border-b border-light-200 dark:border-neutral-700' 
-        : 'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md'
+    <nav className={`fixed w-full z-50 transition-all duration-700 ease-in-out border-b ${
+      isHomePage && !scrolled
+        ? 'bg-transparent border-transparent'
+        : scrolled 
+        ? 'bg-white dark:bg-neutral-900 shadow-lg border-light-200 dark:border-neutral-700' 
+        : 'bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md border-light-200/50 dark:border-neutral-700/50'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -40,8 +45,16 @@ const Navbar = () => {
               <span className="text-white font-bold text-xl">IM</span>
             </div>
             <div>
-              <h1 className="text-gray-900 dark:text-white font-heading font-bold text-xl leading-tight">IM SERVICES</h1>
-              <p className="text-primary-600 dark:text-primary-400 text-xs font-medium">Machine Excellence</p>
+              <h1 className={`font-heading font-bold text-xl leading-tight transition-colors duration-700 ease-in-out ${
+                isHomePage && !scrolled 
+                  ? 'text-white' 
+                  : 'text-gray-900 dark:text-white'
+              }`}>IM SERVICES</h1>
+              <p className={`text-xs font-medium transition-colors duration-700 ease-in-out ${
+                isHomePage && !scrolled 
+                  ? 'text-cyan-300' 
+                  : 'text-primary-600 dark:text-primary-400'
+              }`}>Machine Excellence</p>
             </div>
           </Link>
 
@@ -51,10 +64,14 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors duration-200 ${
+                className={`text-sm font-medium transition-colors duration-700 ease-in-out ${
                   location.pathname === link.path
-                    ? 'text-primary-600 dark:text-primary-400 font-semibold'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? isHomePage && !scrolled
+                      ? 'text-cyan-300 font-semibold'
+                      : 'text-primary-600 dark:text-primary-400 font-semibold'
+                    : isHomePage && !scrolled
+                      ? 'text-white/90 hover:text-cyan-300'
+                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
                 }`}
               >
                 {link.name}
@@ -64,7 +81,11 @@ const Navbar = () => {
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
-              className="p-2.5 rounded-lg bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-all duration-300 hover:scale-110"
+              className={`p-2.5 rounded-lg transition-all duration-700 ease-in-out hover:scale-110 ${
+                isHomePage && !scrolled
+                  ? 'bg-white/20 text-white hover:bg-white/30'
+                  : 'bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-neutral-700'
+              }`}
               aria-label="Toggle dark mode"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
@@ -83,14 +104,22 @@ const Navbar = () => {
           <div className="lg:hidden flex items-center space-x-2">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-all duration-300"
+              className={`p-2 rounded-lg transition-all duration-700 ease-in-out ${
+                isHomePage && !scrolled
+                  ? 'bg-white/20 text-white hover:bg-white/30'
+                  : 'bg-gray-100 dark:bg-neutral-800 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-neutral-700'
+              }`}
               aria-label="Toggle dark mode"
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-900 dark:text-white p-2"
+              className={`p-2 transition-colors duration-700 ease-in-out ${
+                isHomePage && !scrolled
+                  ? 'text-white'
+                  : 'text-gray-900 dark:text-white'
+              }`}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
