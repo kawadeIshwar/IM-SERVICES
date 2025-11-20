@@ -6,7 +6,7 @@ import { useAuth } from '../context/AuthContext'
 import { 
   Calendar, Clock, User, Mail, Phone, MapPin, FileText, Send, CheckCircle,
   Settings, Wrench, Shield, Zap, AlertCircle, Droplet, Activity, MoreHorizontal,
-  ArrowRight, Sparkles, Award, TrendingUp, Check
+  ArrowRight, Sparkles, Award, TrendingUp, Check, Flag
 } from 'lucide-react'
 import SEO from '../components/SEO'
 
@@ -27,6 +27,7 @@ const Booking = () => {
     otherServiceDetails: '',
     preferredDate: '',
     preferredTime: '',
+    priority: 'normal',
     message: ''
   })
 
@@ -214,6 +215,7 @@ const Booking = () => {
           other_service_details: formData.otherServiceDetails || 'N/A',
           preferred_date: formData.preferredDate || 'Not specified',
           preferred_time: formData.preferredTime || 'Not specified',
+          priority: formData.priority || 'Normal',
           message: formData.message || 'No additional message',
           to_name: 'IM Services',
         },
@@ -235,6 +237,7 @@ const Booking = () => {
           otherServiceDetails: '',
           preferredDate: '',
           preferredTime: '',
+          priority: 'normal',
           message: ''
         })
         setSuccess(false)
@@ -532,6 +535,122 @@ const Booking = () => {
                       </div>
                     </div>
 
+                    {/* Priority Selection */}
+                    <div>
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-4">
+                        Priority Level
+                      </label>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <label
+                          className={`relative flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                            formData.priority === 'low'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20 dark:border-green-400 shadow-md'
+                              : 'border-gray-200 dark:border-neutral-600 hover:border-green-300 dark:hover:border-green-500 hover:bg-gray-50 dark:hover:bg-neutral-700'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="low"
+                            checked={formData.priority === 'low'}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center space-y-1">
+                            <Flag className={`w-4 h-4 ${
+                              formData.priority === 'low' ? 'text-green-600' : 'text-gray-400'
+                            }`} />
+                            <span className={`font-semibold text-xs ${
+                              formData.priority === 'low' ? 'text-green-900 dark:text-green-300' : 'text-gray-600 dark:text-gray-400'
+                            }`}>
+                              Low
+                            </span>
+                          </div>
+                        </label>
+
+                        <label
+                          className={`relative flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                            formData.priority === 'normal'
+                              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-400 shadow-md'
+                              : 'border-gray-200 dark:border-neutral-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-gray-50 dark:hover:bg-neutral-700'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="normal"
+                            checked={formData.priority === 'normal'}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center space-y-1">
+                            <Flag className={`w-4 h-4 ${
+                              formData.priority === 'normal' ? 'text-blue-600' : 'text-gray-400'
+                            }`} />
+                            <span className={`font-semibold text-xs ${
+                              formData.priority === 'normal' ? 'text-blue-900 dark:text-blue-300' : 'text-gray-600 dark:text-gray-400'
+                            }`}>
+                              Normal
+                            </span>
+                          </div>
+                        </label>
+
+                        <label
+                          className={`relative flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                            formData.priority === 'high'
+                              ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20 dark:border-orange-400 shadow-md'
+                              : 'border-gray-200 dark:border-neutral-600 hover:border-orange-300 dark:hover:border-orange-500 hover:bg-gray-50 dark:hover:bg-neutral-700'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="high"
+                            checked={formData.priority === 'high'}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center space-y-1">
+                            <Flag className={`w-4 h-4 ${
+                              formData.priority === 'high' ? 'text-orange-600' : 'text-gray-400'
+                            }`} />
+                            <span className={`font-semibold text-xs ${
+                              formData.priority === 'high' ? 'text-orange-900 dark:text-orange-300' : 'text-gray-600 dark:text-gray-400'
+                            }`}>
+                              High
+                            </span>
+                          </div>
+                        </label>
+
+                        <label
+                          className={`relative flex items-center justify-center p-3 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                            formData.priority === 'urgent'
+                              ? 'border-red-500 bg-red-50 dark:bg-red-900/20 dark:border-red-400 shadow-md'
+                              : 'border-gray-200 dark:border-neutral-600 hover:border-red-300 dark:hover:border-red-500 hover:bg-gray-50 dark:hover:bg-neutral-700'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="urgent"
+                            checked={formData.priority === 'urgent'}
+                            onChange={handleChange}
+                            className="sr-only"
+                          />
+                          <div className="flex flex-col items-center space-y-1">
+                            <Flag className={`w-4 h-4 ${
+                              formData.priority === 'urgent' ? 'text-red-600' : 'text-gray-400'
+                            }`} />
+                            <span className={`font-semibold text-xs ${
+                              formData.priority === 'urgent' ? 'text-red-900 dark:text-red-300' : 'text-gray-600 dark:text-gray-400'
+                            }`}>
+                              Urgent
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
@@ -650,6 +769,15 @@ const Booking = () => {
                       <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
                         <span className="text-gray-600 dark:text-gray-400 font-medium">Email:</span>
                         <span className="text-gray-900 dark:text-white font-bold">{formData.email}</span>
+                      </div>
+                      <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">Priority:</span>
+                        <span className={`font-bold capitalize ${
+                          formData.priority === 'urgent' ? 'text-red-600' :
+                          formData.priority === 'high' ? 'text-orange-600' :
+                          formData.priority === 'low' ? 'text-green-600' :
+                          'text-blue-600'
+                        }`}>{formData.priority}</span>
                       </div>
                       {formData.preferredDate && (
                         <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">

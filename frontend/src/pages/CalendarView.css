@@ -1,0 +1,115 @@
+/* Calendar View Custom Styles */
+
+/* Override react-big-calendar styles for dark mode */
+.dark .rbc-calendar {
+  background-color: transparent;
+}
+
+.dark .rbc-header {
+  background-color: rgb(38, 38, 38);
+  color: #fff;
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-month-view {
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-day-bg {
+  background-color: rgb(23, 23, 23);
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-off-range-bg {
+  background-color: rgb(15, 15, 15);
+}
+
+.dark .rbc-today {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.dark .rbc-date-cell {
+  color: #d1d5db;
+}
+
+.dark .rbc-off-range {
+  color: #6b7280;
+}
+
+.dark .rbc-toolbar button {
+  background-color: rgb(38, 38, 38);
+  color: #fff;
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-toolbar button:hover {
+  background-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-toolbar button.rbc-active {
+  background-color: rgb(59, 130, 246);
+  border-color: rgb(59, 130, 246);
+}
+
+.dark .rbc-event {
+  color: #fff;
+}
+
+.dark .rbc-event-label {
+  color: #fff;
+}
+
+.dark .rbc-show-more {
+  color: #3b82f6;
+}
+
+.dark .rbc-agenda-view {
+  background-color: rgb(23, 23, 23);
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-agenda-view table {
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-agenda-table tbody > tr > td {
+  color: #d1d5db;
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-agenda-table tbody > tr > td + td {
+  border-color: rgb(64, 64, 64);
+}
+
+.dark .rbc-agenda-date-cell {
+  color: #fff;
+}
+
+.dark .rbc-agenda-time-cell {
+  color: #9ca3af;
+}
+
+/* Light mode enhancements */
+.rbc-toolbar button {
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.rbc-toolbar button:hover {
+  transform: translateY(-1px);
+}
+
+.rbc-event {
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rbc-event:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rbc-today {
+  background-color: rgba(59, 130, 246, 0.05);
+}

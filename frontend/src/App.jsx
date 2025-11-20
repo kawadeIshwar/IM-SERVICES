@@ -18,6 +18,7 @@ import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import AdminDashboard from './pages/AdminDashboard';
+import CalendarView from './pages/CalendarView';
 import ProtectedRoute from './components/ProtectedRoute';
 import ClientRoute from './components/ClientRoute';
 
@@ -76,6 +77,14 @@ function App() {
                 element={
                   <ProtectedRoute requiredRole="admin">
                     <AdminDashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/admin/calendar" 
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <CalendarView />
                   </ProtectedRoute>
                 } 
               />

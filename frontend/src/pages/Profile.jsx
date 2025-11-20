@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import ClientServiceRequestView from '../components/ClientServiceRequestView';
-import PDFViewer from '../components/PDFViewer';
+import SimplePDFViewer from '../components/SimplePDFViewer';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -123,13 +123,25 @@ const Profile = () => {
   const handleViewPDF = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      // For now, we'll generate the PDF from the backend
-      const pdfUrl = `${API_URL}/process-tracking/${requestId}/generate-pdf`;
-      setSelectedPdfUrl(pdfUrl);
+      
+      // Fetch the PDF with authentication
+      const response = await fetch(`${API_URL}/process-tracking/${requestId}/generate-pdf`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch PDF: ${response.status}`);
+      }
+      
+      // Convert to blob and create object URL
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      setSelectedPdfUrl(blobUrl);
       setSelectedPdfName(`service-report-${requestId}.pdf`);
     } catch (error) {
       console.error('Error viewing PDF:', error);
-      alert('Failed to load PDF');
+      alert('Failed to load PDF. Please try again or contact support.');
     }
   };
 
@@ -655,10 +667,14 @@ const Profile = () => {
 
       {/* PDF Viewer Modal */}
       {selectedPdfUrl && (
-        <PDFViewer
+        <SimplePDFViewer
           pdfUrl={selectedPdfUrl}
           fileName={selectedPdfName}
           onClose={() => {
+            // Revoke the blob URL to free up memory
+            if (selectedPdfUrl.startsWith('blob:')) {
+              window.URL.revokeObjectURL(selectedPdfUrl);
+            }
             setSelectedPdfUrl(null);
             setSelectedPdfName('');
           }}

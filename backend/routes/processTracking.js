@@ -195,8 +195,8 @@ router.post('/:id/steps/:stepNumber/comments', [auth, isAdmin], [
 
 // @route   GET /api/process-tracking/:id/generate-pdf
 // @desc    Generate PDF report for completed process
-// @access  Private (Admin)
-router.get('/:id/generate-pdf', [auth, isAdmin], async (req, res) => {
+// @access  Private (Admin and Client - client can view their own)
+router.get('/:id/generate-pdf', auth, async (req, res) => {
   try {
     const request = await ServiceRequest.findById(req.params.id)
       .populate('client', 'name email company phone')
@@ -209,12 +209,21 @@ router.get('/:id/generate-pdf', [auth, isAdmin], async (req, res) => {
       });
     }
 
+    // Authorization check: Client can only view their own reports, Admin can view all
+    if (req.user.role === 'client' && request.client._id.toString() !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied. You can only view your own reports.'
+      });
+    }
+
     // Create PDF
     const doc = new PDFDocument({ margin: 50 });
     
-    // Set response headers
+    // Set response headers for inline viewing
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=service-report-${request.requestId}.pdf`);
+    res.setHeader('Content-Disposition', `inline; filename=service-report-${request.requestId}.pdf`);
+    res.setHeader('Cache-Control', 'no-cache');
     
     // Pipe PDF to response
     doc.pipe(res);

@@ -5,9 +5,14 @@ import {
   X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, 
   Download, Loader, RotateCw, Maximize2 
 } from 'lucide-react';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
-// Configure PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// Configure PDF.js worker - use local package
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const PDFViewer = ({ pdfUrl, fileName, onClose, authToken }) => {
   const [numPages, setNumPages] = useState(null);

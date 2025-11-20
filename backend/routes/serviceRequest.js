@@ -229,22 +229,20 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 // @route   PUT /api/service-requests/:id/status
-// @desc    Update service request status (Admin only)
+// @desc    Update service request status with optional file uploads (Admin only)
 // @access  Private (Admin)
-router.put('/:id/status', [auth, isAdmin], [
-  body('status').isIn(['received', 'pending', 'in_progress', 'completed']).withMessage('Invalid status'),
-  body('notes').optional().trim()
-], async (req, res) => {
+router.put('/:id/status', [auth, isAdmin, upload.array('images', 10)], async (req, res) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
+    const { status, notes } = req.body;
+    
+    // Validate status
+    if (!['received', 'pending', 'in_progress', 'completed'].includes(status)) {
       return res.status(400).json({ 
         success: false, 
-        errors: errors.array() 
+        message: 'Invalid status value' 
       });
     }
 
-    const { status, notes } = req.body;
     const request = await ServiceRequest.findById(req.params.id);
 
     if (!request) {
@@ -254,12 +252,30 @@ router.put('/:id/status', [auth, isAdmin], [
       });
     }
 
+    // Update status
     await request.updateStatus(status, req.user, notes);
+
+    // Add uploaded images as attachments
+    if (req.files && req.files.length > 0) {
+      const attachments = req.files.map(file => ({
+        fileName: file.originalname,
+        fileType: file.mimetype,
+        fileSize: file.size,
+        filePath: file.path,
+        uploadedBy: req.userId,
+        uploadedByName: req.user.name,
+        category: 'photo'
+      }));
+
+      request.attachments.push(...attachments);
+      await request.save();
+    }
 
     res.json({
       success: true,
       message: 'Status updated successfully',
-      data: request
+      data: request,
+      filesUploaded: req.files ? req.files.length : 0
     });
   } catch (error) {
     console.error('Update status error:', error);
