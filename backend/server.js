@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -14,9 +15,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 const bookingRoutes = require('./routes/booking');
 const contactRoutes = require('./routes/contact');
+const authRoutes = require('./routes/auth');
+const serviceRequestRoutes = require('./routes/serviceRequest');
+const reportRoutes = require('./routes/reports');
+const processTrackingRoutes = require('./routes/processTracking');
 
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/service-requests', serviceRequestRoutes);
+app.use('/api/reports', reportRoutes);
+app.use('/api/process-tracking', processTrackingRoutes);
+
+// Serve uploaded files
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Health check route
 app.get('/api/health', (req, res) => {

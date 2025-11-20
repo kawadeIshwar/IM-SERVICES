@@ -249,7 +249,7 @@ const Home = () => {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black leading-[1.1] tracking-tight text-white drop-shadow-2xl"
             >
-              Expert <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-300 to-indigo-300">Injection Molding</span>
+              Expert Injection Molding
               <br />Machine Services
             </motion.h1>
 

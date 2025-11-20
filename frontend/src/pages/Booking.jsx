@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import { useAuth } from '../context/AuthContext'
 import { 
   Calendar, Clock, User, Mail, Phone, MapPin, FileText, Send, CheckCircle,
   Settings, Wrench, Shield, Zap, AlertCircle, Droplet, Activity, MoreHorizontal,
@@ -11,6 +12,9 @@ import SEO from '../components/SEO'
 
 const Booking = () => {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { user, isAuthenticated } = useAuth()
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +34,27 @@ const Booking = () => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const [errors, setErrors] = useState({})
+
+  // Check if user is logged in, if not redirect to login
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate('/login', { state: { from: '/booking' } })
+    }
+  }, [isAuthenticated, navigate])
+
+  // Auto-fill user data if logged in
+  useEffect(() => {
+    if (isAuthenticated() && user) {
+      setFormData(prev => ({
+        ...prev,
+        name: user.name || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        company: user.company || '',
+        location: user.address || ''
+      }))
+    }
+  }, [user, isAuthenticated])
 
   // Auto-select service type from URL parameter
   useEffect(() => {
@@ -224,7 +249,7 @@ const Booking = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="min-h-screen pt-20 bg-white dark:bg-neutral-950">
       <SEO 
         title="Book Service - Schedule Your Machine Maintenance | IM Services"
         description="Book professional injection moulding machine services online. Quick and easy booking for performance testing, maintenance, repairs, and emergency breakdown support in Pune."
@@ -233,7 +258,7 @@ const Booking = () => {
       />
       
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <section className="relative py-12 lg:py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900">
         {/* Decorative Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-20 -left-40 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
@@ -252,16 +277,16 @@ const Booking = () => {
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-blue-100 rounded-full px-6 py-2 mb-6 shadow-sm"
+              className="inline-flex items-center space-x-2 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border border-blue-100 dark:border-blue-900 rounded-full px-6 py-2 mb-6 shadow-sm"
             >
               <Award className="w-4 h-4 text-blue-600" />
-              <span className="text-blue-600 font-semibold text-sm">Professional Machine Services</span>
+              <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm">Professional Machine Services</span>
             </motion.div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6">
               Schedule Your <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Expert Service</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Book professional machine maintenance with our easy booking form
             </p>
           </motion.div>
@@ -269,7 +294,7 @@ const Booking = () => {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white dark:from-neutral-900 dark:to-neutral-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {!success ? (
             <motion.div
@@ -278,12 +303,12 @@ const Booking = () => {
               transition={{ duration: 0.6 }}
               className="max-w-4xl mx-auto"
             >
-              <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+              <div className="bg-white dark:bg-neutral-800 rounded-3xl shadow-2xl p-8 md:p-12">
                 <div className="text-center mb-10">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
                     Book Your Service
                   </h2>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     Fill in the form below and we'll get back to you shortly
                   </p>
                 </div>
@@ -292,16 +317,16 @@ const Booking = () => {
                     <motion.div 
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="mb-6 bg-red-50 border-l-4 border-red-500 rounded-lg p-4"
+                      className="mb-6 bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 dark:border-red-700 rounded-lg p-4"
                     >
-                      <p className="text-red-700 font-medium">{error}</p>
+                      <p className="text-red-700 dark:text-red-400 font-medium">{error}</p>
                     </motion.div>
                   )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Service Type Selection with Radio Buttons */}
                   <div>
-                    <label className="block text-gray-700 font-semibold mb-4">
+                    <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-4">
                       Select Service Type <span className="text-red-500">*</span>
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -310,8 +335,8 @@ const Booking = () => {
                           key={service.id}
                           className={`relative flex items-start p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
                             formData.serviceType === service.id
-                              ? 'border-blue-500 bg-blue-50 shadow-md'
-                              : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-400 shadow-md'
+                              : 'border-gray-200 dark:border-neutral-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-gray-50 dark:hover:bg-neutral-700'
                           }`}
                         >
                           <input
@@ -328,12 +353,12 @@ const Booking = () => {
                                 formData.serviceType === service.id ? 'text-blue-600' : 'text-gray-400'
                               }`} />
                               <span className={`font-bold text-sm ${
-                                formData.serviceType === service.id ? 'text-blue-900' : 'text-gray-900'
+                                formData.serviceType === service.id ? 'text-blue-900 dark:text-blue-300' : 'text-gray-900 dark:text-gray-100'
                               }`}>
                                 {service.title}
                               </span>
                             </div>
-                            <p className="text-xs text-gray-600">{service.description}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{service.description}</p>
                           </div>
                         </label>
                       ))}
@@ -351,7 +376,7 @@ const Booking = () => {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                         Specify Other Service <span className="text-red-500">*</span>
                       </label>
                       <textarea
@@ -359,7 +384,7 @@ const Booking = () => {
                         value={formData.otherServiceDetails}
                         onChange={handleChange}
                         rows="3"
-                        className={`w-full bg-gray-50 border-2 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all resize-none ${
+                        className={`w-full bg-gray-50 dark:bg-neutral-700 border-2 dark:border-neutral-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all resize-none ${
                           errors.otherServiceDetails ? 'border-red-500' : 'border-gray-200'
                         }`}
                         placeholder="Please describe the service you need..."
@@ -373,7 +398,7 @@ const Booking = () => {
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                       Your Name <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -383,7 +408,7 @@ const Booking = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                          className={`w-full bg-gray-50 dark:bg-neutral-700 border-2 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all ${
                             errors.name ? 'border-red-500' : 'border-gray-200'
                           }`}
                           placeholder="John Doe"
@@ -395,7 +420,7 @@ const Booking = () => {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                         Email Address <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -405,7 +430,7 @@ const Booking = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                          className={`w-full bg-gray-50 dark:bg-neutral-700 border-2 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all ${
                             errors.email ? 'border-red-500' : 'border-gray-200'
                           }`}
                           placeholder="john@example.com"
@@ -419,7 +444,7 @@ const Booking = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                         Phone Number <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -429,7 +454,7 @@ const Booking = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                          className={`w-full bg-gray-50 dark:bg-neutral-700 border-2 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all ${
                             errors.phone ? 'border-red-500' : 'border-gray-200'
                           }`}
                           placeholder="+91 XXXXXXXXXX"
@@ -441,7 +466,7 @@ const Booking = () => {
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                         Company Name
                       </label>
                       <input
@@ -449,14 +474,14 @@ const Booking = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                        className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all"
                         placeholder="Your Company (Optional)"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-gray-700 font-semibold mb-2">
+                    <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                       Location <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
@@ -466,7 +491,7 @@ const Booking = () => {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className={`w-full bg-gray-50 border-2 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all ${
+                        className={`w-full bg-gray-50 dark:bg-neutral-700 border-2 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all ${
                           errors.location ? 'border-red-500' : 'border-gray-200'
                         }`}
                         placeholder="City, State"
@@ -479,7 +504,7 @@ const Booking = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                           Machine Type
                         </label>
                         <input
@@ -487,13 +512,13 @@ const Booking = () => {
                           name="machineType"
                           value={formData.machineType}
                           onChange={handleChange}
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                          className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all"
                           placeholder="e.g., CNC, Lathe"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                           Machine Brand
                         </label>
                         <input
@@ -501,7 +526,7 @@ const Booking = () => {
                           name="machineBrand"
                           value={formData.machineBrand}
                           onChange={handleChange}
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl px-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                          className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl px-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all"
                           placeholder="e.g., Siemens, Fanuc"
                         />
                       </div>
@@ -509,7 +534,7 @@ const Booking = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                           Preferred Date
                         </label>
                         <div className="relative">
@@ -520,13 +545,13 @@ const Booking = () => {
                             value={formData.preferredDate}
                             onChange={handleChange}
                             min={new Date().toISOString().split('T')[0]}
-                            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                            className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-2">
+                        <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                           Preferred Time
                         </label>
                         <div className="relative">
@@ -536,14 +561,14 @@ const Booking = () => {
                             name="preferredTime"
                             value={formData.preferredTime}
                             onChange={handleChange}
-                            className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all"
+                            className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-gray-700 font-semibold mb-2">
+                      <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                         Additional Information
                       </label>
                       <div className="relative">
@@ -553,7 +578,7 @@ const Booking = () => {
                           value={formData.message}
                           onChange={handleChange}
                           rows="4"
-                          className="w-full bg-gray-50 border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 focus:outline-none transition-all resize-none"
+                          className="w-full bg-gray-50 dark:bg-neutral-700 border-2 border-gray-200 dark:border-neutral-600 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:bg-white dark:focus:bg-neutral-600 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 focus:outline-none transition-all resize-none"
                           placeholder="Tell us about your machine issues or specific requirements..."
                         ></textarea>
                       </div>
@@ -591,7 +616,7 @@ const Booking = () => {
                 transition={{ duration: 0.5 }}
                 className="max-w-3xl mx-auto text-center"
               >
-                <div className="bg-white rounded-3xl shadow-2xl p-12 md:p-16">
+                <div className="bg-white dark:bg-neutral-800 rounded-3xl shadow-2xl p-12 md:p-16">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -601,35 +626,35 @@ const Booking = () => {
                     <CheckCircle className="w-14 h-14 text-white" strokeWidth={3} />
                   </motion.div>
 
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
                     Booking Confirmed!
                   </h2>
-                  <p className="text-gray-600 text-lg mb-10">
+                  <p className="text-gray-600 dark:text-gray-400 text-lg mb-10">
                     Thank you for choosing IM Services. We've received your booking request and will contact you shortly to confirm the details.
                   </p>
 
-                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 mb-8 border-2 border-blue-100">
-                    <h3 className="text-gray-900 font-bold text-xl mb-6 flex items-center justify-center">
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 mb-8 border-2 border-blue-100 dark:border-blue-800">
+                    <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-6 flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
                       Booking Summary
                     </h3>
                     <div className="space-y-4">
-                      <div className="flex justify-between items-center pb-3 border-b border-blue-100">
-                        <span className="text-gray-600 font-medium">Service:</span>
-                        <span className="text-gray-900 font-bold">{formData.serviceType}</span>
+                      <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">Service:</span>
+                        <span className="text-gray-900 dark:text-white font-bold">{formData.serviceType}</span>
                       </div>
-                      <div className="flex justify-between items-center pb-3 border-b border-blue-100">
-                        <span className="text-gray-600 font-medium">Name:</span>
-                        <span className="text-gray-900 font-bold">{formData.name}</span>
+                      <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">Name:</span>
+                        <span className="text-gray-900 dark:text-white font-bold">{formData.name}</span>
                       </div>
-                      <div className="flex justify-between items-center pb-3 border-b border-blue-100">
-                        <span className="text-gray-600 font-medium">Email:</span>
-                        <span className="text-gray-900 font-bold">{formData.email}</span>
+                      <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
+                        <span className="text-gray-600 dark:text-gray-400 font-medium">Email:</span>
+                        <span className="text-gray-900 dark:text-white font-bold">{formData.email}</span>
                       </div>
                       {formData.preferredDate && (
-                        <div className="flex justify-between items-center pb-3 border-b border-blue-100">
-                          <span className="text-gray-600 font-medium">Preferred Date:</span>
-                          <span className="text-gray-900 font-bold">
+                        <div className="flex justify-between items-center pb-3 border-b border-blue-100 dark:border-blue-800">
+                          <span className="text-gray-600 dark:text-gray-400 font-medium">Preferred Date:</span>
+                          <span className="text-gray-900 dark:text-white font-bold">
                             {new Date(formData.preferredDate).toLocaleDateString('en-US', {
                               weekday: 'long',
                               year: 'numeric',
@@ -676,13 +701,13 @@ const Booking = () => {
       </section>
 
       {/* Contact Info Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Need Immediate Assistance?
             </h2>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 dark:text-gray-400 text-lg">
               Our team is ready to help you 24/7
             </p>
           </div>
@@ -693,15 +718,15 @@ const Booking = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
-              className="bg-white rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-blue-200 transition-all"
+              className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-600 "
             >
               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/50">
                 <Phone className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-gray-900 font-bold text-xl mb-2">24/7 Support</h3>
-              <p className="text-gray-600 mb-4">Call us anytime</p>
-              <a href="tel:+919730992561" className="block text-blue-600 font-bold text-lg hover:text-blue-700 mb-1 transition-colors">+91 97309 92561</a>
-              <a href="tel:+917875601427" className="block text-blue-600 font-bold text-lg hover:text-blue-700 transition-colors">+91 78756 01427</a>
+              <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">24/7 Support</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">Call us anytime</p>
+              <a href="tel:+919730992561" className="block text-blue-600 dark:text-blue-400 font-bold text-lg hover:text-blue-700 dark:hover:text-blue-300 mb-1 transition-colors">+91 97309 92561</a>
+              
             </motion.div>
 
             <motion.div
@@ -710,14 +735,14 @@ const Booking = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               whileHover={{ y: -8 }}
-              className="bg-white rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-purple-200 transition-all"
+              className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-purple-200 dark:hover:border-purple-600 "
             >
               <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-purple-500/50">
                 <Mail className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-gray-900 font-bold text-xl mb-2">Email Us</h3>
-              <p className="text-gray-600 mb-4">Quick response time</p>
-              <a href="mailto:imservices4444@gmail.com" className="text-purple-600 font-bold text-lg hover:text-purple-700 transition-colors">imservices4444@gmail.com</a>
+              <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Email Us</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">Quick response time</p>
+              <a href="mailto:imservices4444@gmail.com" className="text-purple-600 dark:text-purple-400 font-bold text-lg hover:text-purple-700 dark:hover:text-purple-300 transition-colors">imservices4444@gmail.com</a>
             </motion.div>
 
             <motion.div
@@ -726,15 +751,15 @@ const Booking = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -8 }}
-              className="bg-white rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-orange-200 transition-all"
+              className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 text-center border-2 border-transparent hover:border-orange-200 dark:hover:border-orange-600 "
             >
               <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-orange-500/50">
                 <MapPin className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-gray-900 font-bold text-xl mb-2">Visit Us</h3>
-              <p className="text-gray-600 mb-4">Our location</p>
-              <p className="text-orange-600 font-bold text-lg">Shikrapur, Pune</p>
-              <p className="text-gray-700 font-medium">Maharashtra, India</p>
+              <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Visit Us</h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">Our location</p>
+              <p className="text-orange-600 dark:text-orange-400 font-bold text-lg">Shikrapur, Pune</p>
+              <p className="text-gray-700 dark:text-gray-300 font-medium">Maharashtra, India</p>
             </motion.div>
           </div>
         </div>

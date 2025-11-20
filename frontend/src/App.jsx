@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { DarkModeProvider } from './context/DarkModeContext';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StickyContact from './components/StickyContact';
@@ -12,6 +13,13 @@ import Booking from './pages/Booking';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
 import FAQ from './pages/FAQ';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
+import AdminDashboard from './pages/AdminDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import ClientRoute from './components/ClientRoute';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -32,7 +40,8 @@ function App() {
   return (
     <HelmetProvider>
       <DarkModeProvider>
-        <Router>
+        <AuthProvider>
+          <Router>
           <div className="min-h-screen bg-white dark:bg-neutral-950">
             <Navbar />
             <ScrollToTop />
@@ -44,11 +53,38 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/faq" element={<FAQ />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route 
+                path="/profile" 
+                element={
+                  <ClientRoute>
+                    <Profile />
+                  </ClientRoute>
+                } 
+              />
+              <Route 
+                path="/edit-profile" 
+                element={
+                  <ClientRoute>
+                    <EditProfile />
+                  </ClientRoute>
+                } 
+              />
+              <Route 
+                path="/admin/dashboard" 
+                element={
+                  <ProtectedRoute requiredRole="admin">
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                } 
+              />
             </Routes>
             <Footer />
             <StickyContact />
           </div>
-        </Router>
+          </Router>
+        </AuthProvider>
       </DarkModeProvider>
     </HelmetProvider>
   )
