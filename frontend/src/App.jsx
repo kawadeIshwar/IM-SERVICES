@@ -15,6 +15,9 @@ import Gallery from './pages/Gallery';
 import FAQ from './pages/FAQ';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import VerifyOTP from './pages/VerifyOTP';
+import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import AdminDashboard from './pages/AdminDashboard';
@@ -56,6 +59,9 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/verify-otp" element={<VerifyOTP />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route 
                 path="/profile" 
                 element={
