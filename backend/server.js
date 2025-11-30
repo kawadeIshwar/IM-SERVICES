@@ -7,8 +7,36 @@ require('dotenv').config();
 
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Configuration - allows both local development and production
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173', // Vite default port
+  'https://im-services-frontend.onrender.com',
+  process.env.FRONTEND_URL // Set this to your Netlify URL in Render environment variables
+].filter(Boolean); // Remove undefined values
+
+// Also allow any Netlify subdomain for easier deployment
+const isNetlifyUrl = (origin) => {
+  return origin && (origin.endsWith('.netlify.app') || origin.endsWith('.netlify.com'));
+};
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin is in allowed list, is development, or is a Netlify URL
+    if (allowedOrigins.indexOf(origin) !== -1 || 
+        process.env.NODE_ENV === 'development' ||
+        isNetlifyUrl(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
