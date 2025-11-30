@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
+import { Mail, Lock, LogIn, AlertCircle, CheckCircle } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -12,12 +12,14 @@ const Login = () => {
   const location = useLocation();
   const { login } = useAuth();
   const from = location.state?.from || null;
+  const successMessage = location.state?.message || null;
   const [formData, setFormData] = useState({
-    email: '',
+    email: location.state?.email || '',
     password: ''
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(successMessage || '');
 
   const handleChange = (e) => {
     setFormData({
@@ -25,6 +27,7 @@ const Login = () => {
       [e.target.name]: e.target.value
     });
     setError('');
+    setSuccess('');
   };
 
   const handleSubmit = async (e) => {
@@ -39,12 +42,12 @@ const Login = () => {
         // Use AuthContext login function
         login(response.data.token, response.data.user);
         
-        // Redirect based on role or where they came from
+        // Redirect based on role
         if (response.data.user.role === 'admin') {
           navigate('/admin/dashboard');
         } else {
-          // If user came from booking page, redirect back there
-          navigate(from || '/profile');
+          // Regular users go to home page, or back to where they came from
+          navigate(from || '/');
         }
       }
     } catch (err) {
@@ -73,6 +76,17 @@ const Login = () => {
 
         {/* Login Form */}
         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-neutral-700">
+          {success && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl flex items-start gap-3"
+            >
+              <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-green-700 dark:text-green-400">{success}</p>
+            </motion.div>
+          )}
+
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}

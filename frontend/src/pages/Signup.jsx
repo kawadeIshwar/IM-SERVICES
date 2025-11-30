@@ -68,9 +68,21 @@ const Signup = () => {
       errors.confirmPassword = 'Passwords do not match';
     }
 
-    // Phone validation (optional but if provided, should be valid)
-    if (formData.phone && !/^\+?[\d\s-()]+$/.test(formData.phone)) {
+    // Phone validation
+    if (!formData.phone.trim()) {
+      errors.phone = 'Phone number is required';
+    } else if (!/^\+?[\d\s-()]+$/.test(formData.phone)) {
       errors.phone = 'Please enter a valid phone number';
+    }
+
+    // Company validation
+    if (!formData.company.trim()) {
+      errors.company = 'Company name is required';
+    }
+
+    // Address validation
+    if (!formData.address.trim()) {
+      errors.address = 'Address is required';
     }
 
     setValidationErrors(errors);
@@ -92,16 +104,13 @@ const Signup = () => {
       const response = await axios.post(`${API_URL}/auth/signup`, signupData);
       
       if (response.data.success) {
-        // Store token and user data
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        
-        // Redirect based on role
-        if (response.data.user.role === 'admin') {
-          navigate('/admin/dashboard');
-        } else {
-          navigate('/client/dashboard');
-        }
+        // Redirect to login page after successful registration
+        navigate('/login', { 
+          state: { 
+            message: 'Registration successful! Please login to continue.',
+            email: formData.email 
+          } 
+        });
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Please try again.');
@@ -271,7 +280,7 @@ const Signup = () => {
               {/* Company */}
               <div>
                 <label htmlFor="company" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Company Name
+                  Company Name *
                 </label>
                 <div className="relative">
                   <Building2 className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -279,18 +288,26 @@ const Signup = () => {
                     id="company"
                     name="company"
                     type="text"
+                    required
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-neutral-600 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-colors bg-white dark:bg-neutral-700 text-gray-900 dark:text-white"
+                    className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                      validationErrors.company
+                        ? 'border-red-300 focus:border-red-500'
+                        : 'border-gray-200 focus:border-blue-500'
+                    }`}
                     placeholder="ABC Industries"
                   />
                 </div>
+                {validationErrors.company && (
+                  <p className="mt-1 text-sm text-red-600">{validationErrors.company}</p>
+                )}
               </div>
 
               {/* Phone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Phone Number
+                  Phone Number *
                 </label>
                 <div className="relative">
                   <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -298,6 +315,7 @@ const Signup = () => {
                     id="phone"
                     name="phone"
                     type="tel"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
@@ -317,7 +335,7 @@ const Signup = () => {
             {/* Address */}
             <div>
               <label htmlFor="address" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                Address
+                Address *
               </label>
               <div className="relative">
                 <MapPin className="absolute left-4 top-4 text-gray-400 w-5 h-5" />
@@ -325,12 +343,20 @@ const Signup = () => {
                   id="address"
                   name="address"
                   rows="3"
+                  required
                   value={formData.address}
                   onChange={handleChange}
-                  className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-neutral-600 rounded-xl focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-colors bg-white dark:bg-neutral-700 text-gray-900 dark:text-white resize-none"
+                  className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors resize-none ${
+                    validationErrors.address
+                      ? 'border-red-300 focus:border-red-500'
+                      : 'border-gray-200 focus:border-blue-500'
+                  }`}
                   placeholder="123 Main Street, City, State - Pincode"
                 />
               </div>
+              {validationErrors.address && (
+                <p className="mt-1 text-sm text-red-600">{validationErrors.address}</p>
+              )}
             </div>
 
             {/* Terms & Conditions */}
