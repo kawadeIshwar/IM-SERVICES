@@ -193,35 +193,61 @@ const Booking = () => {
       return
     }
 
+    // Validate environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_BOOKING
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    console.log('EmailJS Config Check:', {
+      hasServiceId: !!serviceId,
+      hasTemplateId: !!templateId,
+      hasPublicKey: !!publicKey
+    })
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('Missing EmailJS configuration:', {
+        serviceId: serviceId || 'MISSING',
+        templateId: templateId || 'MISSING',
+        publicKey: publicKey || 'MISSING'
+      })
+      setError('Email service is not configured. Please check environment variables.')
+      return
+    }
+
     setLoading(true)
 
     try {
       // Get service title for display
       const selectedService = services.find(s => s.id === formData.serviceType)
       
+      const emailData = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company || 'Not provided',
+        location: formData.location,
+        machine_type: formData.machineType || 'Not specified',
+        machine_brand: formData.machineBrand || 'Not specified',
+        service_type: selectedService?.title || formData.serviceType,
+        other_service_details: formData.otherServiceDetails || 'N/A',
+        preferred_date: formData.preferredDate || 'Not specified',
+        preferred_time: formData.preferredTime || 'Not specified',
+        priority: formData.priority || 'Normal',
+        message: formData.message || 'No additional message',
+        to_name: 'IM Services',
+      }
+
+      console.log('Sending booking email with data:', emailData)
+      
       // Send email using EmailJS
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_BOOKING,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          company: formData.company || 'Not provided',
-          location: formData.location,
-          machine_type: formData.machineType || 'Not specified',
-          machine_brand: formData.machineBrand || 'Not specified',
-          service_type: selectedService?.title || formData.serviceType,
-          other_service_details: formData.otherServiceDetails || 'N/A',
-          preferred_date: formData.preferredDate || 'Not specified',
-          preferred_time: formData.preferredTime || 'Not specified',
-          priority: formData.priority || 'Normal',
-          message: formData.message || 'No additional message',
-          to_name: 'IM Services',
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        emailData,
+        publicKey
       )
       
+      console.log('EmailJS Success:', response)
       setSuccess(true)
       // Reset form after 5 seconds
       setTimeout(() => {
@@ -244,8 +270,13 @@ const Booking = () => {
         setErrors({})
       }, 5000)
     } catch (err) {
-      console.error('EmailJS Error:', err)
-      setError('Failed to submit booking. Please try again or contact us directly.')
+      console.error('EmailJS Error Details:', {
+        error: err,
+        message: err.message,
+        text: err.text,
+        status: err.status
+      })
+      setError(`Failed to submit booking: ${err.text || err.message || 'Unknown error'}. Please try again or contact us directly.`)
     } finally {
       setLoading(false)
     }

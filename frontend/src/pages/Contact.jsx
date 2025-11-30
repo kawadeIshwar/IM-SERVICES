@@ -29,11 +29,40 @@ const Contact = () => {
     setLoading(true)
     setError('')
 
+    // Validate environment variables
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONTACT
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+    console.log('EmailJS Config Check:', {
+      hasServiceId: !!serviceId,
+      hasTemplateId: !!templateId,
+      hasPublicKey: !!publicKey
+    })
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('Missing EmailJS configuration:', {
+        serviceId: serviceId || 'MISSING',
+        templateId: templateId || 'MISSING',
+        publicKey: publicKey || 'MISSING'
+      })
+      setError('Email service is not configured. Please check environment variables.')
+      setLoading(false)
+      return
+    }
+
     try {
+      console.log('Sending email with data:', {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject
+      })
+
       // Send email using EmailJS
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CONTACT,
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -42,9 +71,10 @@ const Contact = () => {
           message: formData.message,
           to_name: 'IM Services',
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        publicKey
       )
       
+      console.log('EmailJS Success:', response)
       setSuccess(true)
       setFormData({
         name: '',
@@ -55,8 +85,13 @@ const Contact = () => {
       })
       setTimeout(() => setSuccess(false), 5000)
     } catch (err) {
-      console.error('EmailJS Error:', err)
-      setError('Failed to send message. Please try again or contact us directly.')
+      console.error('EmailJS Error Details:', {
+        error: err,
+        message: err.message,
+        text: err.text,
+        status: err.status
+      })
+      setError(`Failed to send message: ${err.text || err.message || 'Unknown error'}. Please try again or contact us directly.`)
     } finally {
       setLoading(false)
     }
