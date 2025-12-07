@@ -48,7 +48,7 @@ const About = () => {
 
   const teamMembers = [
     {
-      name: 'Rajesh Patil',
+      name: 'Sachin Kawade',
       role: 'Founder & Chief Engineer',
       expertise: 'Hydraulic Systems & Machine Diagnostics',
       image: 'images/profile image.jpg',
@@ -188,7 +188,7 @@ const About = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[600px]">
                 <img
-                  src="https://plus.unsplash.com/premium_photo-1682597000831-5b3496f9246d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+                  src="\public\images\image92.png"
                   alt="Injection Moulding Machine Service"
                   className="w-full h-full object-cover"
                 />
