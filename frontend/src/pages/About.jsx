@@ -31,45 +31,45 @@ const About = () => {
   ]
 
   const milestones = [
-    { year: '2008', event: 'Company Founded in Pune', icon: <Star size={24} /> },
-    { year: '2012', event: 'Expanded to 50+ Client Base', icon: <Users size={24} /> },
-    { year: '2016', event: 'Introduced 7-Factor Performance Testing', icon: <Zap size={24} /> },
-    { year: '2020', event: 'Reached 500+ Machines Serviced', icon: <Award size={24} /> },
+    { year: '2020', event: 'Company Founded in Pune', icon: <Star size={24} /> },
+    { year: '2021', event: 'Expanded to 50+ Client Base', icon: <Users size={24} /> },
+    { year: '2022', event: 'Introduced 7-Factor Performance Testing', icon: <Zap size={24} /> },
+    { year: '2023', event: 'Reached 500+ Machines Serviced', icon: <Award size={24} /> },
     { year: '2024', event: 'Leading IM Machine Service Provider in Maharashtra', icon: <TrendingUp size={24} /> }
   ]
 
   const growthData = [
-    { year: '2008', valuation: 15, clients: 10, machines: 25, label: '₹15L', milestone: 'Founded' },
-    { year: '2012', valuation: 45, clients: 50, machines: 120, label: '₹45L', milestone: 'Expansion' },
-    { year: '2016', valuation: 120, clients: 120, machines: 280, label: '₹1.2Cr', milestone: 'Innovation' },
-    { year: '2020', valuation: 280, clients: 200, machines: 500, label: '₹2.8Cr', milestone: 'Growth' },
-    { year: '2024', valuation: 450, clients: 350, machines: 800, label: '₹4.5Cr', milestone: 'Leadership' }
+    { year: '2020', valuation: 15, clients: 10, machines: 25, label: '₹15L', milestone: 'Founded' },
+    { year: '2021', valuation: 45, clients: 50, machines: 120, label: '₹45L', milestone: 'Expansion' },
+    { year: '2022', valuation: 120, clients: 120, machines: 280, label: '₹90L', milestone: 'Innovation' },
+    { year: '2023', valuation: 280, clients: 200, machines: 500, label: '₹1.3Cr', milestone: 'Growth' },
+    { year: '2024', valuation: 450, clients: 350, machines: 800, label: '₹2Cr', milestone: 'Leadership' }
   ]
 
   const teamMembers = [
     {
-      name: 'Sachin Kawade',
+      name: 'Sandip Gajare',
       role: 'Founder & Chief Engineer',
       expertise: 'Hydraulic Systems & Machine Diagnostics',
       image: 'images/profile image.jpg',
       gradient: 'from-primary-500 to-cyan-500'
     },
     {
-      name: 'Vikram Sharma',
+      name: 'Rajnikant Bhosale',
       role: 'Lead Electrical Engineer',
       expertise: 'Control Systems & Automation',
       image: 'images/profile image.jpg',
       gradient: 'from-cyan-500 to-indigo-500'
     },
     {
-      name: 'Amit Deshmukh',
+      name: 'Sachin Kawade',
       role: 'Senior Service Technician',
       expertise: 'Preventive Maintenance & Retrofitting',
       image: 'images/profile image.jpg',
       gradient: 'from-indigo-500 to-purple-500'
     },
     {
-      name: 'Rohan Kulkarni',
+      name: 'Jintendra Kamble',
       role: 'Technical Support Manager',
       expertise: 'Customer Relations & Quality Assurance',
       image: 'images/profile image.jpg',
@@ -108,7 +108,7 @@ const About = () => {
               className="inline-flex items-center space-x-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-5 py-2 rounded-full mb-6"
             >
               <Award size={18} />
-              <span className="text-sm font-bold">15+ Years of Excellence</span>
+              <span className="text-sm font-bold">5+ Years of Excellence</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-slate-900 dark:text-white mb-6">
@@ -188,7 +188,7 @@ const About = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[600px]">
                 <img
-                  src="\public\images\image92.png"
+                  src="images/image92.png"
                   alt="Injection Moulding Machine Service"
                   className="w-full h-full object-cover"
                 />
