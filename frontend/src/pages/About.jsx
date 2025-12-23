@@ -49,29 +49,29 @@ const About = () => {
   const teamMembers = [
     {
       name: 'Sandip Gajare',
-      role: 'Founder & Chief Engineer',
-      expertise: 'Hydraulic Systems & Machine Diagnostics',
+      role: 'Senior Service Engineer',
+      expertise: 'Injection Molding Breakdown & Diagnostics',
       image: 'images/profile image.jpg',
       gradient: 'from-primary-500 to-cyan-500'
     },
     {
       name: 'Rajnikant Bhosale',
-      role: 'Lead Electrical Engineer',
-      expertise: 'Control Systems & Automation',
+      role: 'Material Supply Manager',
+      expertise: 'Raw Material, Spare Parts & Inventory Management',
       image: 'images/profile image.jpg',
       gradient: 'from-cyan-500 to-indigo-500'
     },
     {
       name: 'Sachin Kawade',
-      role: 'Senior Service Technician',
-      expertise: 'Preventive Maintenance & Retrofitting',
+      role: 'Injection Molding Service Specialist',
+      expertise: 'Machine Setup, Calibration & Troubleshooting',
       image: 'images/profile image.jpg',
       gradient: 'from-indigo-500 to-purple-500'
     },
     {
       name: 'Jintendra Kamble',
-      role: 'Technical Support Manager',
-      expertise: 'Customer Relations & Quality Assurance',
+      role: 'Preventive Maintenance Engineer',
+      expertise: 'Routine Maintenance, Retrofitting & Support',
       image: 'images/profile image.jpg',
       gradient: 'from-purple-500 to-pink-500'
     }
@@ -172,7 +172,7 @@ const About = () => {
                   <div className="text-sm text-slate-600 dark:text-gray-400 font-medium">Satisfaction</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">15+</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">5+</div>
                   <div className="text-sm text-slate-600 dark:text-gray-400 font-medium">Years</div>
                 </div>
               </div>

@@ -21,6 +21,7 @@ import {
 import axios from 'axios';
 import ClientServiceRequestView from '../components/ClientServiceRequestView';
 import SimplePDFViewer from '../components/SimplePDFViewer';
+import ChangePassword from '../components/ChangePassword';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -34,7 +35,8 @@ const Profile = () => {
   const [selectedPdfName, setSelectedPdfName] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState('info'); // 'info', 'reports', or 'requests'
+  const [activeTab, setActiveTab] = useState('info'); // 'info', 'reports', 'requests', or 'security'
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
   useEffect(() => {
     // Check if user is admin and redirect to dashboard
@@ -272,11 +274,27 @@ const Profile = () => {
                 />
               )}
             </button>
+            <button
+              onClick={() => setActiveTab('security')}
+              className={`pb-4 px-6 font-semibold transition-colors relative ${
+                activeTab === 'security'
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+              }`}
+            >
+              Security
+              {activeTab === 'security' && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                />
+              )}
+            </button>
           </div>
         </motion.div>
 
         {/* Content */}
-        {activeTab === 'info' ? (
+        {activeTab === 'info' && (
           <motion.div
             key="info"
             initial={{ opacity: 0, x: -20 }}
@@ -426,7 +444,9 @@ const Profile = () => {
               </div>
             </div>
           </motion.div>
-        ) : activeTab === 'requests' ? (
+        )}
+
+        {activeTab === 'requests' && (
           <motion.div
             key="requests"
             initial={{ opacity: 0, x: 20 }}
@@ -544,7 +564,9 @@ const Profile = () => {
               </div>
             )}
           </motion.div>
-        ) : (
+        )}
+
+        {activeTab === 'reports' && (
           <motion.div
             key="reports"
             initial={{ opacity: 0, x: 20 }}
@@ -653,6 +675,20 @@ const Profile = () => {
                 ))}
               </div>
             )}
+          </motion.div>
+        )}
+
+        {activeTab === 'security' && (
+          <motion.div
+            key="security"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            className="max-w-2xl"
+          >
+            <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-gray-200 dark:border-neutral-700 p-6">
+              <ChangePassword isModal={false} />
+            </div>
           </motion.div>
         )}
       </div>

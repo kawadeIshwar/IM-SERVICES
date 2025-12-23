@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import { 
   LayoutDashboard, ClipboardList, Calendar, CheckCircle, AlertTriangle, Clock,
-  Search, RefreshCw, LogOut, Eye, Trash2, X, BarChart3
+  Search, RefreshCw, LogOut, Eye, Trash2, X, BarChart3, Settings
 } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import ServiceRequestDetailView from '../components/ServiceRequestDetailView';
 import AnalyticsDashboard from '../components/AnalyticsDashboard';
+import ChangePassword from '../components/ChangePassword';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -164,7 +165,8 @@ const AdminDashboard = () => {
             {[
               { id: 'overview', label: 'Overview', icon: LayoutDashboard },
               { id: 'requests', label: 'Service Requests', icon: ClipboardList },
-              { id: 'analytics', label: 'Analytics', icon: BarChart3 }
+              { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+              { id: 'settings', label: 'Settings', icon: Settings }
             ].map(tab => (
               <button
                 key={tab.id}
@@ -356,6 +358,19 @@ const AdminDashboard = () => {
         {/* Analytics Tab */}
         {activeTab === 'analytics' && (
           <AnalyticsDashboard serviceRequests={serviceRequests} stats={stats} />
+        )}
+
+        {/* Settings Tab */}
+        {activeTab === 'settings' && (
+          <div className="max-w-2xl mx-auto">
+            <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-md border dark:border-neutral-700">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Account Settings</h2>
+                <p className="text-gray-600 dark:text-gray-400">Manage your admin account settings and security</p>
+              </div>
+              <ChangePassword isModal={false} />
+            </div>
+          </div>
         )}
       </div>
 
