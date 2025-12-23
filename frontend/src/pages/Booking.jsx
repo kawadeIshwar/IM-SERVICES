@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import axios from 'axios'
 import { useAuth } from '../context/AuthContext'
 import { 
   Calendar, Clock, User, Mail, Phone, MapPin, FileText, Send, CheckCircle,
@@ -9,6 +10,8 @@ import {
   ArrowRight, Sparkles, Award, TrendingUp, Check, Flag
 } from 'lucide-react'
 import SEO from '../components/SEO'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
 const Booking = () => {
   const location = useLocation()
@@ -239,16 +242,61 @@ const Booking = () => {
 
       console.log('Sending booking email with data:', emailData)
       
-      // Send email using EmailJS
-      const response = await emailjs.send(
-        serviceId,
-        templateId,
-        emailData,
-        publicKey
-      )
+      // Send email using EmailJS (don't fail if email fails)
+      try {
+        const emailResponse = await emailjs.send(
+          serviceId,
+          templateId,
+          emailData,
+          publicKey
+        )
+        console.log('EmailJS Success:', emailResponse)
+      } catch (emailErr) {
+        console.warn('EmailJS Error (continuing anyway):', emailErr)
+        // Continue even if email fails - service request is more important
+      }
       
-      console.log('EmailJS Success:', response)
-      setSuccess(true)
+      // Create service request in database
+      const token = localStorage.getItem('token')
+      if (!token) {
+        throw new Error('Authentication required. Please log in again.')
+      }
+
+      // Map booking form data to service request format
+      const serviceRequestData = {
+        serviceType: selectedService?.title || formData.serviceType || formData.otherServiceDetails || 'General Service',
+        machineModel: formData.machineType || formData.machineBrand || undefined,
+        machineSerialNumber: undefined, // Not in booking form
+        problemDescription: formData.message || 
+          `Service request for ${selectedService?.title || formData.serviceType}. ` +
+          `Location: ${formData.location}. ` +
+          `Preferred Date: ${formData.preferredDate || 'Not specified'}. ` +
+          `Preferred Time: ${formData.preferredTime || 'Not specified'}. ` +
+          (formData.otherServiceDetails ? `Details: ${formData.otherServiceDetails}. ` : ''),
+        priority: formData.priority === 'urgent' ? 'high' : 
+                 formData.priority === 'high' ? 'high' :
+                 formData.priority === 'normal' ? 'medium' : 'medium'
+      }
+
+      console.log('Creating service request with data:', serviceRequestData)
+
+      const serviceRequestResponse = await axios.post(
+        `${API_URL}/service-requests`,
+        serviceRequestData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+
+      if (serviceRequestResponse.data.success) {
+        console.log('Service request created successfully:', serviceRequestResponse.data)
+        setSuccess(true)
+      } else {
+        throw new Error('Failed to create service request')
+      }
       // Reset form after 5 seconds
       setTimeout(() => {
         setFormData({
@@ -270,13 +318,25 @@ const Booking = () => {
         setErrors({})
       }, 5000)
     } catch (err) {
-      console.error('EmailJS Error Details:', {
+      console.error('Booking submission error:', {
         error: err,
         message: err.message,
-        text: err.text,
-        status: err.status
+        response: err.response?.data,
+        status: err.response?.status
       })
-      setError(`Failed to submit booking: ${err.text || err.message || 'Unknown error'}. Please try again or contact us directly.`)
+      
+      // Provide specific error messages
+      if (err.response?.status === 401) {
+        setError('Your session has expired. Please log in again.')
+        setTimeout(() => {
+          navigate('/login', { state: { from: '/booking' } })
+        }, 2000)
+      } else if (err.response?.data?.errors) {
+        const validationErrors = err.response.data.errors.map(e => e.msg).join(', ')
+        setError(`Validation error: ${validationErrors}`)
+      } else {
+        setError(`Failed to submit booking: ${err.response?.data?.message || err.message || 'Unknown error'}. Please try again or contact us directly.`)
+      }
     } finally {
       setLoading(false)
     }

@@ -34,10 +34,10 @@ const AdminDashboard = () => {
     try {
       const headers = { Authorization: `Bearer ${token}` };
       
-      // Fetch stats and service requests
+      // Fetch stats and service requests (fetch all requests, not just 10)
       const [statsRes, requestsRes] = await Promise.all([
         axios.get(`${API_URL}/service-requests/stats`, { headers }),
-        axios.get(`${API_URL}/service-requests`, { headers })
+        axios.get(`${API_URL}/service-requests?limit=1000`, { headers })
       ]);
       
       setStats(statsRes.data.data);
