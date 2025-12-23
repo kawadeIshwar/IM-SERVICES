@@ -53,6 +53,8 @@ const Profile = () => {
 
   const fetchUserData = async () => {
     try {
+      setLoading(true);
+      setError('');
       const token = localStorage.getItem('token');
       if (!token) {
         navigate('/login');
@@ -65,9 +67,14 @@ const Profile = () => {
 
       if (response.data.success) {
         setUser(response.data.user);
+      } else {
+        throw new Error(response.data.message || 'Failed to load user data');
       }
     } catch (err) {
-      setError('Failed to load user data');
+      console.error('Error fetching user data:', err);
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to load user data';
+      setError(errorMessage);
+      
       if (err.response?.status === 401) {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -83,18 +90,28 @@ const Profile = () => {
       const token = localStorage.getItem('token');
       const storedUser = JSON.parse(localStorage.getItem('user'));
       
-      if (token && storedUser) {
-        const response = await axios.get(`${API_URL}/reports/client/${storedUser.id}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+      if (!token || !storedUser) {
+        return;
+      }
 
-        if (response.data.success) {
-          console.log('Reports data:', response.data.data);
-          setReports(response.data.data);
-        }
+      const response = await axios.get(`${API_URL}/reports/client/${storedUser.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.data.success) {
+        setReports(response.data.data || []);
+      } else {
+        throw new Error(response.data.message || 'Failed to load reports');
       }
     } catch (err) {
       console.error('Failed to load reports:', err);
+      // Don't set error state for reports, just log it
+      // Reports are optional and shouldn't break the page
+      if (err.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
     }
   };
 
@@ -102,17 +119,28 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       
-      if (token) {
-        const response = await axios.get(`${API_URL}/service-requests`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+      if (!token) {
+        return;
+      }
 
-        if (response.data.success) {
-          setServiceRequests(response.data.data || []);
-        }
+      const response = await axios.get(`${API_URL}/service-requests`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (response.data.success) {
+        setServiceRequests(response.data.data || []);
+      } else {
+        throw new Error(response.data.message || 'Failed to load service requests');
       }
     } catch (err) {
       console.error('Failed to load service requests:', err);
+      // Don't set error state for service requests, just log it
+      // Service requests are optional and shouldn't break the page
+      if (err.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
     }
   };
 

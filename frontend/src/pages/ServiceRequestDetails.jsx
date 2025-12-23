@@ -78,6 +78,7 @@ const ServiceRequestDetails = () => {
   const fetchRequestDetails = async () => {
     try {
       setLoading(true);
+      setError('');
       const token = localStorage.getItem('token');
       
       if (!token) {
@@ -103,10 +104,20 @@ const ServiceRequestDetails = () => {
         }));
         
         setWorkflowSteps(steps);
+      } else {
+        throw new Error(response.data.message || 'Failed to load request details');
       }
     } catch (err) {
       console.error('Error fetching request:', err);
-      setError(err.response?.data?.message || 'Failed to load request details');
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to load request details';
+      setError(errorMessage);
+      
+      // If unauthorized, redirect to login
+      if (err.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
     } finally {
       setLoading(false);
     }
@@ -117,6 +128,11 @@ const ServiceRequestDetails = () => {
       setUpdatingStep(true);
       const token = localStorage.getItem('token');
 
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
       const response = await axios.put(
         `${API_URL}/bookings/${id}/workflow/${stepId}`,
         { status: 'completed' },
@@ -124,18 +140,22 @@ const ServiceRequestDetails = () => {
       );
 
       if (response.data.success) {
-        // Update local state
-        setWorkflowSteps(prev => prev.map(step => 
-          step.stepId === stepId 
-            ? { ...step, status: 'completed', completedAt: new Date().toISOString() }
-            : step
-        ));
+        // Update local state with fresh data from server
+        const updatedBooking = response.data.booking;
+        setRequest(updatedBooking);
+        
+        const steps = updatedBooking.workflowSteps || WORKFLOW_STEPS.map(step => ({
+          stepId: step.id,
+          name: step.name,
+          status: 'pending',
+          comments: [],
+          completedAt: null
+        }));
+        setWorkflowSteps(steps);
 
         // If this is the last step, show PDF generation option
         if (stepId === 5) {
-          const allCompleted = workflowSteps.every((step, idx) => 
-            idx === stepId - 1 || step.status === 'completed'
-          );
+          const allCompleted = steps.every(step => step.status === 'completed');
           
           if (allCompleted) {
             setTimeout(() => {
@@ -145,10 +165,19 @@ const ServiceRequestDetails = () => {
             }, 500);
           }
         }
+      } else {
+        throw new Error(response.data.message || 'Failed to update step');
       }
     } catch (err) {
       console.error('Error updating step:', err);
-      alert(err.response?.data?.message || 'Failed to update step');
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to update step';
+      alert(errorMessage);
+      
+      if (err.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
     } finally {
       setUpdatingStep(false);
     }
@@ -161,6 +190,11 @@ const ServiceRequestDetails = () => {
       setSubmittingComment(true);
       const token = localStorage.getItem('token');
 
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
       const response = await axios.post(
         `${API_URL}/bookings/${id}/workflow/${stepId}/comment`,
         { comment: comment.trim() },
@@ -168,28 +202,33 @@ const ServiceRequestDetails = () => {
       );
 
       if (response.data.success) {
-        // Update local state
-        setWorkflowSteps(prev => prev.map(step => 
-          step.stepId === stepId 
-            ? { 
-                ...step, 
-                comments: [
-                  ...(step.comments || []),
-                  {
-                    text: comment.trim(),
-                    timestamp: new Date().toISOString(),
-                    author: 'Admin'
-                  }
-                ]
-              }
-            : step
-        ));
+        // Update local state with fresh data from server
+        const updatedBooking = response.data.booking;
+        setRequest(updatedBooking);
+        
+        const steps = updatedBooking.workflowSteps || WORKFLOW_STEPS.map(step => ({
+          stepId: step.id,
+          name: step.name,
+          status: 'pending',
+          comments: [],
+          completedAt: null
+        }));
+        setWorkflowSteps(steps);
         setComment('');
         setActiveStep(null);
+      } else {
+        throw new Error(response.data.message || 'Failed to add comment');
       }
     } catch (err) {
       console.error('Error adding comment:', err);
-      alert(err.response?.data?.message || 'Failed to add comment');
+      const errorMessage = err.response?.data?.message || err.message || 'Failed to add comment';
+      alert(errorMessage);
+      
+      if (err.response?.status === 401) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
     } finally {
       setSubmittingComment(false);
     }
@@ -370,7 +409,7 @@ const ServiceRequestDetails = () => {
     return workflowSteps.every(step => step.status === 'completed');
   };
 
-  if (loading) {
+  if (loading && !request) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 pt-20 flex items-center justify-center">
         <div className="text-center">
@@ -381,12 +420,39 @@ const ServiceRequestDetails = () => {
     );
   }
 
-  if (error || !request) {
+  if (error && !request) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 pt-20 flex items-center justify-center">
+        <div className="text-center max-w-md">
+          <AlertCircle className="w-12 h-12 text-red-600 dark:text-red-400 mx-auto mb-4" />
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Error Loading Request</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">{error || 'Request not found'}</p>
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={() => fetchRequestDetails()}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Try Again
+            </button>
+            <Link
+              to="/admin/dashboard"
+              className="px-4 py-2 bg-gray-200 dark:bg-neutral-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-neutral-600 transition-colors inline-flex items-center"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Dashboard
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!request) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 pt-20 flex items-center justify-center">
         <div className="text-center">
-          <AlertCircle className="w-12 h-12 text-red-600 dark:text-red-400 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">{error || 'Request not found'}</p>
+          <AlertCircle className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-400">Request not found</p>
           <Link
             to="/admin/dashboard"
             className="mt-4 inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
@@ -601,15 +667,20 @@ const ServiceRequestDetails = () => {
                         {!isCompleted && canComplete && (
                           <button
                             onClick={() => handleMarkAsDone(stepTemplate.id)}
-                            disabled={updatingStep}
-                            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 flex items-center gap-2"
+                            disabled={updatingStep || loading}
+                            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                           >
                             {updatingStep ? (
-                              <Loader className="w-4 h-4 animate-spin" />
+                              <>
+                                <Loader className="w-4 h-4 animate-spin" />
+                                Updating...
+                              </>
                             ) : (
-                              <CheckCircle className="w-4 h-4" />
+                              <>
+                                <CheckCircle className="w-4 h-4" />
+                                Mark as Done
+                              </>
                             )}
-                            Mark as Done
                           </button>
                         )}
                       </div>
@@ -666,15 +737,20 @@ const ServiceRequestDetails = () => {
                                 </button>
                                 <button
                                   onClick={() => handleAddComment(stepTemplate.id)}
-                                  disabled={!comment.trim() || submittingComment}
-                                  className="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 flex items-center gap-2"
+                                  disabled={!comment.trim() || submittingComment || loading}
+                                  className="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                                 >
                                   {submittingComment ? (
-                                    <Loader className="w-4 h-4 animate-spin" />
+                                    <>
+                                      <Loader className="w-4 h-4 animate-spin" />
+                                      Posting...
+                                    </>
                                   ) : (
-                                    <Send className="w-4 h-4" />
+                                    <>
+                                      <Send className="w-4 h-4" />
+                                      Post Comment
+                                    </>
                                   )}
-                                  Post Comment
                                 </button>
                               </div>
                             </motion.div>

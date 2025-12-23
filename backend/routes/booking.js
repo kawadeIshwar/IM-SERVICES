@@ -115,4 +115,116 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// Update workflow step status
+router.put('/:id/workflow/:stepId', async (req, res) => {
+  try {
+    const { id, stepId } = req.params;
+    const { status } = req.body;
+
+    const booking = await Booking.findById(id);
+    if (!booking) {
+      return res.status(404).json({ success: false, message: 'Booking not found' });
+    }
+
+    // Initialize workflowSteps if it doesn't exist
+    if (!booking.workflowSteps) {
+      booking.workflowSteps = [];
+    }
+
+    // Find or create the step
+    const stepIndex = booking.workflowSteps.findIndex(s => s.stepId === parseInt(stepId));
+    const stepNames = {
+      1: 'Initial Request Review',
+      2: 'Assessment & Planning',
+      3: 'Implementation',
+      4: 'Quality Check',
+      5: 'Final Review & Closure'
+    };
+
+    if (stepIndex === -1) {
+      // Create new step
+      booking.workflowSteps.push({
+        stepId: parseInt(stepId),
+        name: stepNames[parseInt(stepId)] || `Step ${stepId}`,
+        status: status || 'completed',
+        comments: [],
+        completedAt: status === 'completed' ? new Date() : null
+      });
+    } else {
+      // Update existing step
+      booking.workflowSteps[stepIndex].status = status || 'completed';
+      if (status === 'completed') {
+        booking.workflowSteps[stepIndex].completedAt = new Date();
+      }
+    }
+
+    await booking.save();
+    res.json({ success: true, booking });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Add comment to workflow step
+router.post('/:id/workflow/:stepId/comment', async (req, res) => {
+  try {
+    const { id, stepId } = req.params;
+    const { comment } = req.body;
+
+    if (!comment || !comment.trim()) {
+      return res.status(400).json({ success: false, message: 'Comment is required' });
+    }
+
+    const booking = await Booking.findById(id);
+    if (!booking) {
+      return res.status(404).json({ success: false, message: 'Booking not found' });
+    }
+
+    // Initialize workflowSteps if it doesn't exist
+    if (!booking.workflowSteps) {
+      booking.workflowSteps = [];
+    }
+
+    // Find or create the step
+    const stepIndex = booking.workflowSteps.findIndex(s => s.stepId === parseInt(stepId));
+    const stepNames = {
+      1: 'Initial Request Review',
+      2: 'Assessment & Planning',
+      3: 'Implementation',
+      4: 'Quality Check',
+      5: 'Final Review & Closure'
+    };
+
+    if (stepIndex === -1) {
+      // Create new step with comment
+      booking.workflowSteps.push({
+        stepId: parseInt(stepId),
+        name: stepNames[parseInt(stepId)] || `Step ${stepId}`,
+        status: 'pending',
+        comments: [{
+          text: comment.trim(),
+          timestamp: new Date(),
+          author: 'Admin'
+        }],
+        completedAt: null
+      });
+    } else {
+      // Add comment to existing step
+      if (!booking.workflowSteps[stepIndex].comments) {
+        booking.workflowSteps[stepIndex].comments = [];
+      }
+      booking.workflowSteps[stepIndex].comments.push({
+        text: comment.trim(),
+        timestamp: new Date(),
+        author: 'Admin'
+      });
+    }
+
+    await booking.save();
+    res.json({ success: true, booking });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;
