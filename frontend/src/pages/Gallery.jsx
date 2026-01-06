@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink } from 'lucide-react'
 import SEO from '../components/SEO'
 
@@ -10,125 +10,97 @@ const Gallery = () => {
   const images = [
     {
       id: 1,
-      url: 'images/MG-PET.jpg',
-      title: 'Injection Moulding Machine',
-      description: 'High-performance injection moulding equipment',
+      url: 'images/image 50.jpeg',
+      title: 'Advanced Machine Service',
+      description: 'Professional injection moulding machine maintenance',
       size: 'large'
     },
     {
       id: 2,
-      url: 'images/7-factor.jpg',
-      title: '7-Factor Performance Testing',
-      description: 'Comprehensive machine performance analysis',
+      url: 'images/image 56.jpeg',
+      title: 'Precision Engineering Work',
+      description: 'Detailed technical service operations',
       size: 'medium'
     },
     {
       id: 3,
-      url: 'images/hydraulic system 2.jpg',
-      title: 'Hydraulic System',
-      description: 'Advanced hydraulic components and systems',
+      url: 'images/image 52.jpeg',
+      title: 'Industrial Equipment Repair',
+      description: 'Expert machine repair and diagnostics',
       size: 'medium'
     },
     {
       id: 4,
-      url: 'images/motor-testing.jpg',
-      title: 'Motor Testing & Diagnostics',
-      description: 'Professional motor health assessment',
+      url: 'images/image 53.jpeg',
+      title: 'System Component Analysis',
+      description: 'Thorough component inspection and testing',
       size: 'large'
     },
     {
       id: 5,
-      url: 'images/PLC retrofitting.jpeg',
-      title: 'PLC Retrofitting',
-      description: 'Modern PLC system upgrades',
+      url: 'images/image 54.jpeg',
+      title: 'Technical Maintenance Service',
+      description: 'Comprehensive on-site maintenance work',
       size: 'medium'
     },
     {
       id: 6,
-      url: 'images/technical-Maintenance.jpg',
-      title: 'Technical Maintenance',
-      description: 'Expert on-site maintenance services',
+      url: 'images/image 55.jpeg',
+      title: 'Machine Performance Testing',
+      description: 'Advanced performance calibration and testing',
       size: 'medium'
     },
     {
       id: 7,
-      url: 'images/Chillers-Work.jpg',
-      title: 'Chiller Systems',
-      description: 'Industrial cooling system maintenance',
+      url: 'images/image 51.jpeg',
+      title: 'Equipment Modernization',
+      description: 'State-of-the-art machine upgrades',
       size: 'large'
     },
     {
       id: 8,
-      url: 'images/APFC Panel.jpg',
-      title: 'Power Factor Correction',
-      description: 'APFC panel installation and service',
-      size: 'medium'
-    },
-    {
-      id: 9,
-      url: 'images/emergency_breakdown_support.png',
-      title: 'Emergency Breakdown Support',
-      description: '24/7 rapid response service',
-      size: 'medium'
-    },
-    {
-      id: 10,
-      url: 'images/checks-motor-vibration.png',
-      title: 'Motor Vibration Analysis',
-      description: 'Precision vibration testing and diagnostics',
-      size: 'medium'
-    },
-    {
-      id: 11,
-      url: 'images/injection pressure testing.jpg',
-      title: 'Injection Pressure Testing',
-      description: 'Accurate pressure measurement and calibration',
-      size: 'large'
-    },
-    {
-      id: 12,
       url: 'images/retrofitting and reconditioning.jpg',
       title: 'Machine Retrofitting',
       description: 'Complete machine modernization',
       size: 'medium'
     },
     {
-      id: 13,
+      id: 9,
       url: 'images/image1.jpg',
       title: 'Machine Service Work',
       description: 'Professional maintenance in progress',
       size: 'medium'
     },
     {
-      id: 14,
+      id: 10,
       url: 'images/image2.jpg',
       title: 'Component Inspection',
       description: 'Detailed component analysis',
       size: 'medium'
     },
     {
-      id: 15,
+      id: 11,
       url: 'images/image4.jpg',
       title: 'Machine Operations',
       description: 'Operational efficiency monitoring',
       size: 'large'
     },
     {
-      id: 16,
+      id: 12,
       url: 'images/image6.jpg',
       title: 'System Integration',
       description: 'Advanced system integration work',
       size: 'medium'
     },
     {
-      id: 17,
+      id: 13,
       url: 'images/image7.jpg',
       title: 'Industrial Equipment',
       description: 'State-of-the-art manufacturing equipment',
       size: 'medium'
     },
     {
-      id: 18,
+      id: 14,
       url: 'images/image8.jpg',
       title: 'Precision Work',
       description: 'Detailed precision maintenance',
@@ -139,20 +111,90 @@ const Gallery = () => {
   const videos = [
     {
       id: 1,
-      thumbnail: 'images/MG-PET.jpg',
-      title: 'Service Demonstration Video 1',
-      description: 'Our expert service techniques in action',
-      duration: '0:16',
-      videoUrl: 'images/image3.mp4',
+      title: 'Machine Service Operation',
+      description: 'Complete injection moulding machine service procedure',
+      duration: '0:45',
+      videoUrl: 'vidoes/vdo 1.mp4',
       type: 'local'
     },
     {
       id: 2,
-      thumbnail: 'images/technical-Maintenance.jpg',
-      title: 'Service Demonstration Video 2',
-      description: 'Professional maintenance procedures',
-      duration: '0:34',
-      videoUrl: 'images/image5.mp4',
+      title: 'Precision Maintenance Work',
+      description: 'Detailed technical maintenance and calibration',
+      duration: '1:02',
+      videoUrl: 'vidoes/vdo 2.mp4',
+      type: 'local'
+    },
+    {
+      id: 3,
+      title: 'Equipment Repair Process',
+      description: 'Professional machine repair and diagnostics',
+      duration: '2:15',
+      videoUrl: 'vidoes/vdo 3.mp4',
+      type: 'local'
+    },
+    {
+      id: 4,
+      title: 'System Component Testing',
+      description: 'Thorough component inspection and analysis',
+      duration: '0:38',
+      videoUrl: 'vidoes/vdo 4.mp4',
+      type: 'local'
+    },
+    {
+      id: 5,
+      title: 'Advanced Technical Service',
+      description: 'Comprehensive on-site technical maintenance',
+      duration: '3:32',
+      videoUrl: 'vidoes/vdo 5.mp4',
+      type: 'local'
+    },
+    {
+      id: 6,
+      title: 'Performance Calibration',
+      description: 'Machine performance testing and calibration',
+      duration: '1:45',
+      videoUrl: 'vidoes/vdo 6.mp4',
+      type: 'local'
+    },
+    {
+      id: 7,
+      title: 'Equipment Modernization',
+      description: 'State-of-the-art machine upgrade process',
+      duration: '1:41',
+      videoUrl: 'vidoes/vdo 7.mp4',
+      type: 'local'
+    },
+    {
+      id: 8,
+      title: 'Industrial Service Work',
+      description: 'Large-scale industrial equipment service',
+      duration: '1:19',
+      videoUrl: 'vidoes/vdo 8.mp4',
+      type: 'local'
+    },
+    {
+      id: 9,
+      title: 'Component Replacement',
+      description: 'Professional component replacement and testing',
+      duration: '2:31',
+      videoUrl: 'vidoes/vdo 9.mp4',
+      type: 'local'
+    },
+    {
+      id: 10,
+      title: 'System Optimization',
+      description: 'Complete system optimization and tuning',
+      duration: '1:08',
+      videoUrl: 'vidoes/vdo 10.mp4',
+      type: 'local'
+    },
+    {
+      id: 11,
+      title: 'Quality Assurance Testing',
+      description: 'Final quality checks and performance validation',
+      duration: '6:33',
+      videoUrl: 'vidoes/vdo 11.mp4',
       type: 'local'
     }
   ]
@@ -233,8 +275,8 @@ const Gallery = () => {
             </p>
           </motion.div>
 
-          {/* Uniform Grid - 3 Images Per Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Masonry Grid - Different Image Sizes */}
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
             {images.map((image, index) => (
               <motion.div
                 key={image.id}
@@ -242,15 +284,17 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                className="break-inside-avoid group relative overflow-hidden rounded-2xl cursor-pointer mb-6"
                 onClick={() => setSelectedImage(image)}
               >
                 <div className="relative bg-white dark:bg-neutral-900 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800 hover:border-primary-300 dark:hover:border-primary-500 rounded-2xl overflow-hidden">
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative overflow-hidden">
                     <img
                       src={image.url}
                       alt={image.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
+                        image.size === 'large' ? 'h-80 sm:h-96' : 'h-60 sm:h-72'
+                      }`}
                     />
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
@@ -261,7 +305,7 @@ const Gallery = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 hidden sm:block">
                       <h3 className="text-white font-bold text-xl mb-2">{image.title}</h3>
                       <p className="text-white/80 text-sm">{image.description}</p>
                     </div>
@@ -304,8 +348,8 @@ const Gallery = () => {
             </p>
           </motion.div>
 
-          {/* Video Grid - 2 Columns */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Masonry Video Grid - Different Video Sizes */}
+          <div className="columns-1 sm:columns-2 lg:columns-2 gap-8 space-y-8">
             {videos.map((video, index) => {
               const videoRef = React.useRef(null)
               
@@ -329,22 +373,21 @@ const Gallery = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="group cursor-pointer"
+                  className="break-inside-avoid group cursor-pointer mb-8"
                   onClick={() => setSelectedVideo(video)}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
                   <div className="relative bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-slate-200 dark:border-neutral-800 hover:border-cyan-300 dark:hover:border-cyan-500">
                     {/* Video Preview */}
-                    <div className="relative h-96 overflow-hidden bg-slate-900">
+                    <div className="relative overflow-hidden bg-slate-900">
                       {video.type === 'local' ? (
                         <>
                           {/* Video Element */}
                           <video
                             ref={videoRef}
                             src={video.videoUrl}
-                            poster={video.thumbnail}
-                            className="w-full h-full object-cover"
+                            className="w-full object-cover transition-transform duration-700 group-hover:scale-110 h-60 sm:h-72 lg:h-80"
                             muted
                             loop
                             playsInline
@@ -365,7 +408,7 @@ const Gallery = () => {
                           <img
                             src={video.thumbnail}
                             alt={video.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-60 sm:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
                           <div className="absolute inset-0 flex items-center justify-center">
@@ -388,11 +431,11 @@ const Gallery = () => {
                     </div>
 
                     {/* Video Info */}
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    <div className="p-6 sm:p-8">
+                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                         {video.title}
                       </h3>
-                      <p className="text-slate-600 dark:text-gray-300 text-base leading-relaxed">
+                      <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed hidden sm:block">
                         {video.description}
                       </p>
                     </div>
@@ -405,38 +448,41 @@ const Gallery = () => {
       </section>
 
       {/* Image Lightbox Modal */}
-      {selectedImage && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <button
-            onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all"
-          >
-            <X size={24} />
-          </button>
+      <AnimatePresence>
+        {selectedImage && (
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="max-w-6xl w-full"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
           >
-            <img
-              src={selectedImage.url}
-              alt={selectedImage.title}
-              className="w-full h-auto rounded-2xl shadow-2xl"
-            />
-            <div className="mt-6 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <h3 className="text-white font-bold text-3xl mb-2">{selectedImage.title}</h3>
-              <p className="text-white/80 text-lg">{selectedImage.description}</p>
-            </div>
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            >
+              <X size={24} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="max-w-6xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedImage.url}
+                alt={selectedImage.title}
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              <div className="mt-6 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6">
+                <h3 className="text-white font-bold text-3xl mb-2">{selectedImage.title}</h3>
+                <p className="text-white/80 text-lg">{selectedImage.description}</p>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
 
       {/* Video Modal */}
       {selectedVideo && (
@@ -465,6 +511,7 @@ const Gallery = () => {
                   src={selectedVideo.videoUrl}
                   controls
                   autoPlay
+                  muted
                   className="w-full h-auto"
                   style={{ maxHeight: '70vh' }}
                 >
