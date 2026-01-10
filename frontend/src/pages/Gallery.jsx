@@ -197,6 +197,118 @@ const Gallery = () => {
       title: 'Performance Testing',
       description: 'Advanced performance testing and validation',
       size: 'large'
+    },
+    {
+      id: 28,
+      url: 'images/image 70.jpeg',
+      title: 'Machine Component Assembly',
+      description: 'Precision component assembly and integration work',
+      size: 'medium'
+    },
+    {
+      id: 29,
+      url: 'images/image 71.jpeg',
+      title: 'Technical Service Operations',
+      description: 'Professional technical maintenance and service',
+      size: 'large'
+    },
+    {
+      id: 30,
+      url: 'images/image 72.jpeg',
+      title: 'Equipment Calibration',
+      description: 'Advanced equipment calibration and tuning',
+      size: 'medium'
+    },
+    {
+      id: 31,
+      url: 'images/image 73.jpeg',
+      title: 'System Integration',
+      description: 'Complete system integration and testing',
+      size: 'large'
+    },
+    {
+      id: 32,
+      url: 'images/image 74.jpeg',
+      title: 'Quality Assurance',
+      description: 'Comprehensive quality control and inspection',
+      size: 'medium'
+    },
+    {
+      id: 33,
+      url: 'images/image 75.jpeg',
+      title: 'Machine Maintenance',
+      description: 'Professional machine maintenance and servicing',
+      size: 'large'
+    },
+    {
+      id: 34,
+      url: 'images/image 76.jpeg',
+      title: 'Component Testing',
+      description: 'Advanced component performance testing',
+      size: 'medium'
+    },
+    {
+      id: 35,
+      url: 'images/image 77.jpeg',
+      title: 'System Diagnostics',
+      description: 'Complete system diagnostic analysis',
+      size: 'large'
+    },
+    {
+      id: 36,
+      url: 'images/image 78.jpeg',
+      title: 'Equipment Service',
+      description: 'Professional equipment servicing and repair',
+      size: 'medium'
+    },
+    {
+      id: 37,
+      url: 'images/image 79.jpeg',
+      title: 'Precision Engineering',
+      description: 'High-precision engineering and calibration',
+      size: 'large'
+    },
+    {
+      id: 38,
+      url: 'images/image 81.jpeg',
+      title: 'Machine Optimization',
+      description: 'Advanced machine optimization and tuning',
+      size: 'medium'
+    },
+    {
+      id: 39,
+      url: 'images/image 82.jpeg',
+      title: 'Technical Analysis',
+      description: 'Detailed technical analysis and optimization',
+      size: 'large'
+    },
+    {
+      id: 40,
+      url: 'images/image 83.jpeg',
+      title: 'Quality Control',
+      description: 'Stringent quality control and testing procedures',
+      size: 'medium'
+    },
+    {
+      id: 41,
+      url: 'images/image 84.jpeg',
+      title: 'System Maintenance',
+      description: 'Complete system maintenance and upgrade',
+      size: 'large'
+    },
+    {
+      id: 42,
+      url: 'images/image 85.jpeg',
+      title: 'Performance Testing',
+      description: 'Advanced performance testing and validation',
+      size: 'medium'
+    },
+    {
+      id: 43,
+      url: 'images/image 86.jpeg',
+      title: 'Equipment Inspection',
+      description: 'Thorough equipment quality control and inspection',
+      size: 'large'
     }
   ]
 
@@ -364,6 +476,102 @@ const Gallery = () => {
       description: 'Professional equipment repair and maintenance work',
       duration: '1:28',
       videoUrl: 'vidoes/vdo 20.mp4',
+      type: 'local'
+    },
+    {
+      id: 21,
+      title: 'Advanced Machine Service',
+      description: 'High-level machine service and technical maintenance',
+      duration: '1:38',
+      videoUrl: 'vidoes/vdo 21.mp4',
+      type: 'local'
+    },
+    {
+      id: 22,
+      title: 'System Component Testing',
+      description: 'Thorough component testing and validation procedures',
+      duration: '0:49',
+      videoUrl: 'vidoes/vdo 22.mp4',
+      type: 'local'
+    },
+    {
+      id: 23,
+      title: 'Equipment Maintenance Work',
+      description: 'Comprehensive equipment maintenance and servicing',
+      duration: '1:27',
+      videoUrl: 'vidoes/vdo 23.mp4',
+      type: 'local'
+    },
+    {
+      id: 24,
+      title: 'Machine Diagnostic Analysis',
+      description: 'Complete machine diagnostic and analysis procedures',
+      duration: '3:56',
+      videoUrl: 'vidoes/vdo 24.mp4',
+      type: 'local'
+    },
+    {
+      id: 25,
+      title: 'Precision Calibration Service',
+      description: 'Advanced precision calibration and tuning work',
+      duration: '1:57',
+      videoUrl: 'vidoes/vdo 25.mp4',
+      type: 'local'
+    },
+    {
+      id: 26,
+      title: 'System Optimization Process',
+      description: 'Complete system optimization and performance tuning',
+      duration: '1:50',
+      videoUrl: 'vidoes/vdo 26.mp4',
+      type: 'local'
+    },
+    {
+      id: 27,
+      title: 'Quality Control Testing',
+      description: 'Comprehensive quality control and testing procedures',
+      duration: '1:59',
+      videoUrl: 'vidoes/vdo 27.mp4',
+      type: 'local'
+    },
+    {
+      id: 28,
+      title: 'Equipment Performance Analysis',
+      description: 'Advanced equipment performance analysis and tuning',
+      duration: '1:50',
+      videoUrl: 'vidoes/vdo 28.mp4',
+      type: 'local'
+    },
+    {
+      id: 29,
+      title: 'Technical Service Operations',
+      description: 'Professional technical service and maintenance work',
+      duration: '0:30',
+      videoUrl: 'vidoes/vdo 29.mp4',
+      type: 'local'
+    },
+    {
+      id: 30,
+      title: 'Machine Maintenance Procedures',
+      description: 'Complete machine maintenance and service procedures',
+      duration: '3:59',
+      videoUrl: 'vidoes/vdo 30.mp4',
+      type: 'local'
+    },
+    {
+      id: 31,
+      title: 'Advanced System Integration',
+      description: 'High-level system integration and testing work',
+      duration: '5:59',
+      videoUrl: 'vidoes/vdo 31.mp4',
+      type: 'local'
+    },
+    {
+      id: 32,
+      title: 'Equipment Repair Service',
+      description: 'Professional equipment repair and maintenance service',
+      duration: '1:20',
+      videoUrl: 'vidoes/vdo 32.mp4',
       type: 'local'
     }
   ]
