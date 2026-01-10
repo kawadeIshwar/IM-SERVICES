@@ -51,28 +51,28 @@ const About = () => {
       name: 'Sandip Gajare',
       role: 'Senior Service Engineer',
       expertise: 'Injection Molding Breakdown & Diagnostics',
-      image: 'images/profile image.jpg',
+      image: 'images/Gajare.jpg',
       gradient: 'from-primary-500 to-cyan-500'
     },
     {
       name: 'Rajnikant Bhosale',
       role: 'Material Supply Manager',
       expertise: 'Raw Material, Spare Parts & Inventory Management',
-      image: 'images/profile image.jpg',
+      image: 'images/Bhosale.jpg',
       gradient: 'from-cyan-500 to-indigo-500'
     },
     {
       name: 'Sachin Kawade',
       role: 'Injection Molding Service Specialist',
       expertise: 'Machine Setup, Calibration & Troubleshooting',
-      image: 'images/profile image.jpg',
+      image: 'images/Kawade.jpg',
       gradient: 'from-indigo-500 to-purple-500'
     },
     {
       name: 'Jintendra Kamble',
       role: 'Preventive Maintenance Engineer',
       expertise: 'Routine Maintenance, Retrofitting & Support',
-      image: 'images/profile image.jpg',
+      image: 'images/kamble.jpg',
       gradient: 'from-purple-500 to-pink-500'
     }
   ]
