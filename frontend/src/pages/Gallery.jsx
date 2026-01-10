@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink } from 'lucide-react'
+import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink, ChevronDown } from 'lucide-react'
 import SEO from '../components/SEO'
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedVideo, setSelectedVideo] = useState(null)
+  const [showAllImages, setShowAllImages] = useState(false)
 
   const images = [
     {
@@ -105,8 +106,104 @@ const Gallery = () => {
       title: 'Precision Work',
       description: 'Detailed precision maintenance',
       size: 'medium'
+    },
+    {
+      id: 15,
+      url: 'images/image 57.jpeg',
+      title: 'Advanced Machine Components',
+      description: 'High-precision component assembly and calibration',
+      size: 'large'
+    },
+    {
+      id: 16,
+      url: 'images/image 58.jpeg',
+      title: 'Technical Service Operations',
+      description: 'Professional on-site technical maintenance work',
+      size: 'medium'
+    },
+    {
+      id: 17,
+      url: 'images/image 59.jpeg',
+      title: 'Equipment Inspection',
+      description: 'Thorough equipment quality control and inspection',
+      size: 'medium'
+    },
+    {
+      id: 18,
+      url: 'images/image 60.jpeg',
+      title: 'Machine Maintenance',
+      description: 'Comprehensive machine maintenance and servicing',
+      size: 'large'
+    },
+    {
+      id: 19,
+      url: 'images/image 61.jpeg',
+      title: 'Component Testing',
+      description: 'Advanced component performance testing',
+      size: 'medium'
+    },
+    {
+      id: 20,
+      url: 'images/image 62.jpeg',
+      title: 'System Diagnostics',
+      description: 'Complete system diagnostic analysis',
+      size: 'medium'
+    },
+    {
+      id: 21,
+      url: 'images/image 63.jpeg',
+      title: 'Precision Engineering',
+      description: 'High-precision engineering and calibration work',
+      size: 'large'
+    },
+    {
+      id: 22,
+      url: 'images/image 64.jpeg',
+      title: 'Equipment Service',
+      description: 'Professional equipment servicing and repair',
+      size: 'medium'
+    },
+    {
+      id: 23,
+      url: 'images/image 65.jpeg',
+      title: 'Machine Calibration',
+      description: 'Precision machine calibration and tuning',
+      size: 'medium'
+    },
+    {
+      id: 24,
+      url: 'images/image 66.jpeg',
+      title: 'Quality Control',
+      description: 'Stringent quality control and testing procedures',
+      size: 'large'
+    },
+    {
+      id: 25,
+      url: 'images/image 67.jpeg',
+      title: 'Technical Analysis',
+      description: 'Detailed technical analysis and optimization',
+      size: 'medium'
+    },
+    {
+      id: 26,
+      url: 'images/image 68.jpeg',
+      title: 'System Maintenance',
+      description: 'Complete system maintenance and upgrade',
+      size: 'medium'
+    },
+    {
+      id: 27,
+      url: 'images/image 69.jpeg',
+      title: 'Performance Testing',
+      description: 'Advanced performance testing and validation',
+      size: 'large'
     }
   ]
+
+  // Show only 10 images on small screens unless showAllImages is true
+  const displayedImages = typeof window !== 'undefined' && window.innerWidth < 768 && !showAllImages 
+    ? images.slice(0, 10) 
+    : images
 
   const videos = [
     {
@@ -196,6 +293,78 @@ const Gallery = () => {
       duration: '6:33',
       videoUrl: 'vidoes/vdo 11.mp4',
       type: 'local'
+    },
+    {
+      id: 12,
+      title: 'Machine Calibration Process',
+      description: 'Precision calibration and tuning of injection moulding machines',
+      duration: '0:44',
+      videoUrl: 'vidoes/vdo 12.mp4',
+      type: 'local'
+    },
+    {
+      id: 13,
+      title: 'Component Replacement Service',
+      description: 'Professional component replacement and testing procedures',
+      duration: '1:17',
+      videoUrl: 'vidoes/vdo 13.mp4',
+      type: 'local'
+    },
+    {
+      id: 14,
+      title: 'System Diagnostic Testing',
+      description: 'Complete system diagnostics and performance analysis',
+      duration: '2:10',
+      videoUrl: 'vidoes/vdo 14.mp4',
+      type: 'local'
+    },
+    {
+      id: 15,
+      title: 'Equipment Maintenance Work',
+      description: 'Comprehensive equipment maintenance and servicing',
+      duration: '2:03',
+      videoUrl: 'vidoes/vdo 15.mp4',
+      type: 'local'
+    },
+    {
+      id: 16,
+      title: 'Advanced Technical Service',
+      description: 'High-level technical service and machine optimization',
+      duration: '3:12',
+      videoUrl: 'vidoes/vdo 16.mp4',
+      type: 'local'
+    },
+    {
+      id: 17,
+      title: 'Quality Control Procedures',
+      description: 'Detailed quality control and testing protocols',
+      duration: '1:05',
+      videoUrl: 'vidoes/vdo 17.mp4',
+      type: 'local'
+    },
+    {
+      id: 18,
+      title: 'Machine Performance Testing',
+      description: 'Comprehensive performance testing and validation',
+      duration: '1:02',
+      videoUrl: 'vidoes/vdo 18.mp4',
+      type: 'local'
+    },
+    {
+      id: 19,
+      title: 'System Optimization Service',
+      description: 'Complete system optimization and tuning procedures',
+      duration: '0:53',
+      videoUrl: 'vidoes/vdo 19.mp4',
+      type: 'local'
+    },
+    {
+      id: 20,
+      title: 'Equipment Repair Operations',
+      description: 'Professional equipment repair and maintenance work',
+      duration: '1:28',
+      videoUrl: 'vidoes/vdo 20.mp4',
+      type: 'local'
     }
   ]
 
@@ -277,7 +446,7 @@ const Gallery = () => {
 
           {/* Masonry Grid - Different Image Sizes */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {images.map((image, index) => (
+            {displayedImages.map((image, index) => (
               <motion.div
                 key={image.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -314,6 +483,27 @@ const Gallery = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* See More Button - Only on small screens */}
+          {typeof window !== 'undefined' && window.innerWidth < 768 && images.length > 10 && !showAllImages && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mt-12"
+            >
+              <button
+                onClick={() => setShowAllImages(true)}
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-primary-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <span>See More Images</span>
+                <ChevronDown size={20} className="animate-bounce" />
+              </button>
+              <p className="text-slate-600 dark:text-gray-300 mt-3">
+                Showing {displayedImages.length} of {images.length} images
+              </p>
+            </motion.div>
+          )}
         </div>
       </section>
 
