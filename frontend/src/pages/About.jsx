@@ -65,7 +65,7 @@ const About = () => {
       name: 'Sachin Kawade',
       role: 'Injection Molding Service Specialist',
       expertise: 'Machine Setup, Calibration & Troubleshooting',
-      image: 'images/Kawade.jpg',
+      image: 'images/Kawade.png',
       gradient: 'from-indigo-500 to-purple-500'
     },
     {
