@@ -37,7 +37,7 @@ const Services = () => {
       subtitle: '7-Factor Comprehensive Analysis',
       description: 'Complete performance evaluation to ensure your machines operate at optimal efficiency.',
       color: 'from-blue-500 to-cyan-500',
-      image: 'images/injection pressure testing.jpg',
+      image: 'images/image 70.jpeg',
       serviceId: 'performance',
       features: [
         'Injection Pressure Testing',
@@ -55,7 +55,7 @@ const Services = () => {
       subtitle: 'Complete Diagnostic Analysis',
       description: 'Thorough inspection of all critical components to identify potential issues before they become problems.',
       color: 'from-purple-500 to-pink-500',
-      image: 'images/motor-testing.jpg',
+      image: 'images/image 831.jpeg',
       serviceId: 'health',
       features: [
         'Pump & Motor Condition Assessment',
@@ -75,7 +75,7 @@ const Services = () => {
       subtitle: 'Upgrade & Modernization',
       description: 'Transform your aging machines with modern technology and restore them to peak performance.',
       color: 'from-orange-500 to-red-500',
-      image: 'images/PLC retrofitting.jpeg',
+      image: 'images/image 811.jpeg',
       serviceId: 'retrofit',
       features: [
         'PLC Repair & Replacement',
@@ -93,7 +93,7 @@ const Services = () => {
       subtitle: 'Proactive Care Programs',
       description: 'Scheduled maintenance programs designed to prevent breakdowns and extend machine life.',
       color: 'from-green-500 to-emerald-500',
-      image: 'images/emergency_breakdown_support.png',
+      image: 'images/image 791.jpeg',
       serviceId: 'preventive',
       features: [
         'Scheduled Preventive Maintenance',
@@ -112,7 +112,7 @@ const Services = () => {
       subtitle: 'Temperature Control Solutions',
       description: 'Expert maintenance of cooling systems to ensure optimal temperature regulation.',
       color: 'from-cyan-500 to-blue-500',
-      image: 'images/Chillers-Work.jpg',
+      image: 'images/image 521.jpeg',
       serviceId: 'cooling',
       features: [
         'Chiller Maintenance & Repair',
@@ -130,7 +130,7 @@ const Services = () => {
       subtitle: 'Energy Efficiency Solutions',
       description: 'Reduce energy costs and improve power efficiency with our optimization services.',
       color: 'from-yellow-500 to-orange-500',
-      image: 'images/APFC Panel.jpg',
+      image: 'images/image 77.jpeg',
       serviceId: 'power',
       features: [
         'Power Factor Correction',

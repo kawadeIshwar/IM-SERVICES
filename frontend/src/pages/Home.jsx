@@ -26,13 +26,13 @@ const Home = () => {
   
   // Hero Images for slider (7 images)
   const heroImages = [
-    '/images/image 93.png',
-    '/images/image 94.png',
-    '/images/image 95.png',
-    '/images/image 96.png',
-    '/images/image 99.png',
-    '/images/image 98.png',
-    '/images/image 97.png'
+    '/images/image 70.jpeg',
+    '/images/image 85.jpeg',
+    '/images/image7.jpg',
+    '/images/image 55.jpeg',
+    '/images/image 73.jpeg',
+    '/images/image 86.jpeg',
+    '/images/image 81.jpeg'
   ]
 
   // Auto-slide every 5 seconds for dynamic feel
@@ -57,7 +57,7 @@ const Home = () => {
       title: 'Performance Testing',
       description: '7-Factor comprehensive testing including injection pressure, speed, clamping force, and more.',
       color: 'from-blue-500 to-cyan-500',
-      image: 'images/hydraulic system 2.jpg',
+      image: 'images/image 70.jpeg',
       serviceId: 'machine-performance-testing'
     },
     {
@@ -65,7 +65,7 @@ const Home = () => {
       title: 'Machine Health Checkup',
       description: 'Complete diagnostic analysis of pump, motor, screw barrel, heaters, and safety systems.',
       color: 'from-purple-500 to-pink-500',
-      image: 'images/checks-motor-vibration.png',
+      image: 'images/image 831.jpeg',
       serviceId: 'machine-health-checkup'
     },
     {
@@ -73,7 +73,7 @@ const Home = () => {
       title: 'Retrofitting & Reconditioning',
       description: 'PLC upgrades, servo fitting, hydraulic modifications, and complete machine overhaul.',
       color: 'from-orange-500 to-red-500',
-      image: 'images/retrofitting and reconditioning.jpg',
+      image: 'images/image 811.jpeg',
       serviceId: 'retrofitting-and-reconditioning'
     },
     {
@@ -81,7 +81,7 @@ const Home = () => {
       title: 'Preventive Maintenance',
       description: 'Scheduled maintenance, predictive fault detection, and emergency breakdown support.',
       color: 'from-green-500 to-emerald-500',
-      image: 'images/technical-Maintenance.jpg',
+      image: 'images/image 791.jpeg',
       serviceId: 'preventive-and-predictive-maintenance'
     },
     {
@@ -89,7 +89,7 @@ const Home = () => {
       title: 'Power Optimization',
       description: 'Power factor correction and energy-saving solutions to reduce operational costs.',
       color: 'from-yellow-500 to-orange-500',
-      image: 'images/power.jpg',
+      image: 'images/image 77.jpeg',
       serviceId: 'power-optimization'
     },
     {
@@ -97,7 +97,7 @@ const Home = () => {
       title: 'Cooling Systems',
       description: 'Chiller, cooling tower, MTC, HRC, and ELC maintenance for optimal temperature control.',
       color: 'from-indigo-500 to-blue-500',
-      image: 'images/chiller maintenance.jpg',
+      image: 'images/image 521.jpeg',
       serviceId: 'cooling-and-chiller-systems'
     }
   ]

@@ -188,7 +188,7 @@ const About = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[600px]">
                 <img
-                  src="images/image92.png"
+                  src="images/image 81.jpeg"
                   alt="Injection Moulding Machine Service"
                   className="w-full h-full object-cover"
                 />
