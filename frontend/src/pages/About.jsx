@@ -65,7 +65,7 @@ const About = () => {
       name: 'Jintendra Kamble',
       role: 'Preventive Maintenance Engineer',
       expertise: 'Routine Maintenance, Retrofitting & Support',
-      image: 'images/kamble.jpg',
+      image: 'images/kamble.png',
       gradient: 'from-purple-500 to-pink-500'
     },
     {
