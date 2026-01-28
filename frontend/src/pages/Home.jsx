@@ -121,9 +121,9 @@ const Home = () => {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white dark:bg-neutral-950">
       <SEO 
-        title="IM Services - Expert Injection Moulding Machine Services in Pune | 24/7 Support"
-        description="Professional injection moulding machine maintenance, repair, and performance testing services in Pune, Maharashtra. 15+ years experience, 500+ machines serviced. 24/7 emergency breakdown support."
-        keywords="injection moulding machine services pune, IMM maintenance, machine performance testing, preventive maintenance, retrofitting services, hydraulic repair, emergency breakdown service, injection molding maharashtra"
+        title="IM Services - Expert Injection Moulding Machine Services in Shikrapur | 24/7 Support"
+        description="Professional injection moulding machine maintenance, repair, and performance testing services in Shikrapur, Maharashtra. 15+ years experience, 500+ machines serviced. 24/7 emergency breakdown support."
+        keywords="injection moulding machine services shikrapur, IMM maintenance, machine performance testing, preventive maintenance, retrofitting services, hydraulic repair, emergency breakdown service, injection moulding maharashtra"
         canonical="https://imservices.netlify.app/"
       />
       <StructuredData type="organization" />
@@ -312,7 +312,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="relative py-24 bg-slate-50 dark:bg-neutral-900 overflow-hidden">
+      <section ref={servicesRef} id="our-expert-services" className="relative py-24 bg-slate-50 dark:bg-neutral-900 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/5 rounded-full blur-3xl"></div>
@@ -356,39 +356,42 @@ const Home = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group relative"
               >
-                {/* Card */}
-                <div className="relative h-full bg-white dark:bg-neutral-900 border-2 border-slate-200 dark:border-neutral-800 rounded-3xl overflow-hidden hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
-                  {/* Image Section */}
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-100"
-                    />
+                {/* Make entire card clickable */}
+                <Link 
+                  to={`/services#${service.serviceId}`}
+                  className="block h-full"
+                >
+                  {/* Card */}
+                  <div className="relative h-full bg-white dark:bg-neutral-900 border-2 border-slate-200 dark:border-neutral-800 rounded-3xl overflow-hidden hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                    {/* Image Section */}
+                    <div className="relative h-56 overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-100"
+                      />
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="p-6 relative">
+                      <h3 className="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-600 dark:text-gray-300 mb-4 leading-relaxed text-sm">
+                        {service.description}
+                      </p>
+
+                      {/* Click indicator */}
+                      <div className={`inline-flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold text-sm`}>
+                        <span>Click to learn more</span>
+                        <ArrowRight size={16} className={`text-primary-600 group-hover:translate-x-1 transition-transform`} />
+                      </div>
+                    </div>
+
+                    {/* Decorative corner accent */}
+                    <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                   </div>
-
-                  {/* Content Section */}
-                  <div className="p-6 relative">
-                    <h3 className="text-2xl font-heading font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed text-sm">
-                      {service.description}
-                    </p>
-
-                    {/* Learn More Link */}
-                    <Link
-                      to={`/services#${service.serviceId}`}
-                      className={`inline-flex items-center space-x-2 text-transparent bg-gradient-to-r ${service.color} bg-clip-text font-bold group-hover:space-x-3 transition-all`}
-                    >
-                      <span>Learn More</span>
-                      <ArrowRight size={18} className={`text-primary-600 group-hover:translate-x-1 transition-transform`} />
-                    </Link>
-                  </div>
-
-                  {/* Decorative corner accent */}
-                  <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                </div>
+                </Link>
 
                 {/* Bottom shadow accent */}
                 <div className={`absolute -inset-0.5 bg-gradient-to-br ${service.color} rounded-3xl opacity-0 group-hover:opacity-10 blur-xl -z-10 transition-opacity duration-300`}></div>

@@ -12,6 +12,7 @@ import {
   Cpu,
   Droplet,
   ArrowRight,
+  ArrowLeft,
   CheckCircle
 } from 'lucide-react'
 import SEO from '../components/SEO'
@@ -38,7 +39,7 @@ const Services = () => {
       description: 'Complete performance evaluation to ensure your machines operate at optimal efficiency.',
       color: 'from-blue-500 to-cyan-500',
       image: 'images/image 70.jpeg',
-      serviceId: 'performance',
+      serviceId: 'machine-performance-testing',
       features: [
         'Injection Pressure Testing',
         'Injection Speed Analysis',
@@ -56,7 +57,7 @@ const Services = () => {
       description: 'Thorough inspection of all critical components to identify potential issues before they become problems.',
       color: 'from-purple-500 to-pink-500',
       image: 'images/image 831.jpeg',
-      serviceId: 'health',
+      serviceId: 'machine-health-checkup',
       features: [
         'Pump & Motor Condition Assessment',
         'Tie Bar & Pin Bush Inspection',
@@ -76,7 +77,7 @@ const Services = () => {
       description: 'Transform your aging machines with modern technology and restore them to peak performance.',
       color: 'from-orange-500 to-red-500',
       image: 'images/image 811.jpeg',
-      serviceId: 'retrofit',
+      serviceId: 'retrofitting-and-reconditioning',
       features: [
         'PLC Repair & Replacement',
         'Servo Motor Fitting',
@@ -94,7 +95,7 @@ const Services = () => {
       description: 'Scheduled maintenance programs designed to prevent breakdowns and extend machine life.',
       color: 'from-green-500 to-emerald-500',
       image: 'images/image 791.jpeg',
-      serviceId: 'preventive',
+      serviceId: 'preventive-and-predictive-maintenance',
       features: [
         'Scheduled Preventive Maintenance',
         'Predictive Fault Detection',
@@ -113,7 +114,7 @@ const Services = () => {
       description: 'Expert maintenance of cooling systems to ensure optimal temperature regulation.',
       color: 'from-cyan-500 to-blue-500',
       image: 'images/image 521.jpeg',
-      serviceId: 'cooling',
+      serviceId: 'cooling-and-chiller-systems',
       features: [
         'Chiller Maintenance & Repair',
         'Cooling Tower Service',
@@ -131,7 +132,7 @@ const Services = () => {
       description: 'Reduce energy costs and improve power efficiency with our optimization services.',
       color: 'from-yellow-500 to-orange-500',
       image: 'images/image 77.jpeg',
-      serviceId: 'power',
+      serviceId: 'power-optimization',
       features: [
         'Power Factor Correction',
         'Energy Consumption Analysis',
@@ -181,7 +182,7 @@ const Services = () => {
     <div className="min-h-screen pt-20 bg-white dark:bg-neutral-900">
       <SEO 
         title="Our Services - Injection Moulding Machine Maintenance & Repair | IM Services"
-        description="Comprehensive injection moulding machine services including performance testing, health checkups, preventive maintenance, retrofitting, and 24/7 emergency repair services in Pune, Maharashtra."
+        description="Comprehensive injection moulding machine services including performance testing, health checkups, preventive maintenance, retrofitting, and 24/7 emergency repair services in Shikrapur, Maharashtra."
         keywords="IMM services, machine performance testing, preventive maintenance, machine health checkup, retrofitting, hydraulic repair, cooling system service, breakdown maintenance, power optimization"
         canonical="https://imservices.netlify.app/services"
       />
@@ -250,6 +251,17 @@ const Services = () => {
                   
                   {/* Image Section */}
                   <div className={`relative h-56 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                    {/* Back Arrow - Only show when user is redirected to this specific service */}
+                    {location.hash === `#${service.serviceId}` && (
+                      <Link 
+                        to="/#our-expert-services"
+                        className="absolute top-4 left-4 z-50 bg-gradient-to-r from-primary-500 to-cyan-500 text-white p-3 rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group border-2 border-white/20"
+                        aria-label="Back to services overview"
+                      >
+                        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
+                      </Link>
+                    )}
+                    
                     <img
                       src={service.image}
                       alt={service.title}

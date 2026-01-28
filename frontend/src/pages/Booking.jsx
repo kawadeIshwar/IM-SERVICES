@@ -977,8 +977,8 @@ const Booking = () => {
               </div>
               <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Visit Us</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-4">Our location</p>
-              <p className="text-orange-600 dark:text-orange-400 font-bold text-lg">Shikrapur, Pune</p>
-              <p className="text-gray-700 dark:text-gray-300 font-medium">Maharashtra, India</p>
+              <p className="text-orange-600 dark:text-orange-400 font-bold text-lg">IM Services, Vishal Vishwa Rd</p>
+              <p className="text-gray-700 dark:text-gray-300 font-medium">Shikrapur, Maharashtra 412208</p>
             </motion.div>
           </div>
         </div>

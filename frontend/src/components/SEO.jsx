@@ -2,8 +2,8 @@ import { Helmet } from 'react-helmet-async'
 
 const SEO = ({
   title = 'IM Services - Expert Injection Moulding Machine Services',
-  description = 'Professional injection moulding machine maintenance, repair, and performance testing services in Pune, Maharashtra. 24/7 emergency support, 15+ years experience, 500+ machines serviced.',
-  keywords = 'injection moulding machine services, machine maintenance pune, injection moulding repair, machine performance testing, preventive maintenance, retrofitting services, hydraulic machine repair, cooling system maintenance, emergency breakdown service, IMM services Maharashtra',
+  description = 'Professional injection moulding machine maintenance, repair, and performance testing services in Shikrapur, Maharashtra. 24/7 emergency support, 15+ years experience, 500+ machines serviced.',
+  keywords = 'injection moulding machine services, machine maintenance shikrapur, injection moulding repair, machine performance testing, preventive maintenance, retrofitting services, hydraulic machine repair, cooling system maintenance, emergency breakdown service, IMM services Maharashtra',
   canonical = '',
   ogImage = '/og-image.jpg',
   ogType = 'website',
@@ -55,7 +55,7 @@ const SEO = ({
       
       {/* Geo Tags for Local SEO */}
       <meta name="geo.region" content="IN-MH" />
-      <meta name="geo.placename" content="Pune, Maharashtra" />
+      <meta name="geo.placename" content="Shikrapur, Maharashtra" />
       <meta name="geo.position" content="18.5204;73.8567" />
       <meta name="ICBM" content="18.5204, 73.8567" />
 

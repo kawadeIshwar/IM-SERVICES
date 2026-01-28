@@ -27,7 +27,7 @@ const FAQ = () => {
         },
         {
           question: 'What areas do you cover for on-site service?',
-          answer: 'We are based in Shikrapur, Pune, and provide on-site services across Maharashtra including Pune, Mumbai, Nashik, Aurangabad, and neighboring regions. For emergency breakdowns, we can arrange services in other states as well.'
+          answer: 'We are based at IM Services, Vishal Vishwa Rd, Shikrapur, Maharashtra 412208 and provide on-site services across Maharashtra including Pune, Mumbai, Nashik, Aurangabad, and neighboring regions. For emergency breakdowns, we can arrange services in other states as well.'
         },
         {
           question: 'Do you offer 24/7 emergency support?',

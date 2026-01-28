@@ -16,8 +16,8 @@ const StructuredData = ({ type = 'organization' }) => {
     "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Shikrapur",
-      "addressLocality": "Pune",
+      "streetAddress": "IM Services, Vishal Vishwa Rd",
+      "addressLocality": "Shikrapur",
       "addressRegion": "Maharashtra",
       "postalCode": "412208",
       "addressCountry": "IN"

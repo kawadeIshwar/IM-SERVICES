@@ -115,9 +115,9 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Location',
-      details: ['Shikrapur, Pune', 'Maharashtra, India'],
+      details: ['IM Services, Vishal Vishwa Rd', 'Shikrapur, Maharashtra 412208'],
       color: 'from-indigo-500 to-purple-500',
-      link: 'https://maps.google.com/?q=Shikrapur,Pune'
+      link: 'https://maps.google.com/?q=IM+Services,Vishal+Vishwa+Rd,Shikrapur'
     },
     {
       icon: Clock,
@@ -132,7 +132,7 @@ const Contact = () => {
     <div className="min-h-screen pt-20 bg-white dark:bg-neutral-950">
       <SEO 
         title="Contact Us - Get in Touch with IM Services | 24/7 Support"
-        description="Contact IM Services for injection moulding machine maintenance and repair. Call +91-9730992561 or email us. We provide 24/7 emergency support in Pune, Maharashtra."
+        description="Contact IM Services for injection moulding machine maintenance and repair. Call +91-9730992561 or email us. We provide 24/7 emergency support in Shikrapur, Maharashtra."
         keywords="contact IMM services, injection moulding machine support, emergency repair contact, machine service pune contact, 24/7 support"
         canonical="https://imservices.netlify.app/contact"
       />
@@ -387,7 +387,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242118.18174830705!2d73.69815195!3d18.52461605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.123456789!2d74.1187361!3d18.6856457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2d90052839eaf:0x66b652ebf9ab6a08!2sIM+Services!5e0!3m2!1sen!2sin!4v1706350800"
                   width="100%"
                   height="350"
                   style={{ border: 0 }}
@@ -426,7 +426,7 @@ const Contact = () => {
                     <MapPin size={20} className="text-primary-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm text-slate-600 dark:text-gray-400 font-semibold">Address</p>
-                      <p className="text-slate-900 dark:text-white font-bold">Shikrapur, Pune, Maharashtra, India</p>
+                      <p className="text-slate-900 dark:text-white font-bold">IM Services, Vishal Vishwa Rd, Shikrapur, Maharashtra 412208</p>
                     </div>
                   </div>
                 </div>

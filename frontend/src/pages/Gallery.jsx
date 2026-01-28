@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink, ChevronDown } from 'lucide-react'
+import { X, Play, Image as ImageIcon, Video, ZoomIn, ExternalLink, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import SEO from '../components/SEO'
 
 const Gallery = () => {
@@ -8,10 +8,25 @@ const Gallery = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [showAllImages, setShowAllImages] = useState(false)
 
+  // Navigation functions
+  const goToPreviousImage = () => {
+    if (!selectedImage) return
+    const currentIndex = images.findIndex(img => img.id === selectedImage.id)
+    const previousIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1
+    setSelectedImage(images[previousIndex])
+  }
+
+  const goToNextImage = () => {
+    if (!selectedImage) return
+    const currentIndex = images.findIndex(img => img.id === selectedImage.id)
+    const nextIndex = currentIndex === images.length - 1 ? 0 : currentIndex + 1
+    setSelectedImage(images[nextIndex])
+  }
+
   const images = [
     {
       id: 1,
-      url: 'images/image 50.jpeg',
+      url: 'images/imbage 50.jpeg',
       title: 'Advanced Machine Service',
       description: 'Professional injection moulding machine maintenance',
       size: 'large'
@@ -144,7 +159,7 @@ const Gallery = () => {
     },
     {
       id: 20,
-      url: 'images/image 62.jpeg',
+      url: 'images/image 6j2.jpeg',
       title: 'System Diagnostics',
       description: 'Complete system diagnostic analysis',
       size: 'medium'
@@ -855,12 +870,36 @@ const Gallery = () => {
             className="fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
+            {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all"
+              className="absolute top-6 right-6 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all z-10"
             >
               <X size={24} />
             </button>
+
+            {/* Left Navigation Arrow */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                goToPreviousImage()
+              }}
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+            >
+              <ChevronLeft size={28} className="group-hover:-translate-x-1 transition-transform" />
+            </button>
+
+            {/* Right Navigation Arrow */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                goToNextImage()
+              }}
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all group"
+            >
+              <ChevronRight size={28} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
