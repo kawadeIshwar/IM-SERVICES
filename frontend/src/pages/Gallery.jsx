@@ -25,20 +25,6 @@ const Gallery = () => {
 
   const images = [
     {
-      id: 1,
-      url: 'images/imbage 50.jpeg',
-      title: 'Advanced Machine Service',
-      description: 'Professional injection moulding machine maintenance',
-      size: 'large'
-    },
-    {
-      id: 2,
-      url: 'images/image 56.jpeg',
-      title: 'Precision Engineering Work',
-      description: 'Detailed technical service operations',
-      size: 'medium'
-    },
-    {
       id: 3,
       url: 'images/image 52.jpeg',
       title: 'Industrial Equipment Repair',
@@ -155,13 +141,6 @@ const Gallery = () => {
       url: 'images/image 61.jpeg',
       title: 'Component Testing',
       description: 'Advanced component performance testing',
-      size: 'medium'
-    },
-    {
-      id: 20,
-      url: 'images/image 6j2.jpeg',
-      title: 'System Diagnostics',
-      description: 'Complete system diagnostic analysis',
       size: 'medium'
     },
     {
@@ -324,6 +303,27 @@ const Gallery = () => {
       title: 'Equipment Inspection',
       description: 'Thorough equipment quality control and inspection',
       size: 'large'
+    },
+    {
+      id: 44,
+      url: 'images/image 87.jpeg',
+      title: 'System Maintenance Operations',
+      description: 'Professional system maintenance and technical service work',
+      size: 'medium'
+    },
+    {
+      id: 45,
+      url: 'images/image 88.jpeg',
+      title: 'Advanced Equipment Service',
+      description: 'High-level equipment service and maintenance procedures',
+      size: 'large'
+    },
+    {
+      id: 46,
+      url: 'images/image 89.jpeg',
+      title: 'Precision Technical Work',
+      description: 'Detailed precision technical service and calibration work',
+      size: 'medium'
     }
   ]
 
@@ -588,6 +588,214 @@ const Gallery = () => {
       duration: '1:20',
       videoUrl: 'vidoes/vdo 32.mp4',
       type: 'local'
+    },
+    {
+      id: 33,
+      title: 'Machine Performance Analysis',
+      description: 'Comprehensive machine performance analysis and optimization',
+      duration: '2:48',
+      videoUrl: 'vidoes/vdo 33.mp4',
+      type: 'local'
+    },
+    {
+      id: 34,
+      title: 'System Diagnostic Operations',
+      description: 'Advanced system diagnostic and troubleshooting procedures',
+      duration: '4:32',
+      videoUrl: 'vidoes/vdo 34.mp4',
+      type: 'local'
+    },
+    {
+      id: 35,
+      title: 'Technical Service Excellence',
+      description: 'Professional technical service and maintenance operations',
+      duration: '3:45',
+      videoUrl: 'vidoes/vdo 35.mp4',
+      type: 'local'
+    },
+    {
+      id: 36,
+      title: 'Equipment Calibration Work',
+      description: 'Precision equipment calibration and tuning procedures',
+      duration: '2:41',
+      videoUrl: 'vidoes/vdo 36.mp4',
+      type: 'local'
+    },
+    {
+      id: 37,
+      title: 'Machine Maintenance Service',
+      description: 'Comprehensive machine maintenance and technical service',
+      duration: '2:53',
+      videoUrl: 'vidoes/vdo 37.mp4',
+      type: 'local'
+    },
+    {
+      id: 38,
+      title: 'Component Testing Procedures',
+      description: 'Thorough component testing and validation processes',
+      duration: '1:12',
+      videoUrl: 'vidoes/vdo 38.mp4',
+      type: 'local'
+    },
+    {
+      id: 39,
+      title: 'System Quality Control',
+      description: 'Advanced quality control and system validation',
+      duration: '1:48',
+      videoUrl: 'vidoes/vdo 39.mp4',
+      type: 'local'
+    },
+    {
+      id: 40,
+      title: 'Equipment Optimization',
+      description: 'Professional equipment optimization and performance tuning',
+      duration: '4:28',
+      videoUrl: 'vidoes/vdo 40.mp4',
+      type: 'local'
+    },
+    {
+      id: 41,
+      title: 'Technical Analysis Work',
+      description: 'Detailed technical analysis and system optimization',
+      duration: '1:35',
+      videoUrl: 'vidoes/vdo 41.mp4',
+      type: 'local'
+    },
+    {
+      id: 42,
+      title: 'Machine Service Operations',
+      description: 'Complete machine service and maintenance procedures',
+      duration: '1:29',
+      videoUrl: 'vidoes/vdo 42.mp4',
+      type: 'local'
+    },
+    {
+      id: 43,
+      title: 'System Performance Testing',
+      description: 'Advanced system performance testing and validation',
+      duration: '2:10',
+      videoUrl: 'vidoes/vdo 43.mp4',
+      type: 'local'
+    },
+    {
+      id: 44,
+      title: 'Equipment Diagnostic Service',
+      description: 'Professional equipment diagnostic and troubleshooting',
+      duration: '1:38',
+      videoUrl: 'vidoes/vdo 44.mp4',
+      type: 'local'
+    },
+    {
+      id: 45,
+      title: 'Machine Calibration Process',
+      description: 'Precision machine calibration and technical service',
+      duration: '2:33',
+      videoUrl: 'vidoes/vdo 45.mp4',
+      type: 'local'
+    },
+    {
+      id: 46,
+      title: 'System Maintenance Work',
+      description: 'Comprehensive system maintenance and service operations',
+      duration: '1:19',
+      videoUrl: 'vidoes/vdo 46.mp4',
+      type: 'local'
+    },
+    {
+      id: 47,
+      title: 'Equipment Service Procedures',
+      description: 'Professional equipment service and maintenance work',
+      duration: '1:24',
+      videoUrl: 'vidoes/vdo 47.mp4',
+      type: 'local'
+    },
+    {
+      id: 48,
+      title: 'Technical Quality Control',
+      description: 'Advanced technical quality control and testing',
+      duration: '1:30',
+      videoUrl: 'vidoes/vdo 48.mp4',
+      type: 'local'
+    },
+    {
+      id: 49,
+      title: 'Machine Performance Service',
+      description: 'Complete machine performance testing and optimization',
+      duration: '4:41',
+      videoUrl: 'vidoes/vdo 49.mp4',
+      type: 'local'
+    },
+    {
+      id: 50,
+      title: 'System Analysis Operations',
+      description: 'Professional system analysis and technical service',
+      duration: '3:16',
+      videoUrl: 'vidoes/vdo 50.mp4',
+      type: 'local'
+    },
+    {
+      id: 51,
+      title: 'Equipment Testing Work',
+      description: 'Thorough equipment testing and validation procedures',
+      duration: '1:02',
+      videoUrl: 'vidoes/vdo 51.mp4',
+      type: 'local'
+    },
+    {
+      id: 52,
+      title: 'Machine Service Excellence',
+      description: 'High-quality machine service and maintenance operations',
+      duration: '4:32',
+      videoUrl: 'vidoes/vdo 52.mp4',
+      type: 'local'
+    },
+    {
+      id: 53,
+      title: 'System Optimization Service',
+      description: 'Advanced system optimization and performance tuning',
+      duration: '4:28',
+      videoUrl: 'vidoes/vdo 53.mp4',
+      type: 'local'
+    },
+    {
+      id: 54,
+      title: 'Equipment Maintenance Work',
+      description: 'Professional equipment maintenance and technical service',
+      duration: '1:48',
+      videoUrl: 'vidoes/vdo 54.mp4',
+      type: 'local'
+    },
+    {
+      id: 55,
+      title: 'Machine Calibration Service',
+      description: 'Precision machine calibration and tuning procedures',
+      duration: '1:45',
+      videoUrl: 'vidoes/vdo 55.mp4',
+      type: 'local'
+    },
+    {
+      id: 56,
+      title: 'System Quality Assurance',
+      description: 'Comprehensive quality assurance and testing procedures',
+      duration: '1:37',
+      videoUrl: 'vidoes/vdo 56.mp4',
+      type: 'local'
+    },
+    {
+      id: 57,
+      title: 'Equipment Performance Testing',
+      description: 'Advanced equipment performance testing and validation',
+      duration: '4:38',
+      videoUrl: 'vidoes/vdo 57.mp4',
+      type: 'local'
+    },
+    {
+      id: 58,
+      title: 'Technical Service Operations',
+      description: 'Professional technical service and maintenance work',
+      duration: '4:41',
+      videoUrl: 'vidoes/vdo 58.mp4',
+      type: 'local'
     }
   ]
 
@@ -669,13 +877,9 @@ const Gallery = () => {
 
           {/* Masonry Grid - Different Image Sizes */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {displayedImages.map((image, index) => (
-              <motion.div
+            {displayedImages.map((image) => (
+              <div
                 key={image.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="break-inside-avoid group relative overflow-hidden rounded-2xl cursor-pointer mb-6"
                 onClick={() => setSelectedImage(image)}
               >
@@ -695,15 +899,9 @@ const Gallery = () => {
                     <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-0 group-hover:scale-100">
                       <ZoomIn size={20} className="text-primary-600" />
                     </div>
-
-                    {/* Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 hidden sm:block">
-                      <h3 className="text-white font-bold text-xl mb-2">{image.title}</h3>
-                      <p className="text-white/80 text-sm">{image.description}</p>
-                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -763,7 +961,7 @@ const Gallery = () => {
 
           {/* Masonry Video Grid - Different Video Sizes */}
           <div className="columns-1 sm:columns-2 lg:columns-2 gap-8 space-y-8">
-            {videos.map((video, index) => {
+            {videos.map((video) => {
               const videoRef = React.useRef(null)
               
               const handleMouseEnter = () => {
@@ -780,12 +978,8 @@ const Gallery = () => {
               }
 
               return (
-                <motion.div
+                <div
                   key={video.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                   className="break-inside-avoid group cursor-pointer mb-8"
                   onClick={() => setSelectedVideo(video)}
                   onMouseEnter={handleMouseEnter}
@@ -845,15 +1039,10 @@ const Gallery = () => {
 
                     {/* Video Info */}
                     <div className="p-6 sm:p-8">
-                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                        {video.title}
-                      </h3>
-                      <p className="text-slate-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed hidden sm:block">
-                        {video.description}
-                      </p>
+                      {/* Video info removed */}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
@@ -904,17 +1093,17 @@ const Gallery = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="max-w-6xl w-full"
+              className="max-w-7xl w-full max-h-[90vh] flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
               <img
                 src={selectedImage.url}
                 alt={selectedImage.title}
-                className="w-full h-auto rounded-2xl shadow-2xl"
+                className="max-w-full max-h-[80vh] w-auto h-auto object-contain rounded-2xl shadow-2xl"
               />
-              <div className="mt-6 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-                <h3 className="text-white font-bold text-3xl mb-2">{selectedImage.title}</h3>
-                <p className="text-white/80 text-lg">{selectedImage.description}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/95 to-transparent p-6 rounded-b-2xl">
+                <h3 className="text-white font-bold text-2xl mb-2">{selectedImage.title}</h3>
+                <p className="text-white/80 text-base">{selectedImage.description}</p>
               </div>
             </motion.div>
           </motion.div>
