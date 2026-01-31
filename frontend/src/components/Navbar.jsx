@@ -63,9 +63,11 @@ const Navbar = () => {
       <div className="max-w-screen-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-xl">IM</span>
-            </div>
+            <img 
+              src="/images/im-logo.png" 
+              alt="IM Services Logo" 
+              className="h-12 w-auto"
+            />
             <div>
               <h1 className={`font-heading font-bold text-xl leading-tight transition-colors duration-700 ease-in-out ${
                 isHomePage && !scrolled 

@@ -15,9 +15,11 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">IM</span>
-              </div>
+              <img 
+                src="/images/im-logo.png" 
+                alt="IM Services Logo" 
+                className="h-10 w-auto"
+              />
               <h3 className="text-white font-heading font-bold text-xl">IM SERVICES</h3>
             </div>
             <p className="text-slate-300 text-sm mb-4 leading-relaxed">
