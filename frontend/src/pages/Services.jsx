@@ -251,16 +251,14 @@ const Services = () => {
                   
                   {/* Image Section */}
                   <div className={`relative h-56 lg:h-auto overflow-hidden ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                    {/* Back Arrow - Only show when user is redirected to this specific service */}
-                    {location.hash === `#${service.serviceId}` && (
-                      <Link 
-                        to="/#our-expert-services"
-                        className="absolute top-4 left-4 z-50 bg-gradient-to-r from-primary-500 to-cyan-500 text-white p-3 rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group border-2 border-white/20"
-                        aria-label="Back to services overview"
-                      >
-                        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
-                      </Link>
-                    )}
+                    {/* Back Arrow - Always show on all service cards */}
+                    <Link 
+                      to="/#our-expert-services"
+                      className="absolute top-4 left-4 z-40 bg-gradient-to-r from-primary-500 to-cyan-500 text-white p-3 rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group border-2 border-white/20"
+                      aria-label="Back to services overview"
+                    >
+                      <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform duration-300" />
+                    </Link>
                     
                     <img
                       src={service.image}
