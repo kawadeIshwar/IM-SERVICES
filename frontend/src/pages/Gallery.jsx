@@ -25,301 +25,462 @@ const Gallery = () => {
 
   const images = [
     {
+      id: 1,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.25 PM.jpeg',
+      title: 'WhatsApp Service Image 1',
+      description: 'Professional machine service and maintenance',
+      size: 'large'
+    },
+    {
+      id: 2,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.25 PM (1).jpeg',
+      title: 'WhatsApp Service Image 2',
+      description: 'Technical maintenance operations',
+      size: 'medium'
+    },
+    {
       id: 3,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.25 PM (2).jpeg',
+      title: 'WhatsApp Service Image 3',
+      description: 'Equipment inspection and service',
+      size: 'medium'
+    },
+    {
+      id: 4,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.26 PM.jpeg',
+      title: 'WhatsApp Service Image 4',
+      description: 'Machine calibration work',
+      size: 'large'
+    },
+    {
+      id: 5,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.26 PM (1).jpeg',
+      title: 'WhatsApp Service Image 5',
+      description: 'System diagnostic procedures',
+      size: 'medium'
+    },
+    {
+      id: 6,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.27 PM.jpeg',
+      title: 'WhatsApp Service Image 6',
+      description: 'Component testing and validation',
+      size: 'medium'
+    },
+    {
+      id: 7,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.28 PM.jpeg',
+      title: 'WhatsApp Service Image 7',
+      description: 'Precision engineering work',
+      size: 'large'
+    },
+    {
+      id: 8,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.28 PM (1).jpeg',
+      title: 'WhatsApp Service Image 8',
+      description: 'Technical service operations',
+      size: 'medium'
+    },
+    {
+      id: 9,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.29 PM.jpeg',
+      title: 'WhatsApp Service Image 9',
+      description: 'Equipment maintenance procedures',
+      size: 'large'
+    },
+    {
+      id: 10,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.29 PM (1).jpeg',
+      title: 'WhatsApp Service Image 10',
+      description: 'Machine performance testing',
+      size: 'medium'
+    },
+    {
+      id: 11,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.30 PM.jpeg',
+      title: 'WhatsApp Service Image 11',
+      description: 'System optimization work',
+      size: 'medium'
+    },
+    {
+      id: 12,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.31 PM.jpeg',
+      title: 'WhatsApp Service Image 12',
+      description: 'Quality control procedures',
+      size: 'medium'
+    },
+    {
+      id: 13,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.32 PM.jpeg',
+      title: 'WhatsApp Service Image 13',
+      description: 'Advanced technical service',
+      size: 'large'
+    },
+    {
+      id: 14,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.32 PM (1).jpeg',
+      title: 'WhatsApp Service Image 14',
+      description: 'Equipment calibration service',
+      size: 'medium'
+    },
+    {
+      id: 15,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.33 PM.jpeg',
+      title: 'WhatsApp Service Image 15',
+      description: 'Machine maintenance work',
+      size: 'medium'
+    },
+    {
+      id: 16,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.34 PM.jpeg',
+      title: 'WhatsApp Service Image 16',
+      description: 'System diagnostic analysis',
+      size: 'large'
+    },
+    {
+      id: 17,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.34 PM (1).jpeg',
+      title: 'WhatsApp Service Image 17',
+      description: 'Technical service excellence',
+      size: 'medium'
+    },
+    {
+      id: 18,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.35 PM.jpeg',
+      title: 'WhatsApp Service Image 18',
+      description: 'Equipment service procedures',
+      size: 'medium'
+    },
+    {
+      id: 19,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.35 PM (1).jpeg',
+      title: 'WhatsApp Service Image 19',
+      description: 'Precision calibration work',
+      size: 'medium'
+    },
+    {
+      id: 20,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.35 PM (2).jpeg',
+      title: 'WhatsApp Service Image 20',
+      description: 'Quality assurance testing',
+      size: 'large'
+    },
+    {
+      id: 21,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.36 PM.jpeg',
+      title: 'WhatsApp Service Image 21',
+      description: 'Machine performance service',
+      size: 'medium'
+    },
+    {
+      id: 22,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.36 PM (1).jpeg',
+      title: 'WhatsApp Service Image 22',
+      description: 'System analysis operations',
+      size: 'medium'
+    },
+    {
+      id: 23,
+      url: 'images/WhatsApp Image 2026-03-23 at 7.33.37 PM.jpeg',
+      title: 'WhatsApp Service Image 23',
+      description: 'Equipment testing work',
+      size: 'large'
+    },
+    {
+      id: 24,
       url: 'images/image 52.jpeg',
       title: 'Industrial Equipment Repair',
       description: 'Expert machine repair and diagnostics',
       size: 'medium'
     },
     {
-      id: 4,
+      id: 25,
       url: 'images/image 53.jpeg',
       title: 'System Component Analysis',
       description: 'Thorough component inspection and testing',
       size: 'large'
     },
     {
-      id: 5,
+      id: 26,
       url: 'images/image 54.jpeg',
       title: 'Technical Maintenance Service',
       description: 'Comprehensive on-site maintenance work',
       size: 'medium'
     },
     {
-      id: 6,
+      id: 27,
       url: 'images/image 55.jpeg',
       title: 'Machine Performance Testing',
       description: 'Advanced performance calibration and testing',
       size: 'medium'
     },
     {
-      id: 7,
+      id: 28,
       url: 'images/image 51.jpeg',
       title: 'Equipment Modernization',
       description: 'State-of-the-art machine upgrades',
       size: 'large'
     },
     {
-      id: 8,
+      id: 29,
       url: 'images/retrofitting and reconditioning.jpg',
       title: 'Machine Retrofitting',
       description: 'Complete machine modernization',
       size: 'medium'
     },
     {
-      id: 9,
+      id: 30,
       url: 'images/image1.jpg',
       title: 'Machine Service Work',
       description: 'Professional maintenance in progress',
       size: 'medium'
     },
     {
-      id: 10,
+      id: 31,
       url: 'images/image2.jpg',
       title: 'Component Inspection',
       description: 'Detailed component analysis',
       size: 'medium'
     },
     {
-      id: 11,
+      id: 32,
       url: 'images/image4.jpg',
       title: 'Machine Operations',
       description: 'Operational efficiency monitoring',
       size: 'large'
     },
     {
-      id: 12,
+      id: 33,
       url: 'images/image6.jpg',
       title: 'System Integration',
       description: 'Advanced system integration work',
       size: 'medium'
     },
     {
-      id: 13,
+      id: 34,
       url: 'images/image7.jpg',
       title: 'Industrial Equipment',
       description: 'State-of-the-art manufacturing equipment',
       size: 'medium'
     },
     {
-      id: 14,
+      id: 35,
       url: 'images/image8.jpg',
       title: 'Precision Work',
       description: 'Detailed precision maintenance',
       size: 'medium'
     },
     {
-      id: 15,
+      id: 36,
       url: 'images/image 57.jpeg',
       title: 'Advanced Machine Components',
       description: 'High-precision component assembly and calibration',
       size: 'large'
     },
     {
-      id: 16,
+      id: 37,
       url: 'images/image 58.jpeg',
       title: 'Technical Service Operations',
       description: 'Professional on-site technical maintenance work',
       size: 'medium'
     },
     {
-      id: 17,
+      id: 38,
       url: 'images/image 59.jpeg',
       title: 'Equipment Inspection',
       description: 'Thorough equipment quality control and inspection',
       size: 'medium'
     },
     {
-      id: 18,
+      id: 39,
       url: 'images/image 60.jpeg',
       title: 'Machine Maintenance',
       description: 'Comprehensive machine maintenance and servicing',
       size: 'large'
     },
     {
-      id: 19,
+      id: 40,
       url: 'images/image 61.jpeg',
       title: 'Component Testing',
       description: 'Advanced component performance testing',
       size: 'medium'
     },
     {
-      id: 21,
+      id: 41,
       url: 'images/image 63.jpeg',
       title: 'Precision Engineering',
       description: 'High-precision engineering and calibration work',
       size: 'large'
     },
     {
-      id: 22,
+      id: 42,
       url: 'images/image 64.jpeg',
       title: 'Equipment Service',
       description: 'Professional equipment servicing and repair',
       size: 'medium'
     },
     {
-      id: 23,
+      id: 43,
       url: 'images/image 65.jpeg',
       title: 'Machine Calibration',
       description: 'Precision machine calibration and tuning',
       size: 'medium'
     },
     {
-      id: 24,
+      id: 44,
       url: 'images/image 66.jpeg',
       title: 'Quality Control',
       description: 'Stringent quality control and testing procedures',
       size: 'large'
     },
     {
-      id: 25,
+      id: 45,
       url: 'images/image 67.jpeg',
       title: 'Technical Analysis',
       description: 'Detailed technical analysis and optimization',
       size: 'medium'
     },
     {
-      id: 26,
+      id: 46,
       url: 'images/image 68.jpeg',
       title: 'System Maintenance',
       description: 'Complete system maintenance and upgrade',
       size: 'medium'
     },
     {
-      id: 27,
+      id: 47,
       url: 'images/image 69.jpeg',
       title: 'Performance Testing',
       description: 'Advanced performance testing and validation',
       size: 'large'
     },
     {
-      id: 28,
+      id: 48,
       url: 'images/image 70.jpeg',
       title: 'Machine Component Assembly',
       description: 'Precision component assembly and integration work',
       size: 'medium'
     },
     {
-      id: 29,
+      id: 49,
       url: 'images/image 71.jpeg',
       title: 'Technical Service Operations',
       description: 'Professional technical maintenance and service',
       size: 'large'
     },
     {
-      id: 30,
+      id: 50,
       url: 'images/image 72.jpeg',
       title: 'Equipment Calibration',
       description: 'Advanced equipment calibration and tuning',
       size: 'medium'
     },
     {
-      id: 31,
+      id: 51,
       url: 'images/image 73.jpeg',
       title: 'System Integration',
       description: 'Complete system integration and testing',
       size: 'large'
     },
     {
-      id: 32,
+      id: 52,
       url: 'images/image 74.jpeg',
       title: 'Quality Assurance',
       description: 'Comprehensive quality control and inspection',
       size: 'medium'
     },
     {
-      id: 33,
+      id: 53,
       url: 'images/image 75.jpeg',
       title: 'Machine Maintenance',
       description: 'Professional machine maintenance and servicing',
       size: 'large'
     },
     {
-      id: 34,
+      id: 54,
       url: 'images/image 76.jpeg',
       title: 'Component Testing',
       description: 'Advanced component performance testing',
       size: 'medium'
     },
     {
-      id: 35,
+      id: 55,
       url: 'images/image 77.jpeg',
       title: 'System Diagnostics',
       description: 'Complete system diagnostic analysis',
       size: 'large'
     },
     {
-      id: 36,
+      id: 56,
       url: 'images/image 78.jpeg',
       title: 'Equipment Service',
       description: 'Professional equipment servicing and repair',
       size: 'medium'
     },
     {
-      id: 37,
+      id: 57,
       url: 'images/image 79.jpeg',
       title: 'Precision Engineering',
       description: 'High-precision engineering and calibration',
       size: 'large'
     },
     {
-      id: 38,
+      id: 58,
       url: 'images/image 81.jpeg',
       title: 'Machine Optimization',
       description: 'Advanced machine optimization and tuning',
       size: 'medium'
     },
     {
-      id: 39,
+      id: 59,
       url: 'images/image 82.jpeg',
       title: 'Technical Analysis',
       description: 'Detailed technical analysis and optimization',
       size: 'large'
     },
     {
-      id: 40,
+      id: 60,
       url: 'images/image 83.jpeg',
       title: 'Quality Control',
       description: 'Stringent quality control and testing procedures',
       size: 'medium'
     },
     {
-      id: 41,
+      id: 61,
       url: 'images/image 84.jpeg',
       title: 'System Maintenance',
       description: 'Complete system maintenance and upgrade',
       size: 'large'
     },
     {
-      id: 42,
+      id: 62,
       url: 'images/image 85.jpeg',
       title: 'Performance Testing',
       description: 'Advanced performance testing and validation',
       size: 'medium'
     },
     {
-      id: 43,
+      id: 63,
       url: 'images/image 86.jpeg',
       title: 'Equipment Inspection',
       description: 'Thorough equipment quality control and inspection',
       size: 'large'
     },
     {
-      id: 44,
+      id: 64,
       url: 'images/image 87.jpeg',
       title: 'System Maintenance Operations',
       description: 'Professional system maintenance and technical service work',
       size: 'medium'
     },
     {
-      id: 45,
+      id: 65,
       url: 'images/image 88.jpeg',
       title: 'Advanced Equipment Service',
       description: 'High-level equipment service and maintenance procedures',
       size: 'large'
     },
     {
-      id: 46,
+      id: 66,
       url: 'images/image 89.jpeg',
       title: 'Precision Technical Work',
       description: 'Detailed precision technical service and calibration work',
@@ -1101,10 +1262,6 @@ const Gallery = () => {
                 alt={selectedImage.title}
                 className="max-w-full max-h-[80vh] w-auto h-auto object-contain rounded-2xl shadow-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/95 to-transparent p-6 rounded-b-2xl">
-                <h3 className="text-white font-bold text-2xl mb-2">{selectedImage.title}</h3>
-                <p className="text-white/80 text-base">{selectedImage.description}</p>
-              </div>
             </motion.div>
           </motion.div>
         )}
@@ -1155,10 +1312,6 @@ const Gallery = () => {
                   className="w-full"
                 ></iframe>
               )}
-            </div>
-            <div className="mt-6 text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6">
-              <h3 className="text-white font-bold text-3xl mb-2">{selectedVideo.title}</h3>
-              <p className="text-white/80 text-lg">{selectedVideo.description}</p>
             </div>
           </motion.div>
         </motion.div>
